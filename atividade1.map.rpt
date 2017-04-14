@@ -1,5 +1,5 @@
 Analysis & Synthesis report for atividade1
-Fri Apr 14 14:22:23 2017
+Fri Apr 14 18:47:41 2017
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -13,14 +13,15 @@ Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |UP|UC:unic|state
+  8. State Machine - |UP|UC:uni_c|state
   9. Registers Removed During Synthesis
  10. General Register Statistics
- 11. Port Connectivity Checks: "IR:inst_reg|Registrador:inst_reg"
- 12. Port Connectivity Checks: "IR:inst_reg"
- 13. Port Connectivity Checks: "Ula32:ULA"
- 14. Port Connectivity Checks: "UC:unic"
- 15. Analysis & Synthesis Messages
+ 11. Port Connectivity Checks: "Banco_reg:banco_reg"
+ 12. Port Connectivity Checks: "IR:inst_reg|Registrador:inst_reg"
+ 13. Port Connectivity Checks: "IR:inst_reg"
+ 14. Port Connectivity Checks: "Ula32:ULA"
+ 15. Port Connectivity Checks: "UC:uni_c"
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -46,15 +47,15 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +------------------------------------+----------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Apr 14 14:22:23 2017        ;
+; Analysis & Synthesis Status        ; Successful - Fri Apr 14 18:47:41 2017        ;
 ; Quartus II Version                 ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
 ; Revision Name                      ; atividade1                                   ;
 ; Top-level Entity Name              ; UP                                           ;
 ; Family                             ; Cyclone II                                   ;
-; Total logic elements               ; 74                                           ;
-;     Total combinational functions  ; 73                                           ;
-;     Dedicated logic registers      ; 31                                           ;
-; Total registers                    ; 31                                           ;
+; Total logic elements               ; 70                                           ;
+;     Total combinational functions  ; 69                                           ;
+;     Dedicated logic registers      ; 30                                           ;
+; Total registers                    ; 30                                           ;
 ; Total pins                         ; 34                                           ;
 ; Total virtual pins                 ; 0                                            ;
 ; Total memory bits                  ; 0                                            ;
@@ -159,46 +160,47 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                        ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path              ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------+
-; Registrador.vhd                  ; yes             ; User VHDL File               ; C:/Users/nmf2/Desktop/cpu/Registrador.vhd ;
-; ula32.vhd                        ; yes             ; User VHDL File               ; C:/Users/nmf2/Desktop/cpu/ula32.vhd       ;
-; UP.sv                            ; yes             ; User SystemVerilog HDL File  ; C:/Users/nmf2/Desktop/cpu/UP.sv           ;
-; UC.sv                            ; yes             ; User SystemVerilog HDL File  ; C:/Users/nmf2/Desktop/cpu/UC.sv           ;
-; IR.sv                            ; yes             ; User SystemVerilog HDL File  ; C:/Users/nmf2/Desktop/cpu/IR.sv           ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                     ;
++----------------------------------+-----------------+------------------------------+----------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path           ;
++----------------------------------+-----------------+------------------------------+----------------------------------------+
+; Banco_reg.vhd                    ; yes             ; User VHDL File               ; C:/Users/nmf2/cpu-mips/Banco_reg.vhd   ;
+; Registrador.vhd                  ; yes             ; User VHDL File               ; C:/Users/nmf2/cpu-mips/Registrador.vhd ;
+; ula32.vhd                        ; yes             ; User VHDL File               ; C:/Users/nmf2/cpu-mips/ula32.vhd       ;
+; UP.sv                            ; yes             ; User SystemVerilog HDL File  ; C:/Users/nmf2/cpu-mips/UP.sv           ;
+; UC.sv                            ; yes             ; User SystemVerilog HDL File  ; C:/Users/nmf2/cpu-mips/UC.sv           ;
+; IR.sv                            ; yes             ; User SystemVerilog HDL File  ; C:/Users/nmf2/cpu-mips/IR.sv           ;
++----------------------------------+-----------------+------------------------------+----------------------------------------+
 
 
-+---------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                   ;
-+---------------------------------------------+-----------------+
-; Resource                                    ; Usage           ;
-+---------------------------------------------+-----------------+
-; Estimated Total logic elements              ; 74              ;
-;                                             ;                 ;
-; Total combinational functions               ; 73              ;
-; Logic element usage by number of LUT inputs ;                 ;
-;     -- 4 input functions                    ; 36              ;
-;     -- 3 input functions                    ; 31              ;
-;     -- <=2 input functions                  ; 6               ;
-;                                             ;                 ;
-; Logic elements by mode                      ;                 ;
-;     -- normal mode                          ; 73              ;
-;     -- arithmetic mode                      ; 0               ;
-;                                             ;                 ;
-; Total registers                             ; 31              ;
-;     -- Dedicated logic registers            ; 31              ;
-;     -- I/O registers                        ; 0               ;
-;                                             ;                 ;
-; I/O pins                                    ; 34              ;
-; Maximum fan-out node                        ; UC:unic|state.B ;
-; Maximum fan-out                             ; 86              ;
-; Total fan-out                               ; 371             ;
-; Average fan-out                             ; 2.69            ;
-+---------------------------------------------+-----------------+
++----------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                    ;
++---------------------------------------------+------------------+
+; Resource                                    ; Usage            ;
++---------------------------------------------+------------------+
+; Estimated Total logic elements              ; 70               ;
+;                                             ;                  ;
+; Total combinational functions               ; 69               ;
+; Logic element usage by number of LUT inputs ;                  ;
+;     -- 4 input functions                    ; 35               ;
+;     -- 3 input functions                    ; 29               ;
+;     -- <=2 input functions                  ; 5                ;
+;                                             ;                  ;
+; Logic elements by mode                      ;                  ;
+;     -- normal mode                          ; 69               ;
+;     -- arithmetic mode                      ; 0                ;
+;                                             ;                  ;
+; Total registers                             ; 30               ;
+;     -- Dedicated logic registers            ; 30               ;
+;     -- I/O registers                        ; 0                ;
+;                                             ;                  ;
+; I/O pins                                    ; 34               ;
+; Maximum fan-out node                        ; UC:uni_c|state.B ;
+; Maximum fan-out                             ; 83               ;
+; Total fan-out                               ; 355              ;
+; Average fan-out                             ; 2.67             ;
++---------------------------------------------+------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -206,23 +208,23 @@ applicable agreement for further details.
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |UP                        ; 73 (0)            ; 31 (0)       ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |UP                 ; work         ;
-;    |Registrador:PC|        ; 0 (0)             ; 30 (30)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Registrador:PC  ; work         ;
-;    |UC:unic|               ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|UC:unic         ;              ;
-;    |Ula32:ULA|             ; 73 (73)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Ula32:ULA       ; work         ;
+; |UP                        ; 69 (0)            ; 30 (0)       ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |UP                 ; work         ;
+;    |Registrador:PC|        ; 0 (0)             ; 29 (29)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Registrador:PC  ; work         ;
+;    |UC:uni_c|              ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|UC:uni_c        ;              ;
+;    |Ula32:ULA|             ; 69 (69)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Ula32:ULA       ;              ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
-+-----------------------------------+
-; State Machine - |UP|UC:unic|state ;
-+---------+-------------------------+
-; Name    ; state.B                 ;
-+---------+-------------------------+
-; state.A ; 0                       ;
-; state.B ; 1                       ;
-+---------+-------------------------+
++------------------------------------+
+; State Machine - |UP|UC:uni_c|state ;
++---------+--------------------------+
+; Name    ; state.B                  ;
++---------+--------------------------+
+; state.A ; 0                        ;
+; state.B ; 1                        ;
++---------+--------------------------+
 
 
 +--------------------------------------------------------------------------------+
@@ -230,10 +232,10 @@ Encoding Type:  One-Hot
 +---------------------------------------+----------------------------------------+
 ; Register name                         ; Reason for Removal                     ;
 +---------------------------------------+----------------------------------------+
-; Registrador:PC|Saida[0..1]            ; Stuck at GND due to stuck port data_in ;
-; UC:unic|state~5                       ; Lost fanout                            ;
-; UC:unic|state~6                       ; Lost fanout                            ;
-; Total Number of Removed Registers = 4 ;                                        ;
+; Registrador:PC|Saida[0..2]            ; Stuck at GND due to stuck port data_in ;
+; UC:uni_c|state~5                      ; Lost fanout                            ;
+; UC:uni_c|state~6                      ; Lost fanout                            ;
+; Total Number of Removed Registers = 5 ;                                        ;
 +---------------------------------------+----------------------------------------+
 
 
@@ -242,14 +244,29 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 31    ;
+; Total registers                              ; 30    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 31    ;
+; Number of registers using Asynchronous Clear ; 30    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Banco_reg:banco_reg"                                                                                                                              ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                                                                                      ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; regwrite  ; Input  ; Info     ; Explicitly unconnected                                                                                                                       ;
+; readreg1  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; readreg2  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; writereg  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; writedata ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; readdata1 ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; readdata2 ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++-----------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -280,9 +297,11 @@ Encoding Type:  One-Hot
 +----------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port     ; Type   ; Severity ; Details                                                                             ;
 +----------+--------+----------+-------------------------------------------------------------------------------------+
-; b[31..3] ; Input  ; Info     ; Stuck at GND                                                                        ;
-; b[1..0]  ; Input  ; Info     ; Stuck at GND                                                                        ;
-; b[2]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; b[31..6] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; b[2..0]  ; Input  ; Info     ; Stuck at GND                                                                        ;
+; b[5]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; b[4]     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; b[3]     ; Input  ; Info     ; Stuck at VCC                                                                        ;
 ; overflow ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 ; negativo ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 ; z        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
@@ -293,7 +312,7 @@ Encoding Type:  One-Hot
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "UC:unic"                                                                                                                                                                       ;
+; Port Connectivity Checks: "UC:uni_c"                                                                                                                                                                      ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Port        ; Type   ; Severity ; Details                                                                                                                                                                 ;
 +-------------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -308,7 +327,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Fri Apr 14 14:22:22 2017
+    Info: Processing started: Fri Apr 14 18:47:39 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off atividade1 -c atividade1
 Info: Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info: Found 2 design units, including 1 entities, in source file banco_reg.vhd
@@ -336,12 +355,19 @@ Info: Found 1 design units, including 1 entities, in source file uc.sv
     Info: Found entity 1: UC
 Info: Found 1 design units, including 1 entities, in source file ir.sv
     Info: Found entity 1: IR
+Warning: Can't analyze file -- file mux32-4-1.sv is missing
+Info: Found 1 design units, including 1 entities, in source file mux5_2_1.sv
+    Info: Found entity 1: mux5_2_1
+Warning: Can't analyze file -- file mux32_41.sv is missing
+Info: Found 1 design units, including 1 entities, in source file mux32_4_1.sv
+    Info: Found entity 1: mux32_4_1
 Info: Elaborating entity "UP" for the top level hierarchy
-Info: Elaborating entity "UC" for hierarchy "UC:unic"
+Info: Elaborating entity "UC" for hierarchy "UC:uni_c"
 Warning (10034): Output port "IRWrite" at UC.sv(7) has no driver
 Info: Elaborating entity "Ula32" for hierarchy "Ula32:ULA"
 Info: Elaborating entity "Registrador" for hierarchy "Registrador:PC"
 Info: Elaborating entity "IR" for hierarchy "IR:inst_reg"
+Info: Elaborating entity "Banco_reg" for hierarchy "Banco_reg:banco_reg"
 Warning: Net is missing source, defaulting to GND
     Warning (12110): Net "seletor_ula[2]" is missing source, defaulting to GND
     Warning (12110): Net "seletor_ula[1]" is missing source, defaulting to GND
@@ -376,21 +402,22 @@ Warning: Net is missing source, defaulting to GND
     Warning (12110): Net "ir_write[3]" is missing source, defaulting to GND
     Warning (12110): Net "ir_write[2]" is missing source, defaulting to GND
     Warning (12110): Net "ir_write[1]" is missing source, defaulting to GND
-Warning: 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning: 4 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning: Output pins are stuck at VCC or GND
     Warning (13410): Pin "saida_ula[0]" is stuck at GND
     Warning (13410): Pin "saida_ula[1]" is stuck at GND
+    Warning (13410): Pin "saida_ula[2]" is stuck at GND
 Info: 2 registers lost all their fanouts during netlist optimizations. The first 2 are displayed below.
-    Info: Register "UC:unic|state~5" lost all its fanouts during netlist optimizations.
-    Info: Register "UC:unic|state~6" lost all its fanouts during netlist optimizations.
-Info: Implemented 138 device resources after synthesis - the final resource count might be different
+    Info: Register "UC:uni_c|state~5" lost all its fanouts during netlist optimizations.
+    Info: Register "UC:uni_c|state~6" lost all its fanouts during netlist optimizations.
+Info: Implemented 133 device resources after synthesis - the final resource count might be different
     Info: Implemented 2 input pins
     Info: Implemented 32 output pins
-    Info: Implemented 104 logic cells
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 39 warnings
-    Info: Peak virtual memory: 237 megabytes
-    Info: Processing ended: Fri Apr 14 14:22:23 2017
-    Info: Elapsed time: 00:00:01
-    Info: Total CPU time (on all processors): 00:00:01
+    Info: Implemented 99 logic cells
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 42 warnings
+    Info: Peak virtual memory: 244 megabytes
+    Info: Processing ended: Fri Apr 14 18:47:41 2017
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
 
 

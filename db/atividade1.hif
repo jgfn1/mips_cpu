@@ -16,9 +16,83 @@ VRSM_ON
 VHSM_ON
 0
 -- Start Library Paths --
+|users|nmf2|quartus|quartus|libraries|megafunctions|
+|users|nmf2|quartus|quartus|libraries|megafunctions|gates|
 -- End Library Paths --
 -- Start VHDL Libraries --
 -- End VHDL Libraries --
+# entity
+UP
+# storage
+db|atividade1.(0).cnf
+db|atividade1.(0).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+up.sv
+253cf8a367a7bdf5d9e6fea7c4a36d4
+9
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+|
+}
+# macro_sequence
+
+# end
+# entity
+UC
+# storage
+db|atividade1.(1).cnf
+db|atividade1.(1).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+uc.sv
+f85d211e8eddb32a629e66e8ddd7d
+9
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+UC:uni_c
+}
+# macro_sequence
+
+# end
 # entity
 Ula32
 # storage
@@ -87,78 +161,6 @@ a36c8ec425c8a2589af98b2d4daabc3
 
 # end
 # entity
-UC
-# storage
-db|atividade1.(1).cnf
-db|atividade1.(1).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-uc.sv
-f85d211e8eddb32a629e66e8ddd7d
-9
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-UC:unic
-}
-# macro_sequence
-
-# end
-# entity
-UP
-# storage
-db|atividade1.(0).cnf
-db|atividade1.(0).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-up.sv
-c1f733eba439b4569fe37df35e293e
-9
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-|
-}
-# macro_sequence
-
-# end
-# entity
 IR
 # storage
 db|atividade1.(4).cnf
@@ -170,7 +172,7 @@ ON
 # case_sensitive
 # source_file
 ir.sv
-84ef118d5c7ebafba3a85d38f57252
+6a8ba5a07599f4fa5e8ed5a0f7bc42c3
 9
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT
@@ -191,6 +193,39 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 # hierarchies {
 IR:inst_reg
 }
+# macro_sequence
+
+# end
+# entity
+Banco_reg
+# storage
+db|atividade1.(5).cnf
+db|atividade1.(5).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+banco_reg.vhd
+2cadfcaf44a2386f30e8abc1e4fa4f58
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# hierarchies {
+Banco_reg:banco_reg
+}
+# lmf
+|users|nmf2|quartus|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
 # macro_sequence
 
 # end

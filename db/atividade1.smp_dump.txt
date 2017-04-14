@@ -1,0 +1,5 @@
+
+State Machine - |UP|UC:unic|state
+Name state.B 
+state.A 0 
+state.B 1 

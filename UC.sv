@@ -3,7 +3,15 @@ module UC (input logic Clk,
 		output logic Load_PC, 
 		output logic Empty_PC, 
 		output logic Seletor_ULA,
-		output logic IRWrite
+		output logic IRWrite,
+		output logic RegWrite,
+		output logic RegDst,
+		output logic MemWrite,
+		output logic IorD,
+		output logic ALUSrcA
+		output logic ALUOp,
+		output logic ALUSrcB,
+		output logic MemtoReg
 		);
 	
 	enum logic [2:0] {A, B} state;

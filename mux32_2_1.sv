@@ -7,4 +7,10 @@ module  Mux32_2_1 (
 
 assign Mux32_out = (Mux32_seletor) ? B : A;
 
-endmodule 
+endmodule
+
+/*	input  logic  [31:0] A, 
+	input  logic  [31:0] B,
+	input  logic  Mux32_seletor, 
+	output logic  [31:0]Mux32_out
+	*/

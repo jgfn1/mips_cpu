@@ -3,17 +3,20 @@ module UP(input logic clk, input logic reset, output logic [31:0] alu_result);
 //alu
 logic of_alu, negf_alu, zf_alu, menorf_alu, maiorf_alu, igualf_alu;
 logic [2:0] seletor_alu;
+logic [31:0] mux32_alu_a_output, mux32_alu_b_output, mux32_alu_output;
 
 //alu out
 logic [31:0] alu_out;
 logic alu_out_load;
 
 //pc and pc bound
-logic [31:0] pc_output/* output do próprio do pc*/, mux32_memory_output /* output do mux q está perto do pc*/;
+logic [31:0] pc_output/* output do próprio do pc*/, mux32_memory_output /* output do mux q está perto do pc*/, pc_input;
 logic reset_pc, load_pc; // I/O da UC
 logic [1:0] aluSrcB_pc;
+
 //uc and uc bound
-logic reg_write, reg_dst, mem_write, iorD;
+logic reg_write, reg_dst, mem_write, iorD, alu_src_a, alu_src_b;
+logic [1:0] pc_source;
 
 //IR and IR bound
 logic ir_write;
@@ -38,10 +41,14 @@ logic a_load, b_load;
 logic [31:0] mdr_output;
 logic mdr_load;
 
+//extensor de sinal
+logic [31:0] sign_ex_output;
+
+
 UC uni_c (.Clk(clk),
-		.Reset_pc(reset), 
-		.Load_pc(load_pc), 
-		.Empty_pc(empty_pc), 
+		.Reset_PC(reset), 
+		.Load_PC(load_pc), 
+		.Empty_PC(reset_pc), 
 		.Seletor_alu(seletor_alu),
 		.IRWrite(ir_write)
 );
@@ -50,7 +57,7 @@ Registrador PC(
 			.Clk(clk),
 			.Reset(reset_pc),
 			.Load(load_pc),
-			.Entrada(alu_result),
+			.Entrada(pc_input),
 			.Saida(pc_output)
 );
 
@@ -101,14 +108,14 @@ Registrador mdr ( //Memory Data Register
 Mux5_2_1 mux521 (
 	.A(rt),
 	.B(addr_imm[15-:5]), //pega apenas os primeiros 5 bits de addr_imm, que é uma saida do IR. Livro pag 322.
-	.Mux5_seletor(reg_dst_pc),
+	.Mux5_seletor(reg_dst),
 	.Mux5_out(mux5_out)
 );
 
 Mux32_2_1 mux3221_br ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a saída é entrada do banco de registradores na porta Write data
 	.A(alu_out),
 	.B(mdr_output),
-	.Mux32_seletor(memtoReg),
+	.Mux32_seletor(mem_to_reg),
 	.Mux32_out(mux32_br_output)
 );
 	/*
@@ -122,7 +129,7 @@ Mux32_2_1 mux3221_br ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a saída é
 Banco_reg banco_reg (
 	.Clk(clk),
 	.Reset(reset),
-	.RegWrite(reg_write_pc),
+	.RegWrite(reg_write),
 	.ReadReg1(rs),
 	.ReadReg2(rt),
 	.WriteReg(mux5_out),
@@ -138,6 +145,11 @@ Banco_reg banco_reg (
 			// WriteData 	: IN	STD_LOGIC_VECTOR (31 downto 0);	-- Indica o dado a ser escrito
 			// ReadData1	: OUT	STD_LOGIC_VECTOR (31 downto 0);	-- Mostra a informaçao presente no registrador #1
 			// ReadData2	: OUT	STD_LOGIC_VECTOR (31 downto 0)	-- Mostra a informação presente no registrador #2
+);
+
+Extensor_sinal sign_ex(
+	.Entrada(addr_imm),
+	.Saida(sign_ex_output)
 );
 
 Registrador A (
@@ -165,9 +177,25 @@ Registrador B (
 			// Saida	: OUT STD_LOGIC_vector (31 downto 0)	-- Vetor de bits que possui a informação já carregada no registrador
 );
 
-Ula32 ULA (.A(pc_output),
-		.B(4), 
-		.S(alu_result), 
+Mux32_2_1 mux3221_alu ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a saída é entrada do banco de registradores na porta Write data
+	.A(pc_output),
+	.B(a_output),
+	.Mux32_seletor(alu_src_a),
+	.Mux32_out(mux32_alu_a_output)
+);
+
+Mux32_4_1(
+	.A(b_output),
+	.B(4), //4'd
+	.C(sign_ex_output),
+	.D((sign_ex_output << 2)), //shitf_left2 está implicito
+ 	.ALUSrcB(alu_src_b),
+ 	.Mux32_4_out(mux32_alu_b_output)
+ );
+
+Ula32 ULA (.A(mux32_alu_a_output),
+		.B(mux32_alu_b_output),				//arrumar isso
+		.S(alu_result),
 		.Overflow(of_alu),
 		.Seletor(seletor_alu), 
 		.Negativo(negf_alu), 
@@ -176,6 +204,14 @@ Ula32 ULA (.A(pc_output),
 		.Maior(maiorf_alu), 
 		.Menor(menorf_alu)
 );
+
+Mux32_3_1(
+	.A(alu_result),
+	.B(alu_output), //4'd
+	.C({ pc_output[31-:4], rs, rt, addr_imm, 2'b00}),
+ 	.PCSource(pc_source),
+ 	.Saida(pc_input)
+ );
 
 Registrador ALUOut (
 	.Clk(clk),

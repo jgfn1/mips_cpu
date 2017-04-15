@@ -1,5 +1,5 @@
 Simulator report for atividade1
-Fri Apr 14 13:15:57 2017
+Sat Apr 15 17:57:38 2017
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -46,8 +46,8 @@ applicable agreement for further details.
 ; Simulation Start Time       ; 0 ps         ;
 ; Simulation End Time         ; 1.0 us       ;
 ; Simulation Netlist Size     ; 3201 nodes   ;
-; Simulation Coverage         ;       8.12 % ;
-; Total Number of Transitions ; 11138        ;
+; Simulation Coverage         ;       5.09 % ;
+; Total Number of Transitions ; 2645         ;
 ; Simulation Breakpoints      ; 0            ;
 ; Family                      ; Cyclone II   ;
 +-----------------------------+--------------+
@@ -77,7 +77,7 @@ applicable agreement for further details.
 ; Preserve fewer signal transitions to reduce memory requirements                            ; On         ; On            ;
 ; Trigger vector comparison with the specified mode                                          ; INPUT_EDGE ; INPUT_EDGE    ;
 ; Disable setup and hold time violations detection in input registers of bi-directional pins ; Off        ; Off           ;
-; Overwrite Waveform Inputs With Simulation Outputs                                          ; On         ;               ;
+; Overwrite Waveform Inputs With Simulation Outputs                                          ; Off        ;               ;
 ; Perform Glitch Filtering in Timing Simulation                                              ; Auto       ; Auto          ;
 +--------------------------------------------------------------------------------------------+------------+---------------+
 
@@ -94,13 +94,13 @@ Please use Quartus II to view the waveform report data.
 +-----------------------------------------------------+--------------+
 ; Type                                                ; Value        ;
 +-----------------------------------------------------+--------------+
-; Total coverage as a percentage                      ;       8.12 % ;
+; Total coverage as a percentage                      ;       5.09 % ;
 ; Total nodes checked                                 ; 3201         ;
 ; Total output ports checked                          ; 3201         ;
-; Total output ports with complete 1/0-value coverage ; 260          ;
-; Total output ports with no 1/0-value coverage       ; 1423         ;
-; Total output ports with no 1-value coverage         ; 2334         ;
-; Total output ports with no 0-value coverage         ; 2030         ;
+; Total output ports with complete 1/0-value coverage ; 163          ;
+; Total output ports with no 1/0-value coverage       ; 1438         ;
+; Total output ports with no 1-value coverage         ; 2429         ;
+; Total output ports with no 0-value coverage         ; 2047         ;
 +-----------------------------------------------------+--------------+
 
 
@@ -111,81 +111,40 @@ The following table displays output ports that toggle between 1 and 0 during sim
 ; Node Name                                                           ; Output Port Name                                                    ; Output Port Type ;
 +---------------------------------------------------------------------+---------------------------------------------------------------------+------------------+
 ; |UP|clk                                                             ; |UP|clk                                                             ; out              ;
-; |UP|saida_ula[0]                                                    ; |UP|saida_ula[0]                                                    ; pin_out          ;
-; |UP|saida_ula[1]                                                    ; |UP|saida_ula[1]                                                    ; pin_out          ;
-; |UP|saida_ula[2]                                                    ; |UP|saida_ula[2]                                                    ; pin_out          ;
-; |UP|saida_ula[3]                                                    ; |UP|saida_ula[3]                                                    ; pin_out          ;
-; |UP|saida_ula[4]                                                    ; |UP|saida_ula[4]                                                    ; pin_out          ;
-; |UP|saida_ula[5]                                                    ; |UP|saida_ula[5]                                                    ; pin_out          ;
-; |UP|saida_ula[6]                                                    ; |UP|saida_ula[6]                                                    ; pin_out          ;
-; |UP|saida_ula[7]                                                    ; |UP|saida_ula[7]                                                    ; pin_out          ;
-; |UP|saida_ula[8]                                                    ; |UP|saida_ula[8]                                                    ; pin_out          ;
-; |UP|saida_ula[9]                                                    ; |UP|saida_ula[9]                                                    ; pin_out          ;
-; |UP|saida_ula[10]                                                   ; |UP|saida_ula[10]                                                   ; pin_out          ;
-; |UP|saida_ula[11]                                                   ; |UP|saida_ula[11]                                                   ; pin_out          ;
-; |UP|saida_ula[12]                                                   ; |UP|saida_ula[12]                                                   ; pin_out          ;
-; |UP|saida_ula[13]                                                   ; |UP|saida_ula[13]                                                   ; pin_out          ;
-; |UP|saida_ula[14]                                                   ; |UP|saida_ula[14]                                                   ; pin_out          ;
-; |UP|saida_ula[15]                                                   ; |UP|saida_ula[15]                                                   ; pin_out          ;
-; |UP|saida_ula[16]                                                   ; |UP|saida_ula[16]                                                   ; pin_out          ;
-; |UP|saida_ula[17]                                                   ; |UP|saida_ula[17]                                                   ; pin_out          ;
-; |UP|saida_ula[18]                                                   ; |UP|saida_ula[18]                                                   ; pin_out          ;
-; |UP|saida_ula[19]                                                   ; |UP|saida_ula[19]                                                   ; pin_out          ;
-; |UP|saida_ula[20]                                                   ; |UP|saida_ula[20]                                                   ; pin_out          ;
-; |UP|saida_ula[21]                                                   ; |UP|saida_ula[21]                                                   ; pin_out          ;
-; |UP|saida_ula[22]                                                   ; |UP|saida_ula[22]                                                   ; pin_out          ;
-; |UP|saida_ula[23]                                                   ; |UP|saida_ula[23]                                                   ; pin_out          ;
-; |UP|saida_ula[24]                                                   ; |UP|saida_ula[24]                                                   ; pin_out          ;
-; |UP|saida_ula[25]                                                   ; |UP|saida_ula[25]                                                   ; pin_out          ;
-; |UP|saida_ula[26]                                                   ; |UP|saida_ula[26]                                                   ; pin_out          ;
-; |UP|saida_ula[27]                                                   ; |UP|saida_ula[27]                                                   ; pin_out          ;
-; |UP|saida_ula[28]                                                   ; |UP|saida_ula[28]                                                   ; pin_out          ;
-; |UP|saida_ula[29]                                                   ; |UP|saida_ula[29]                                                   ; pin_out          ;
-; |UP|saida_ula[30]                                                   ; |UP|saida_ula[30]                                                   ; pin_out          ;
-; |UP|saida_ula[31]                                                   ; |UP|saida_ula[31]                                                   ; pin_out          ;
-; |UP|Registrador:PC|Saida[7]                                         ; |UP|Registrador:PC|Saida[7]                                         ; regout           ;
-; |UP|Registrador:PC|Saida[6]                                         ; |UP|Registrador:PC|Saida[6]                                         ; regout           ;
-; |UP|Registrador:PC|Saida[5]                                         ; |UP|Registrador:PC|Saida[5]                                         ; regout           ;
-; |UP|Registrador:PC|Saida[4]                                         ; |UP|Registrador:PC|Saida[4]                                         ; regout           ;
-; |UP|Registrador:PC|Saida[3]                                         ; |UP|Registrador:PC|Saida[3]                                         ; regout           ;
-; |UP|Registrador:PC|Saida[2]                                         ; |UP|Registrador:PC|Saida[2]                                         ; regout           ;
-; |UP|Ula32:ULA|soma_temp~2                                           ; |UP|Ula32:ULA|soma_temp~2                                           ; out0             ;
-; |UP|Ula32:ULA|soma_temp[2]                                          ; |UP|Ula32:ULA|soma_temp[2]                                          ; out0             ;
-; |UP|Ula32:ULA|soma_temp~3                                           ; |UP|Ula32:ULA|soma_temp~3                                           ; out0             ;
-; |UP|Ula32:ULA|soma_temp[3]                                          ; |UP|Ula32:ULA|soma_temp[3]                                          ; out0             ;
-; |UP|Ula32:ULA|soma_temp~4                                           ; |UP|Ula32:ULA|soma_temp~4                                           ; out0             ;
-; |UP|Ula32:ULA|soma_temp[4]                                          ; |UP|Ula32:ULA|soma_temp[4]                                          ; out0             ;
-; |UP|Ula32:ULA|soma_temp~5                                           ; |UP|Ula32:ULA|soma_temp~5                                           ; out0             ;
-; |UP|Ula32:ULA|soma_temp[5]                                          ; |UP|Ula32:ULA|soma_temp[5]                                          ; out0             ;
-; |UP|Ula32:ULA|soma_temp~6                                           ; |UP|Ula32:ULA|soma_temp~6                                           ; out0             ;
-; |UP|Ula32:ULA|soma_temp[6]                                          ; |UP|Ula32:ULA|soma_temp[6]                                          ; out0             ;
-; |UP|Ula32:ULA|soma_temp~7                                           ; |UP|Ula32:ULA|soma_temp~7                                           ; out0             ;
-; |UP|Ula32:ULA|soma_temp[7]                                          ; |UP|Ula32:ULA|soma_temp[7]                                          ; out0             ;
-; |UP|Ula32:ULA|soma_temp~8                                           ; |UP|Ula32:ULA|soma_temp~8                                           ; out0             ;
-; |UP|Ula32:ULA|soma_temp[8]                                          ; |UP|Ula32:ULA|soma_temp[8]                                          ; out0             ;
-; |UP|Ula32:ULA|soma_temp[9]                                          ; |UP|Ula32:ULA|soma_temp[9]                                          ; out0             ;
-; |UP|Ula32:ULA|carry_temp~8                                          ; |UP|Ula32:ULA|carry_temp~8                                          ; out0             ;
-; |UP|Ula32:ULA|carry_temp[2]                                         ; |UP|Ula32:ULA|carry_temp[2]                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~9                                          ; |UP|Ula32:ULA|carry_temp~9                                          ; out0             ;
-; |UP|Ula32:ULA|carry_temp~10                                         ; |UP|Ula32:ULA|carry_temp~10                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp[3]                                         ; |UP|Ula32:ULA|carry_temp[3]                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~12                                         ; |UP|Ula32:ULA|carry_temp~12                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~13                                         ; |UP|Ula32:ULA|carry_temp~13                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp[4]                                         ; |UP|Ula32:ULA|carry_temp[4]                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~15                                         ; |UP|Ula32:ULA|carry_temp~15                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~16                                         ; |UP|Ula32:ULA|carry_temp~16                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp[5]                                         ; |UP|Ula32:ULA|carry_temp[5]                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~18                                         ; |UP|Ula32:ULA|carry_temp~18                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~19                                         ; |UP|Ula32:ULA|carry_temp~19                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp[6]                                         ; |UP|Ula32:ULA|carry_temp[6]                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~21                                         ; |UP|Ula32:ULA|carry_temp~21                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~22                                         ; |UP|Ula32:ULA|carry_temp~22                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp[7]                                         ; |UP|Ula32:ULA|carry_temp[7]                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~24                                         ; |UP|Ula32:ULA|carry_temp~24                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~25                                         ; |UP|Ula32:ULA|carry_temp~25                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp[8]                                         ; |UP|Ula32:ULA|carry_temp[8]                                         ; out0             ;
-; |UP|UC:unic|state~0                                                 ; |UP|UC:unic|state~0                                                 ; out0             ;
-; |UP|UC:unic|state~5                                                 ; |UP|UC:unic|state~5                                                 ; out0             ;
+; |UP|alu_result[0]                                                   ; |UP|alu_result[0]                                                   ; pin_out          ;
+; |UP|alu_result[1]                                                   ; |UP|alu_result[1]                                                   ; pin_out          ;
+; |UP|alu_result[2]                                                   ; |UP|alu_result[2]                                                   ; pin_out          ;
+; |UP|alu_result[3]                                                   ; |UP|alu_result[3]                                                   ; pin_out          ;
+; |UP|alu_result[4]                                                   ; |UP|alu_result[4]                                                   ; pin_out          ;
+; |UP|alu_result[5]                                                   ; |UP|alu_result[5]                                                   ; pin_out          ;
+; |UP|alu_result[6]                                                   ; |UP|alu_result[6]                                                   ; pin_out          ;
+; |UP|alu_result[7]                                                   ; |UP|alu_result[7]                                                   ; pin_out          ;
+; |UP|alu_result[8]                                                   ; |UP|alu_result[8]                                                   ; pin_out          ;
+; |UP|alu_result[9]                                                   ; |UP|alu_result[9]                                                   ; pin_out          ;
+; |UP|alu_result[10]                                                  ; |UP|alu_result[10]                                                  ; pin_out          ;
+; |UP|alu_result[11]                                                  ; |UP|alu_result[11]                                                  ; pin_out          ;
+; |UP|alu_result[12]                                                  ; |UP|alu_result[12]                                                  ; pin_out          ;
+; |UP|alu_result[13]                                                  ; |UP|alu_result[13]                                                  ; pin_out          ;
+; |UP|alu_result[14]                                                  ; |UP|alu_result[14]                                                  ; pin_out          ;
+; |UP|alu_result[15]                                                  ; |UP|alu_result[15]                                                  ; pin_out          ;
+; |UP|alu_result[16]                                                  ; |UP|alu_result[16]                                                  ; pin_out          ;
+; |UP|alu_result[17]                                                  ; |UP|alu_result[17]                                                  ; pin_out          ;
+; |UP|alu_result[18]                                                  ; |UP|alu_result[18]                                                  ; pin_out          ;
+; |UP|alu_result[19]                                                  ; |UP|alu_result[19]                                                  ; pin_out          ;
+; |UP|alu_result[20]                                                  ; |UP|alu_result[20]                                                  ; pin_out          ;
+; |UP|alu_result[21]                                                  ; |UP|alu_result[21]                                                  ; pin_out          ;
+; |UP|alu_result[22]                                                  ; |UP|alu_result[22]                                                  ; pin_out          ;
+; |UP|alu_result[23]                                                  ; |UP|alu_result[23]                                                  ; pin_out          ;
+; |UP|alu_result[24]                                                  ; |UP|alu_result[24]                                                  ; pin_out          ;
+; |UP|alu_result[25]                                                  ; |UP|alu_result[25]                                                  ; pin_out          ;
+; |UP|alu_result[26]                                                  ; |UP|alu_result[26]                                                  ; pin_out          ;
+; |UP|alu_result[27]                                                  ; |UP|alu_result[27]                                                  ; pin_out          ;
+; |UP|alu_result[28]                                                  ; |UP|alu_result[28]                                                  ; pin_out          ;
+; |UP|alu_result[29]                                                  ; |UP|alu_result[29]                                                  ; pin_out          ;
+; |UP|alu_result[30]                                                  ; |UP|alu_result[30]                                                  ; pin_out          ;
+; |UP|alu_result[31]                                                  ; |UP|alu_result[31]                                                  ; pin_out          ;
+; |UP|UC:uni_c|state~0                                                ; |UP|UC:uni_c|state~0                                                ; out0             ;
+; |UP|UC:uni_c|state~5                                                ; |UP|UC:uni_c|state~5                                                ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux31|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux31|mux_3nc:auto_generated|_~19             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux31|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux31|mux_3nc:auto_generated|_~20             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux31|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux31|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
@@ -194,90 +153,34 @@ The following table displays output ports that toggle between 1 and 0 during sim
 ; |UP|Ula32:ULA|lpm_mux:Mux30|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux30|mux_3nc:auto_generated|_~20             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux30|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux30|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux30|mux_3nc:auto_generated|result_node[0]   ; |UP|Ula32:ULA|lpm_mux:Mux30|mux_3nc:auto_generated|result_node[0]   ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~5              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~6              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~7              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~8              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~14             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~15             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~19             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~20             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|result_node[0]   ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|result_node[0]   ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~5              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~6              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~7              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~8              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~14             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~15             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~19             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~20             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|result_node[0]   ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|result_node[0]   ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~5              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~6              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~7              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~8              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~14             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~15             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~19             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~20             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|result_node[0]   ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|result_node[0]   ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~5              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~6              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~7              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~8              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~14             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~15             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~19             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~20             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|result_node[0]   ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|result_node[0]   ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~5              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~6              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~7              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~8              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~14             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~15             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~19             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~20             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|result_node[0]   ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|result_node[0]   ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~5              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~6              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~7              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~8              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~14             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~15             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~19             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~20             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|result_node[0]   ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|result_node[0]   ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~5              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~6              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~7              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~8              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~14             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~15             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~19             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~20             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|result_node[0]   ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|result_node[0]   ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~5              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~6              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~7              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~8              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~14             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~15             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~19             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~20             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
@@ -379,36 +282,26 @@ The following table displays output ports that do not toggle to 1 during simulat
 +---------------------------------------------------------------------+---------------------------------------------------------------------+------------------+
 ; Node Name                                                           ; Output Port Name                                                    ; Output Port Type ;
 +---------------------------------------------------------------------+---------------------------------------------------------------------+------------------+
-; |UP|reset_pc                                                        ; |UP|reset_pc                                                        ; out              ;
-; |UP|Registrador:PC|Saida[31]                                        ; |UP|Registrador:PC|Saida[31]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[30]                                        ; |UP|Registrador:PC|Saida[30]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[29]                                        ; |UP|Registrador:PC|Saida[29]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[28]                                        ; |UP|Registrador:PC|Saida[28]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[27]                                        ; |UP|Registrador:PC|Saida[27]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[26]                                        ; |UP|Registrador:PC|Saida[26]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[25]                                        ; |UP|Registrador:PC|Saida[25]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[24]                                        ; |UP|Registrador:PC|Saida[24]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[23]                                        ; |UP|Registrador:PC|Saida[23]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[22]                                        ; |UP|Registrador:PC|Saida[22]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[21]                                        ; |UP|Registrador:PC|Saida[21]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[20]                                        ; |UP|Registrador:PC|Saida[20]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[19]                                        ; |UP|Registrador:PC|Saida[19]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[18]                                        ; |UP|Registrador:PC|Saida[18]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[17]                                        ; |UP|Registrador:PC|Saida[17]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[16]                                        ; |UP|Registrador:PC|Saida[16]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[15]                                        ; |UP|Registrador:PC|Saida[15]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[14]                                        ; |UP|Registrador:PC|Saida[14]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[13]                                        ; |UP|Registrador:PC|Saida[13]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[12]                                        ; |UP|Registrador:PC|Saida[12]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[11]                                        ; |UP|Registrador:PC|Saida[11]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[10]                                        ; |UP|Registrador:PC|Saida[10]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[9]                                         ; |UP|Registrador:PC|Saida[9]                                         ; regout           ;
-; |UP|Registrador:PC|Saida[1]                                         ; |UP|Registrador:PC|Saida[1]                                         ; regout           ;
-; |UP|Registrador:PC|Saida[0]                                         ; |UP|Registrador:PC|Saida[0]                                         ; regout           ;
+; |UP|reset                                                           ; |UP|reset                                                           ; out              ;
 ; |UP|Ula32:ULA|soma_temp~0                                           ; |UP|Ula32:ULA|soma_temp~0                                           ; out0             ;
 ; |UP|Ula32:ULA|soma_temp~1                                           ; |UP|Ula32:ULA|soma_temp~1                                           ; out0             ;
 ; |UP|Ula32:ULA|soma_temp[1]                                          ; |UP|Ula32:ULA|soma_temp[1]                                          ; out0             ;
+; |UP|Ula32:ULA|soma_temp~2                                           ; |UP|Ula32:ULA|soma_temp~2                                           ; out0             ;
+; |UP|Ula32:ULA|soma_temp[2]                                          ; |UP|Ula32:ULA|soma_temp[2]                                          ; out0             ;
+; |UP|Ula32:ULA|soma_temp~3                                           ; |UP|Ula32:ULA|soma_temp~3                                           ; out0             ;
+; |UP|Ula32:ULA|soma_temp[3]                                          ; |UP|Ula32:ULA|soma_temp[3]                                          ; out0             ;
+; |UP|Ula32:ULA|soma_temp~4                                           ; |UP|Ula32:ULA|soma_temp~4                                           ; out0             ;
+; |UP|Ula32:ULA|soma_temp[4]                                          ; |UP|Ula32:ULA|soma_temp[4]                                          ; out0             ;
+; |UP|Ula32:ULA|soma_temp~5                                           ; |UP|Ula32:ULA|soma_temp~5                                           ; out0             ;
+; |UP|Ula32:ULA|soma_temp[5]                                          ; |UP|Ula32:ULA|soma_temp[5]                                          ; out0             ;
+; |UP|Ula32:ULA|soma_temp~6                                           ; |UP|Ula32:ULA|soma_temp~6                                           ; out0             ;
+; |UP|Ula32:ULA|soma_temp[6]                                          ; |UP|Ula32:ULA|soma_temp[6]                                          ; out0             ;
+; |UP|Ula32:ULA|soma_temp~7                                           ; |UP|Ula32:ULA|soma_temp~7                                           ; out0             ;
+; |UP|Ula32:ULA|soma_temp[7]                                          ; |UP|Ula32:ULA|soma_temp[7]                                          ; out0             ;
+; |UP|Ula32:ULA|soma_temp~8                                           ; |UP|Ula32:ULA|soma_temp~8                                           ; out0             ;
+; |UP|Ula32:ULA|soma_temp[8]                                          ; |UP|Ula32:ULA|soma_temp[8]                                          ; out0             ;
 ; |UP|Ula32:ULA|soma_temp~9                                           ; |UP|Ula32:ULA|soma_temp~9                                           ; out0             ;
+; |UP|Ula32:ULA|soma_temp[9]                                          ; |UP|Ula32:ULA|soma_temp[9]                                          ; out0             ;
 ; |UP|Ula32:ULA|soma_temp~10                                          ; |UP|Ula32:ULA|soma_temp~10                                          ; out0             ;
 ; |UP|Ula32:ULA|soma_temp[10]                                         ; |UP|Ula32:ULA|soma_temp[10]                                         ; out0             ;
 ; |UP|Ula32:ULA|soma_temp~11                                          ; |UP|Ula32:ULA|soma_temp~11                                          ; out0             ;
@@ -458,13 +351,34 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|carry_temp~4                                          ; |UP|Ula32:ULA|carry_temp~4                                          ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~5                                          ; |UP|Ula32:ULA|carry_temp~5                                          ; out0             ;
 ; |UP|Ula32:ULA|carry_temp[1]                                         ; |UP|Ula32:ULA|carry_temp[1]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~6                                          ; |UP|Ula32:ULA|carry_temp~6                                          ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~7                                          ; |UP|Ula32:ULA|carry_temp~7                                          ; out0             ;
+; |UP|Ula32:ULA|carry_temp~8                                          ; |UP|Ula32:ULA|carry_temp~8                                          ; out0             ;
+; |UP|Ula32:ULA|carry_temp[2]                                         ; |UP|Ula32:ULA|carry_temp[2]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~9                                          ; |UP|Ula32:ULA|carry_temp~9                                          ; out0             ;
+; |UP|Ula32:ULA|carry_temp~10                                         ; |UP|Ula32:ULA|carry_temp~10                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~11                                         ; |UP|Ula32:ULA|carry_temp~11                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[3]                                         ; |UP|Ula32:ULA|carry_temp[3]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~12                                         ; |UP|Ula32:ULA|carry_temp~12                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~13                                         ; |UP|Ula32:ULA|carry_temp~13                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~14                                         ; |UP|Ula32:ULA|carry_temp~14                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[4]                                         ; |UP|Ula32:ULA|carry_temp[4]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~15                                         ; |UP|Ula32:ULA|carry_temp~15                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~16                                         ; |UP|Ula32:ULA|carry_temp~16                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~17                                         ; |UP|Ula32:ULA|carry_temp~17                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[5]                                         ; |UP|Ula32:ULA|carry_temp[5]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~18                                         ; |UP|Ula32:ULA|carry_temp~18                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~19                                         ; |UP|Ula32:ULA|carry_temp~19                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~20                                         ; |UP|Ula32:ULA|carry_temp~20                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[6]                                         ; |UP|Ula32:ULA|carry_temp[6]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~21                                         ; |UP|Ula32:ULA|carry_temp~21                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~22                                         ; |UP|Ula32:ULA|carry_temp~22                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~23                                         ; |UP|Ula32:ULA|carry_temp~23                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[7]                                         ; |UP|Ula32:ULA|carry_temp[7]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~24                                         ; |UP|Ula32:ULA|carry_temp~24                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~25                                         ; |UP|Ula32:ULA|carry_temp~25                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~26                                         ; |UP|Ula32:ULA|carry_temp~26                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[8]                                         ; |UP|Ula32:ULA|carry_temp[8]                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~27                                         ; |UP|Ula32:ULA|carry_temp~27                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~28                                         ; |UP|Ula32:ULA|carry_temp~28                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~29                                         ; |UP|Ula32:ULA|carry_temp~29                                         ; out0             ;
@@ -553,10 +467,42 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|carry_temp~91                                         ; |UP|Ula32:ULA|carry_temp~91                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~92                                         ; |UP|Ula32:ULA|carry_temp~92                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp[30]                                        ; |UP|Ula32:ULA|carry_temp[30]                                        ; out0             ;
-; |UP|UC:unic|state.A                                                 ; |UP|UC:unic|state.A                                                 ; regout           ;
-; |UP|UC:unic|state~1                                                 ; |UP|UC:unic|state~1                                                 ; out0             ;
-; |UP|UC:unic|Empty_PC                                                ; |UP|UC:unic|Empty_PC                                                ; out0             ;
-; |UP|UC:unic|state~9                                                 ; |UP|UC:unic|state~9                                                 ; out0             ;
+; |UP|Registrador:PC|Saida[31]                                        ; |UP|Registrador:PC|Saida[31]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[30]                                        ; |UP|Registrador:PC|Saida[30]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[29]                                        ; |UP|Registrador:PC|Saida[29]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[28]                                        ; |UP|Registrador:PC|Saida[28]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[27]                                        ; |UP|Registrador:PC|Saida[27]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[26]                                        ; |UP|Registrador:PC|Saida[26]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[25]                                        ; |UP|Registrador:PC|Saida[25]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[24]                                        ; |UP|Registrador:PC|Saida[24]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[23]                                        ; |UP|Registrador:PC|Saida[23]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[22]                                        ; |UP|Registrador:PC|Saida[22]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[21]                                        ; |UP|Registrador:PC|Saida[21]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[20]                                        ; |UP|Registrador:PC|Saida[20]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[19]                                        ; |UP|Registrador:PC|Saida[19]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[18]                                        ; |UP|Registrador:PC|Saida[18]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[17]                                        ; |UP|Registrador:PC|Saida[17]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[16]                                        ; |UP|Registrador:PC|Saida[16]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[15]                                        ; |UP|Registrador:PC|Saida[15]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[14]                                        ; |UP|Registrador:PC|Saida[14]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[13]                                        ; |UP|Registrador:PC|Saida[13]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[12]                                        ; |UP|Registrador:PC|Saida[12]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[11]                                        ; |UP|Registrador:PC|Saida[11]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[10]                                        ; |UP|Registrador:PC|Saida[10]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[9]                                         ; |UP|Registrador:PC|Saida[9]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[8]                                         ; |UP|Registrador:PC|Saida[8]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[7]                                         ; |UP|Registrador:PC|Saida[7]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[6]                                         ; |UP|Registrador:PC|Saida[6]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[5]                                         ; |UP|Registrador:PC|Saida[5]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[4]                                         ; |UP|Registrador:PC|Saida[4]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[3]                                         ; |UP|Registrador:PC|Saida[3]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[2]                                         ; |UP|Registrador:PC|Saida[2]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[1]                                         ; |UP|Registrador:PC|Saida[1]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[0]                                         ; |UP|Registrador:PC|Saida[0]                                         ; regout           ;
+; |UP|UC:uni_c|state.A                                                ; |UP|UC:uni_c|state.A                                                ; regout           ;
+; |UP|UC:uni_c|state~1                                                ; |UP|UC:uni_c|state~1                                                ; out0             ;
+; |UP|UC:uni_c|Empty_PC                                               ; |UP|UC:uni_c|Empty_PC                                               ; out0             ;
+; |UP|UC:uni_c|state~9                                                ; |UP|UC:uni_c|state~9                                                ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~0              ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~0              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~2              ; out0             ;
@@ -638,7 +584,6 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~5              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~6              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~7              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~8              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~11             ; out0             ;
@@ -646,6 +591,10 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~14             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~15             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~16             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~18             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~18             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~19             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~20             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~21             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~21             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~22             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~22             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~23             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~23             ; out0             ;
@@ -664,6 +613,7 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~41             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~41             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~42             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~42             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]~1 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]~1 ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]   ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]   ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~0              ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~0              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~2              ; out0             ;
@@ -1805,10 +1755,16 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~5              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~6              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~7              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~11             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~13             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~13             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~14             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~15             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~21             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~21             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~22             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~22             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~23             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~23             ; out0             ;
@@ -1831,10 +1787,16 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~5              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~6              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~7              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~11             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~13             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~13             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~14             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~15             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~21             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~21             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~22             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~22             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~23             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~23             ; out0             ;
@@ -1857,10 +1819,16 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~5              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~6              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~7              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~11             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~13             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~13             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~14             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~15             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~21             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~21             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~22             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~22             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~23             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~23             ; out0             ;
@@ -1883,10 +1851,16 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~5              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~6              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~7              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~11             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~13             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~13             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~14             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~15             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~21             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~21             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~22             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~22             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~23             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~23             ; out0             ;
@@ -1909,10 +1883,16 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~5              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~6              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~7              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~11             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~13             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~13             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~14             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~15             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~21             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~21             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~22             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~22             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~23             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~23             ; out0             ;
@@ -1935,10 +1915,16 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~5              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~6              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~7              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~11             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~13             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~13             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~14             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~15             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~21             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~21             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~22             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~22             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~23             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~23             ; out0             ;
@@ -1961,10 +1947,16 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~5              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~6              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~7              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~11             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~13             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~13             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~14             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~15             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~21             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~21             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~22             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~22             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~23             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~23             ; out0             ;
@@ -1987,10 +1979,16 @@ The following table displays output ports that do not toggle to 1 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~5              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~6              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~7              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~11             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~13             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~13             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~14             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~15             ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~21             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~21             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~22             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~22             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~23             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~23             ; out0             ;
@@ -2722,45 +2720,32 @@ The following table displays output ports that do not toggle to 0 during simulat
 +---------------------------------------------------------------------+---------------------------------------------------------------------+------------------+
 ; Node Name                                                           ; Output Port Name                                                    ; Output Port Type ;
 +---------------------------------------------------------------------+---------------------------------------------------------------------+------------------+
-; |UP|reset_pc                                                        ; |UP|reset_pc                                                        ; out              ;
-; |UP|Registrador:PC|Saida[31]                                        ; |UP|Registrador:PC|Saida[31]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[30]                                        ; |UP|Registrador:PC|Saida[30]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[29]                                        ; |UP|Registrador:PC|Saida[29]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[28]                                        ; |UP|Registrador:PC|Saida[28]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[27]                                        ; |UP|Registrador:PC|Saida[27]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[26]                                        ; |UP|Registrador:PC|Saida[26]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[25]                                        ; |UP|Registrador:PC|Saida[25]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[24]                                        ; |UP|Registrador:PC|Saida[24]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[23]                                        ; |UP|Registrador:PC|Saida[23]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[22]                                        ; |UP|Registrador:PC|Saida[22]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[21]                                        ; |UP|Registrador:PC|Saida[21]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[20]                                        ; |UP|Registrador:PC|Saida[20]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[19]                                        ; |UP|Registrador:PC|Saida[19]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[18]                                        ; |UP|Registrador:PC|Saida[18]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[17]                                        ; |UP|Registrador:PC|Saida[17]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[16]                                        ; |UP|Registrador:PC|Saida[16]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[15]                                        ; |UP|Registrador:PC|Saida[15]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[14]                                        ; |UP|Registrador:PC|Saida[14]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[13]                                        ; |UP|Registrador:PC|Saida[13]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[12]                                        ; |UP|Registrador:PC|Saida[12]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[11]                                        ; |UP|Registrador:PC|Saida[11]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[10]                                        ; |UP|Registrador:PC|Saida[10]                                        ; regout           ;
-; |UP|Registrador:PC|Saida[9]                                         ; |UP|Registrador:PC|Saida[9]                                         ; regout           ;
-; |UP|Registrador:PC|Saida[8]                                         ; |UP|Registrador:PC|Saida[8]                                         ; regout           ;
-; |UP|Registrador:PC|Saida[1]                                         ; |UP|Registrador:PC|Saida[1]                                         ; regout           ;
-; |UP|Registrador:PC|Saida[0]                                         ; |UP|Registrador:PC|Saida[0]                                         ; regout           ;
+; |UP|reset                                                           ; |UP|reset                                                           ; out              ;
 ; |UP|Ula32:ULA|carry_temp~2                                          ; |UP|Ula32:ULA|carry_temp~2                                          ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~4                                          ; |UP|Ula32:ULA|carry_temp~4                                          ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~5                                          ; |UP|Ula32:ULA|carry_temp~5                                          ; out0             ;
 ; |UP|Ula32:ULA|carry_temp[1]                                         ; |UP|Ula32:ULA|carry_temp[1]                                         ; out0             ;
-; |UP|Ula32:ULA|carry_temp~6                                          ; |UP|Ula32:ULA|carry_temp~6                                          ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~7                                          ; |UP|Ula32:ULA|carry_temp~7                                          ; out0             ;
+; |UP|Ula32:ULA|carry_temp~8                                          ; |UP|Ula32:ULA|carry_temp~8                                          ; out0             ;
+; |UP|Ula32:ULA|carry_temp[2]                                         ; |UP|Ula32:ULA|carry_temp[2]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~10                                         ; |UP|Ula32:ULA|carry_temp~10                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~11                                         ; |UP|Ula32:ULA|carry_temp~11                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[3]                                         ; |UP|Ula32:ULA|carry_temp[3]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~13                                         ; |UP|Ula32:ULA|carry_temp~13                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~14                                         ; |UP|Ula32:ULA|carry_temp~14                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[4]                                         ; |UP|Ula32:ULA|carry_temp[4]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~16                                         ; |UP|Ula32:ULA|carry_temp~16                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~17                                         ; |UP|Ula32:ULA|carry_temp~17                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[5]                                         ; |UP|Ula32:ULA|carry_temp[5]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~19                                         ; |UP|Ula32:ULA|carry_temp~19                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~20                                         ; |UP|Ula32:ULA|carry_temp~20                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[6]                                         ; |UP|Ula32:ULA|carry_temp[6]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~22                                         ; |UP|Ula32:ULA|carry_temp~22                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~23                                         ; |UP|Ula32:ULA|carry_temp~23                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[7]                                         ; |UP|Ula32:ULA|carry_temp[7]                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp~25                                         ; |UP|Ula32:ULA|carry_temp~25                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~26                                         ; |UP|Ula32:ULA|carry_temp~26                                         ; out0             ;
+; |UP|Ula32:ULA|carry_temp[8]                                         ; |UP|Ula32:ULA|carry_temp[8]                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~28                                         ; |UP|Ula32:ULA|carry_temp~28                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~29                                         ; |UP|Ula32:ULA|carry_temp~29                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp[9]                                         ; |UP|Ula32:ULA|carry_temp[9]                                         ; out0             ;
@@ -2827,9 +2812,41 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|carry_temp~91                                         ; |UP|Ula32:ULA|carry_temp~91                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp~92                                         ; |UP|Ula32:ULA|carry_temp~92                                         ; out0             ;
 ; |UP|Ula32:ULA|carry_temp[30]                                        ; |UP|Ula32:ULA|carry_temp[30]                                        ; out0             ;
-; |UP|UC:unic|state.B                                                 ; |UP|UC:unic|state.B                                                 ; regout           ;
-; |UP|UC:unic|state~1                                                 ; |UP|UC:unic|state~1                                                 ; out0             ;
-; |UP|UC:unic|state~9                                                 ; |UP|UC:unic|state~9                                                 ; out0             ;
+; |UP|Registrador:PC|Saida[31]                                        ; |UP|Registrador:PC|Saida[31]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[30]                                        ; |UP|Registrador:PC|Saida[30]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[29]                                        ; |UP|Registrador:PC|Saida[29]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[28]                                        ; |UP|Registrador:PC|Saida[28]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[27]                                        ; |UP|Registrador:PC|Saida[27]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[26]                                        ; |UP|Registrador:PC|Saida[26]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[25]                                        ; |UP|Registrador:PC|Saida[25]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[24]                                        ; |UP|Registrador:PC|Saida[24]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[23]                                        ; |UP|Registrador:PC|Saida[23]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[22]                                        ; |UP|Registrador:PC|Saida[22]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[21]                                        ; |UP|Registrador:PC|Saida[21]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[20]                                        ; |UP|Registrador:PC|Saida[20]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[19]                                        ; |UP|Registrador:PC|Saida[19]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[18]                                        ; |UP|Registrador:PC|Saida[18]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[17]                                        ; |UP|Registrador:PC|Saida[17]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[16]                                        ; |UP|Registrador:PC|Saida[16]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[15]                                        ; |UP|Registrador:PC|Saida[15]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[14]                                        ; |UP|Registrador:PC|Saida[14]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[13]                                        ; |UP|Registrador:PC|Saida[13]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[12]                                        ; |UP|Registrador:PC|Saida[12]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[11]                                        ; |UP|Registrador:PC|Saida[11]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[10]                                        ; |UP|Registrador:PC|Saida[10]                                        ; regout           ;
+; |UP|Registrador:PC|Saida[9]                                         ; |UP|Registrador:PC|Saida[9]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[8]                                         ; |UP|Registrador:PC|Saida[8]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[7]                                         ; |UP|Registrador:PC|Saida[7]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[6]                                         ; |UP|Registrador:PC|Saida[6]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[5]                                         ; |UP|Registrador:PC|Saida[5]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[4]                                         ; |UP|Registrador:PC|Saida[4]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[3]                                         ; |UP|Registrador:PC|Saida[3]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[2]                                         ; |UP|Registrador:PC|Saida[2]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[1]                                         ; |UP|Registrador:PC|Saida[1]                                         ; regout           ;
+; |UP|Registrador:PC|Saida[0]                                         ; |UP|Registrador:PC|Saida[0]                                         ; regout           ;
+; |UP|UC:uni_c|state.B                                                ; |UP|UC:uni_c|state.B                                                ; regout           ;
+; |UP|UC:uni_c|state~1                                                ; |UP|UC:uni_c|state~1                                                ; out0             ;
+; |UP|UC:uni_c|state~9                                                ; |UP|UC:uni_c|state~9                                                ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~0              ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~0              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux63|mux_3nc:auto_generated|_~2              ; out0             ;
@@ -2895,23 +2912,14 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~3              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~3              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~4              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~5              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~5              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~6              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~6              ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~7              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~7              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~8              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~11             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~12             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~12             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~13             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~13             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~14             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~14             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~15             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~15             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~16             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~16             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~17             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~17             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~18             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~18             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~19             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~19             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~20             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~20             ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]~0 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]~0 ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~21             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~21             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~22             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~22             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~23             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~23             ; out0             ;
@@ -2929,7 +2937,6 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~41             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~41             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~42             ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|_~42             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]~1 ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]~1 ; out0             ;
-; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]   ; |UP|Ula32:ULA|lpm_mux:Mux61|mux_3nc:auto_generated|result_node[0]   ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~0              ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~0              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~1              ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~1              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux60|mux_3nc:auto_generated|_~2              ; out0             ;
@@ -3865,6 +3872,7 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~3              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~3              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~8              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux29|mux_3nc:auto_generated|_~11             ; out0             ;
@@ -3894,6 +3902,7 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~3              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~3              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~8              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux28|mux_3nc:auto_generated|_~11             ; out0             ;
@@ -3923,6 +3932,7 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~3              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~3              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~8              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux27|mux_3nc:auto_generated|_~11             ; out0             ;
@@ -3952,6 +3962,7 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~3              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~3              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~8              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux26|mux_3nc:auto_generated|_~11             ; out0             ;
@@ -3981,6 +3992,7 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~3              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~3              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~8              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux25|mux_3nc:auto_generated|_~11             ; out0             ;
@@ -4010,6 +4022,7 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~3              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~3              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~8              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux24|mux_3nc:auto_generated|_~11             ; out0             ;
@@ -4039,6 +4052,7 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~3              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~3              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~8              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux23|mux_3nc:auto_generated|_~11             ; out0             ;
@@ -4068,6 +4082,7 @@ The following table displays output ports that do not toggle to 0 during simulat
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~2              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~2              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~3              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~3              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~4              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~4              ; out0             ;
+; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~8              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~8              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~9              ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~9              ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~10             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~10             ; out0             ;
 ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~11             ; |UP|Ula32:ULA|lpm_mux:Mux22|mux_3nc:auto_generated|_~11             ; out0             ;
@@ -4768,21 +4783,52 @@ The following table displays output ports that do not toggle to 0 during simulat
 Info: *******************************************************************
 Info: Running Quartus II Simulator
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Fri Apr 14 13:15:57 2017
+    Info: Processing started: Sat Apr 15 17:57:38 2017
 Info: Command: quartus_sim --read_settings_files=on --write_settings_files=off atividade1 -c atividade1
-Info: Using vector source file "C:/Users/nmf2/Desktop/cpu/up.vwf"
-Info: Overwriting simulation input file with simulation results
-    Info: A backup of up.vwf called atividade1.sim_ori.vwf has been created in the db folder
+Info: Using vector source file "C:/Users/nmf2/cpu-mips/up.vwf"
+Warning: Can't find node "reset_pc" for functional simulation. Ignored vector source file node.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[31]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[30]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[29]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[28]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[27]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[26]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[25]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[24]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[23]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[22]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[21]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[20]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[19]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[18]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[17]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[16]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[15]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[14]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[13]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[12]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[11]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[10]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[9]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[8]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[7]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[6]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[5]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[4]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[3]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[2]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[1]" in design.
+Warning: Ignored node in vector source file. Can't find corresponding node name "saida_ula[0]" in design.
+Warning: Can't find signal in vector source file for input pin "|UP|reset"
 Info: Option to preserve fewer signal transitions to reduce memory requirements is enabled
     Info: Simulation has been partitioned into sub-simulations according to the maximum transition count determined by the engine. Transitions from memory will be flushed out to disk at the end of each sub-simulation to reduce memory requirements.
 Info: Simulation partitioned into 1 sub-simulations
-Info: Simulation coverage is       8.12 %
-Info: Number of transitions in simulation is 11138
-Info: Vector file up.vwf is saved in VWF text format. You can compress it into CVWF format in order to reduce file size. For more details please refer to the Quartus II Help.
-Info: Quartus II Simulator was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 156 megabytes
-    Info: Processing ended: Fri Apr 14 13:15:58 2017
-    Info: Elapsed time: 00:00:01
+Info: Simulation coverage is       5.09 %
+Info: Number of transitions in simulation is 2645
+Info: Quartus II Simulator was successful. 0 errors, 34 warnings
+    Info: Peak virtual memory: 161 megabytes
+    Info: Processing ended: Sat Apr 15 17:57:40 2017
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:00
 
 

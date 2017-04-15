@@ -194,6 +194,7 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 # hierarchies {
 Mux32_2_1:mux3221_mem
 Mux32_2_1:mux3221_br
+Mux32_2_1:mux3221_alu
 }
 # macro_sequence
 
@@ -1006,18 +1007,18 @@ Mux5_2_1:mux521
 
 # end
 # entity
-UP
+Mux32_4_1
 # storage
-db|atividade1.(0).cnf
-db|atividade1.(0).cnf
+db|atividade1.(14).cnf
+db|atividade1.(14).cnf
 # logic_option {
 AUTO_RAM_RECOGNITION
 ON
 }
 # case_sensitive
 # source_file
-up.sv
-6931de6495a32c9a802918d11716d8ab
+mux32_4_1.sv
+f9b0c58beeeccf7f448c25ce36dca40
 9
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT
@@ -1036,7 +1037,43 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 250
 }
 # hierarchies {
-|
+Mux32_4_1:comb_3
+}
+# macro_sequence
+
+# end
+# entity
+Extensor_sinal
+# storage
+db|atividade1.(13).cnf
+db|atividade1.(13).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+extensor_sinal.sv
+42712e32ea9a4ef1331f54b17a476f
+9
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+Extensor_sinal:sign_ex
 }
 # macro_sequence
 
@@ -1053,7 +1090,7 @@ ON
 # case_sensitive
 # source_file
 uc.sv
-d49dc4a0c1ce9d152cda21ef3eda5c2f
+44904e7965cb3d9d93f95b4cbbdf32
 9
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT
@@ -1073,6 +1110,78 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 UC:uni_c
+}
+# macro_sequence
+
+# end
+# entity
+Mux32_3_1
+# storage
+db|atividade1.(15).cnf
+db|atividade1.(15).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+mux32_3_1.sv
+2e49c853d37e3aee139ce44f345a7fa
+9
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+Mux32_3_1:comb_4
+}
+# macro_sequence
+
+# end
+# entity
+UP
+# storage
+db|atividade1.(0).cnf
+db|atividade1.(0).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+up.sv
+eb7dd01c484426a0ae117ca21f8b1ea7
+9
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+|
 }
 # macro_sequence
 

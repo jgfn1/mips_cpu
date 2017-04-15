@@ -1,13 +1,6 @@
-module Shift_left2(input[31:0] S_end, output[31:0] saida32);
-
-
+module Shift_left2(input logic [31:0] Entrada , output logic [31:0] Saida);
 		always_comb
 			begin 
-				saida32 =(S_ent << 2)			
-			
+				Saida = (Entrada << 2);
 			end
-		
-		endmodule
-		
-		
-		
+endmodule 

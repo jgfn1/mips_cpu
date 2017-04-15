@@ -1,14 +1,14 @@
-Fitter Status : Successful - Fri Apr 14 14:22:34 2017
+Fitter Status : Successful - Sat Apr 15 19:27:30 2017
 Quartus II Version : 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition
 Revision Name : atividade1
 Top-level Entity Name : UP
 Family : Cyclone II
 Device : EP2C70F896C6
 Timing Models : Final
-Total logic elements : 74 / 68,416 ( < 1 % )
-    Total combinational functions : 74 / 68,416 ( < 1 % )
-    Dedicated logic registers : 31 / 68,416 ( < 1 % )
-Total registers : 31
+Total logic elements : 0 / 68,416 ( 0 % )
+    Total combinational functions : 0 / 68,416 ( 0 % )
+    Dedicated logic registers : 0 / 68,416 ( 0 % )
+Total registers : 0
 Total pins : 34 / 622 ( 5 % )
 Total virtual pins : 0
 Total memory bits : 0 / 1,152,000 ( 0 % )

@@ -1,6 +1,6 @@
 # CPU
 
-A CPU builded in System Verilog
+A CPU built in System Verilog
 
 ### Alunos:
 

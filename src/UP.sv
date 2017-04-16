@@ -1,5 +1,5 @@
 module UP(input logic clk, 
-		input logic reset, 
+		input logic reset, 		
 		output logic [31:0] alu_result, 
 		output logic [31:0] alu_out, 
 		output logic [31:0] pc_output,
@@ -55,6 +55,9 @@ logic mdr_load;
 //extensor de sinal
 logic [31:0] sign_ex_output;
 
+//alu control
+logic [2:0] alu_control_output;
+
 UC uni_c (
 	.Clk        (clk        ),
 	.PCWriteCond(pc_write_cond),
@@ -69,7 +72,7 @@ UC uni_c (
 	.ALUSrcB    (alu_src_b    ),
 	.RegWrite   (reg_write   ),
 	.RegDst     (reg_dst     ),
-	.Reset      (reset      ),
+	.Reset      (~reset      ),
 	.Op         (op         ),
 	.AWrite		(a_load 	),
 	.BWrite		(b_load 	)
@@ -79,7 +82,8 @@ UC uni_c (
 Registrador PC(
 			.Clk(clk),
 			.Reset(reset_pc),
-			.Load( (pc_write | (pc_write_cond & zf_alu))/*pequeno circuito do lado esquerdo da UC*/),
+			//.Load( (pc_write | (pc_write_cond & zf_alu))/*pequeno circuito do lado esquerdo da UC*/),
+			.Load( pc_write ),/*pequeno circuito do lado esquerdo da UC*/
 			.Entrada(pc_input),
 			.Saida(pc_output)
 );
@@ -223,13 +227,20 @@ Ula32 ULA (.A(mux32_alu_a_output),
 		.B(mux32_alu_b_output),				//arrumar isso
 		.S(alu_result),
 		.Overflow(of_alu),
-		.Seletor(alu_op), 
+		.Seletor(alu_control_output), 
 		.Negativo(negf_alu), 
 		.z(zf_alu), 
 		.Igual(igualf_alu), 
 		.Maior(maiorf_alu), 
 		.Menor(menorf_alu)
 );
+
+ALUControl ALUControl (
+	.Entrada(addr_imm[5-:6]), 
+	.ALUOp(alu_op), 
+	.Saida(alu_control_output)
+);
+
 
 Mux32_3_1(
 	.A(alu_result),

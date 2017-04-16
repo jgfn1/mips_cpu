@@ -1,4 +1,7 @@
-module UC (input logic Clk, 
+module UC (
+		input logic Clk, 
+		input logic  Reset,
+		input logic  [5:0] Op,
 		output logic PCWriteCond,
 		output logic PCWrite,
 		output logic IorD,
@@ -10,15 +13,14 @@ module UC (input logic Clk,
 		output logic ALUSrcA,
 		output logic [1:0] ALUSrcB,
 		output logic RegWrite,
-		output logic RegDst,
-		input logic  Reset,
-		input logic  [5:0] Op,
+		output logic RegDst,		
 		output logic AWrite,
 		output logic BWrite
 	);
 	
 	enum logic [2:0] {FETCH, DECODE, RTYPE, RTYPE_CONT} state;
-	
+
+		
 	always_ff@(posedge Clk or negedge Reset) begin
 		if (~Reset) state <= FETCH;
 		else
@@ -31,34 +33,91 @@ module UC (input logic Clk,
 				end
 				RTYPE: state <= RTYPE_CONT;
 				RTYPE_CONT: state <= FETCH;
+				default: state <= FETCH;
 			endcase
 	end
-	always_latch
+	always_comb
 		case(state)
 			FETCH: begin
-				MemWrite <= 0;		// escrever na memórioa
-				IorD <= 0;			// o endereço a ser carregado na porta "address" da memória vem do ALUOut
-				IRWrite <= 1;		// Carregar o IR com o que está em MemData
-
-				ALUSrcA <= 0;		// A fonte da porta A da ALU será o valor do PC (isso controla um MUX)
-				ALUSrcB <= 2'b01;	// A fonte da porta B da ALU será o número 4 (isso controla um MUX)
-				ALUOp <= 2'b00;		// Faz com que a operação da ALU seja a de soma
-				PCSource <= 2'b00;	// Indica que o valor que será carregado no PC será o que vem do ALUResult
-				PCWrite <= 1; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
+				PCWriteCond 	<= 0;		//-fVictor
+				PCWrite 		<= 1; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
+				IorD 			<= 0;			// o endereço a ser carregado na porta "address" da memória vem do ALUOut
+				MemWrite 		<= 0;		// ler da memória				
+				MemtoReg		<= 0; 		//-fVictor
+				IRWrite 		<= 1;		// Carregar o IR com o que está em MemData
+				PCSource 		<= 2'b00;	// Indica que o valor que será carregado no PC será o que vem do ALUResult
+				ALUOp			<= 2'b00;	// Faz com que a operação da ALU seja a de soma
+				ALUSrcA 		<= 0;		// A fonte da porta A da ALU será o valor do PC (isso controla um MUX)
+				ALUSrcB 		<= 2'b01;	// A fonte da porta B da ALU será o número 4 (isso controla um MUX)				
+				RegWrite		<= 0;
+				RegDst			<= 0;		//-fVictor
+				AWrite			<= 0;		//-fVictor
+				BWrite			<= 0;		//-fVictor
+				
 			 end
 			DECODE: begin
+
+				PCWriteCond 	<= 0;		//-fVictor
+				PCWrite 		<= 0; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
+				IorD 			<= 0;			// o endereço a ser carregado na porta "address" da memória vem do ALUOut
+				MemWrite 		<= 1;		// ler da memória				
+				MemtoReg		<= 0; 		//-fVictor
+				IRWrite 		<= 0;		// Carregar o IR com o que está em MemData
+				PCSource 		<= 0;		// Indica que o valor que será carregado no PC será o que vem do ALUResult
+				ALUOp			<= 0;		// Faz com que a operação da ALU seja a de soma
+				ALUSrcA 		<= 0;		// A fonte da porta A da ALU será o valor do PC (isso controla um MUX)
+				ALUSrcB 		<= 0;		// A fonte da porta B da ALU será o número 4 (isso controla um MUX)				
+				RegWrite		<= 0;
+				RegDst			<= 0;		//-fVictor
+				AWrite			<= 1;		//-fVictor
+				BWrite			<= 1;		//-fVictor
+
+				/*MemWrite <= 1;				
 				AWrite = 1;
-				BWrite = 1;
+				BWrite = 1;*/
 			end
 			RTYPE: begin
+
+				PCWriteCond 	<= 0;		//-fVictor
+				PCWrite 		<= 0; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
+				IorD 			<= 0;			// o endereço a ser carregado na porta "address" da memória vem do ALUOut
+				MemWrite 		<= 1;		// ler da memória				
+				MemtoReg		<= 0; 		//-fVictor
+				IRWrite 		<= 0;		// Carregar o IR com o que está em MemData
+				PCSource 		<= 0;		// Indica que o valor que será carregado no PC será o que vem do ALUResult
+				ALUOp			<= 2'b10;	// Faz com que a operação da ALU seja a de soma
+				ALUSrcA 		<= 1;		// A fonte da porta A da ALU será o valor do PC (isso controla um MUX)
+				ALUSrcB 		<= 2'b00;	// A fonte da porta B da ALU será o número 4 (isso controla um MUX)				
+				RegWrite		<= 0;
+				RegDst			<= 0;		//-fVictor
+				AWrite			<= 0;		//-fVictor
+				BWrite			<= 0;		//-fVictor
+
+				/*MemWrite <= 1;				
 				ALUSrcA <= 1; 		
 				ALUSrcB <= 2'b00;
-				ALUOp <= 2'b10; 
+				ALUOp <= 2'b10; */
 			end
 			RTYPE_CONT: begin
+				PCWriteCond 	<= 0;		//-fVictor
+				PCWrite 		<= 1; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
+				IorD 			<= 0;			// o endereço a ser carregado na porta "address" da memória vem do ALUOut
+				MemWrite 		<= 1;		// ler da memória				
+				MemtoReg		<= 0; 		//-fVictor
+				IRWrite 		<= 0;		// Carregar o IR com o que está em MemData
+				PCSource 		<= 0;		// Indica que o valor que será carregado no PC será o que vem do ALUResult
+				ALUOp			<= 0;	// Faz com que a operação da ALU seja a de soma
+				ALUSrcA 		<= 0;		// A fonte da porta A da ALU será o valor do PC (isso controla um MUX)
+				ALUSrcB 		<= 0;	// A fonte da porta B da ALU será o número 4 (isso controla um MUX)				
+				RegWrite		<= 0;
+				RegDst			<= 1;		//-fVictor
+				AWrite			<= 0;		//-fVictor
+				BWrite			<= 0;		//-fVictor
+
+				/*MemWrite <= 1;				
 				RegDst <= 1;
 				RegWrite <= 1;
-				MemtoReg <= 0;
+				MemtoReg <= 0;*/
 			end
 /*			default: begin
 				PCWrite <= 0;

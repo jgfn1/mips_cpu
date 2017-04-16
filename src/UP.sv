@@ -21,7 +21,7 @@ logic [31:0] mux32_alu_a_output, mux32_alu_b_output, mux32_alu_output;
 logic alu_out_load;
 
 //pc and pc bound
-logic [31:0]/* pc_output,/* output do próprio do pc*/ mux32_memory_output /* output do mux q está perto do pc*/, pc_input;
+logic [31:0]/* pc_output,/* output do prï¿½prio do pc*/ mux32_memory_output /* output do mux q estï¿½ perto do pc*/, pc_input;
 logic reset_pc, pc_write, pc_write_cond; // I/O da UC;
 
 
@@ -88,7 +88,7 @@ Registrador PC(
 			.Saida(pc_output)
 );
 
-Mux32_2_1 mux3221_mem ( //mux3221_mem = mux de 32 bits de 2 pra 1 o qual a saída é entrada do banco de registradores na porta Write data
+Mux32_2_1 mux3221_mem ( //mux3221_mem = mux de 32 bits de 2 pra 1 o qual a saï¿½da ï¿½ entrada do banco de registradores na porta Write data
 	.A(pc_output),
 	.B(alu_out),
 	.Mux32_seletor(iorD),
@@ -105,13 +105,13 @@ Memoria memory(
 	.Address(mux32_memory_output),
 	.Clock(clk),
 	.Wr(mem_write),
-	.Datain(read_data2 /*veio do reg B*/), //Write data
+	.Datain(read_data2), /*veio do reg B*/ //Write data
 	.Dataout(mem_data)
 );
-		// Address	: IN  STD_LOGIC_VECTOR(31 DOWNTO 0);	-- Endereço de memória a ser lido
+		// Address	: IN  STD_LOGIC_VECTOR(31 DOWNTO 0);	-- Endereï¿½o de memï¿½ria a ser lido
 		// Clock	: IN  STD_LOGIC;						-- Clock do sistema
-		// Wr		: IN  STD_LOGIC;						-- Indica se a memória será lida (0) ou escrita (1)
-		// Datain	: IN  STD_LOGIC_VECTOR(31 DOWNTO 0);	-- Valor lido da memória quando Wr = 0
+		// Wr		: IN  STD_LOGIC;						-- Indica se a memï¿½ria serï¿½ lida (0) ou escrita (1)
+		// Datain	: IN  STD_LOGIC_VECTOR(31 DOWNTO 0);	-- Valor lido da memï¿½ria quando Wr = 0
 		// Dataout	: OUT STD_LOGIC_VECTOR(31 DOWNTO 0)		-- Valor a ser escrito quando Wr = 1
 
 Instr_Reg IR (
@@ -137,12 +137,12 @@ Registrador mdr ( //Memory Data Register
 
 Mux5_2_1 mux521 (
 	.A(rt),
-	.B(addr_imm[15-:5]), //pega apenas os primeiros 5 bits de addr_imm, que é uma saida do IR. Livro pag 322.
+	.B(addr_imm[15-:5]), //pega apenas os primeiros 5 bits de addr_imm, que ï¿½ uma saida do IR. Livro pag 322.
 	.Mux5_seletor(reg_dst),
 	.Mux5_out(mux5_out)
 );
 
-Mux32_2_1 mux3221_br ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a saída é entrada do banco de registradores na porta Write data
+Mux32_2_1 mux3221_br ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a saï¿½da ï¿½ entrada do banco de registradores na porta Write data
 	.A(alu_out),
 	.B(mdr_output),
 	.Mux32_seletor(mem_to_reg),
@@ -168,13 +168,13 @@ Banco_reg banco_reg (
 	.ReadData2(read_data2)
 			// Clk			: IN	STD_LOGIC;						-- Clock do banco de registradores
 			// Reset		: IN	STD_LOGIC;						-- Reinicializa o conteudo dos registradores
-			// RegWrite	: IN	STD_LOGIC;						-- Indica se a operação é de escrita ou leitura
+			// RegWrite	: IN	STD_LOGIC;						-- Indica se a operaï¿½ï¿½o ï¿½ de escrita ou leitura
 			// ReadReg1	: IN	STD_LOGIC_VECTOR (4 downto 0);	-- Indica o registrador #1 a ser lido
 			// ReadReg2	: IN	STD_LOGIC_VECTOR (4 downto 0);	-- Indica o registrador #2 a ser lido
 			// WriteReg	: IN	STD_LOGIC_VECTOR (4 downto 0);	-- Indica o registrador a ser escrito
 			// WriteData 	: IN	STD_LOGIC_VECTOR (31 downto 0);	-- Indica o dado a ser escrito
-			// ReadData1	: OUT	STD_LOGIC_VECTOR (31 downto 0);	-- Mostra a informaçao presente no registrador #1
-			// ReadData2	: OUT	STD_LOGIC_VECTOR (31 downto 0)	-- Mostra a informação presente no registrador #2
+			// ReadData1	: OUT	STD_LOGIC_VECTOR (31 downto 0);	-- Mostra a informaï¿½ao presente no registrador #1
+			// ReadData2	: OUT	STD_LOGIC_VECTOR (31 downto 0)	-- Mostra a informaï¿½ï¿½o presente no registrador #2
 );
 
 Extensor_sinal sign_ex(
@@ -191,8 +191,8 @@ Registrador A (
 			// Clk		: IN  STD_LOGIC;						-- Clock do registrador
 			// Reset	: IN  STD_LOGIC;						-- Reinicializa o conteudo do registrador
 			// Load	: IN  STD_LOGIC;						-- Carrega o registrador com o vetor Entrada
-			// Entrada : IN  STD_LOGIC_vector (31 downto 0); 	-- Vetor de bits que possui a informação a ser carregada no registrador
-			// Saida	: OUT STD_LOGIC_vector (31 downto 0)	-- Vetor de bits que possui a informação já carregada no registrador
+			// Entrada : IN  STD_LOGIC_vector (31 downto 0); 	-- Vetor de bits que possui a informaï¿½ï¿½o a ser carregada no registrador
+			// Saida	: OUT STD_LOGIC_vector (31 downto 0)	-- Vetor de bits que possui a informaï¿½ï¿½o jï¿½ carregada no registrador
 );
 Registrador B (
 	.Clk(clk),
@@ -203,11 +203,11 @@ Registrador B (
 			// Clk		: IN  STD_LOGIC;						-- Clock do registrador
 			// Reset	: IN  STD_LOGIC;						-- Reinicializa o conteudo do registrador
 			// Load	: IN  STD_LOGIC;						-- Carrega o registrador com o vetor Entrada
-			// Entrada : IN  STD_LOGIC_vector (31 downto 0); 	-- Vetor de bits que possui a informação a ser carregada no registrador
-			// Saida	: OUT STD_LOGIC_vector (31 downto 0)	-- Vetor de bits que possui a informação já carregada no registrador
+			// Entrada : IN  STD_LOGIC_vector (31 downto 0); 	-- Vetor de bits que possui a informaï¿½ï¿½o a ser carregada no registrador
+			// Saida	: OUT STD_LOGIC_vector (31 downto 0)	-- Vetor de bits que possui a informaï¿½ï¿½o jï¿½ carregada no registrador
 );
 
-Mux32_2_1 mux3221_alu ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a saída é entrada do banco de registradores na porta Write data
+Mux32_2_1 mux3221_alu ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a saï¿½da ï¿½ entrada do banco de registradores na porta Write data
 	.A(pc_output),
 	.B(a_output),
 	.Mux32_seletor(alu_src_a),
@@ -218,7 +218,7 @@ Mux32_4_1(
 	.A(b_output),
 	.B(4), //4'd
 	.C(sign_ex_output),
-	.D((sign_ex_output << 2)), //shitf_left2 está implicito
+	.D((sign_ex_output << 2)), //shitf_left2 estï¿½ implicito
  	.ALUSrcB(alu_src_b),
  	.Mux32_4_out(mux32_alu_b_output)
  );

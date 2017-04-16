@@ -24,8 +24,8 @@
 # design.
 
 # ignore hdl source files in top level directory
-*.vhd
-*.v
+# *.vhd
+# *.v
 
 # ignore Quartus II generated files
 *sopc_*
@@ -38,14 +38,14 @@
 *_inst.vhd
 *_generation_script*
 *.done
-*.txt
+# *.txt
 *.qarlog
 *.rpt
 *.summary
 *.qws
 *.cmp
 *.eqn
-*.html
+# *.html
 *.jpg
 *.bak
 *.qar
@@ -55,7 +55,7 @@
 *.sdc
 *.tcl
 *.pin
-*.mif
+# *.mif
 *.hex
 
 # ignore Quartus II generated folders

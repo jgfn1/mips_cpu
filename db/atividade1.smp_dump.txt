@@ -1,7 +1,0 @@
-
-State Machine - |UP|UC:uni_c|state
-Name state.RTYPE_CONT state.RTYPE state.DECODE state.FETCH 
-state.FETCH 0 0 0 0 
-state.DECODE 0 0 1 1 
-state.RTYPE 0 1 0 1 
-state.RTYPE_CONT 1 0 0 1 

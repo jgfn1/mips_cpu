@@ -5,9 +5,9 @@ Timing Analyzer Summary
 Type           : Worst-case tco
 Slack          : N/A
 Required Time  : None
-Actual Time    : 20.298 ns
-From           : Registrador:PC|Saida[4]
-To             : saida_ula[30]
+Actual Time    : 10.913 ns
+From           : UC:uni_c|ALUSrcA
+To             : alu_result[20]
 From Clock     : clk
 To Clock       : --
 Failed Paths   : 0
@@ -15,12 +15,22 @@ Failed Paths   : 0
 Type           : Clock Setup: 'clk'
 Slack          : N/A
 Required Time  : None
-Actual Time    : 78.43 MHz ( period = 12.750 ns )
-From           : Registrador:PC|Saida[4]
-To             : Registrador:PC|Saida[30]
+Actual Time    : Restricted to 200.00 MHz ( period = 5.000 ns )
+From           : Memoria:memory|lpm_ram_dq:MEM|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|ram_block1a2~porta_address_reg7
+To             : Memoria:memory|lpm_ram_dq:MEM|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[7]
 From Clock     : clk
 To Clock       : clk
 Failed Paths   : 0
+
+Type           : Clock Hold: 'clk'
+Slack          : Not operational: Clock Skew > Data Delay
+Required Time  : None
+Actual Time    : N/A
+From           : UC:uni_c|state.RTYPE
+To             : UC:uni_c|ALUSrcB[0]
+From Clock     : clk
+To Clock       : clk
+Failed Paths   : 3
 
 Type           : Total number of failed paths
 Slack          : 
@@ -30,7 +40,7 @@ From           :
 To             : 
 From Clock     : 
 To Clock       : 
-Failed Paths   : 0
+Failed Paths   : 3
 
 --------------------------------------------------------------------------------------
 

@@ -80,7 +80,6 @@ ON
 }
 # hierarchies {
 Registrador:PC
-IR:inst_reg|Registrador:inst_reg
 Registrador:mdr
 Registrador:A
 Registrador:B
@@ -121,9 +120,6 @@ VERILOG_CONSTANT_LOOP_LIMIT
 5000
 VERILOG_NON_CONSTANT_LOOP_LIMIT
 250
-}
-# hierarchies {
-IR:inst_reg
 }
 # macro_sequence
 
@@ -1037,7 +1033,7 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 250
 }
 # hierarchies {
-Mux32_4_1:comb_3
+Mux32_4_1:comb_5
 }
 # macro_sequence
 
@@ -1079,42 +1075,6 @@ Extensor_sinal:sign_ex
 
 # end
 # entity
-UC
-# storage
-db|atividade1.(1).cnf
-db|atividade1.(1).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_sensitive
-# source_file
-uc.sv
-44904e7965cb3d9d93f95b4cbbdf32
-9
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-IGNORE_VERILOG_INITIAL_CONSTRUCTS
-OFF
-VERILOG_CONSTANT_LOOP_LIMIT
-5000
-VERILOG_NON_CONSTANT_LOOP_LIMIT
-250
-}
-# hierarchies {
-UC:uni_c
-}
-# macro_sequence
-
-# end
-# entity
 Mux32_3_1
 # storage
 db|atividade1.(15).cnf
@@ -1145,8 +1105,41 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 250
 }
 # hierarchies {
-Mux32_3_1:comb_4
+Mux32_3_1:comb_6
 }
+# macro_sequence
+
+# end
+# entity
+Instr_Reg
+# storage
+db|atividade1.(16).cnf
+db|atividade1.(16).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+instr_reg.vhd
+2210c8a335c3f44acebaf05a94bee
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# hierarchies {
+Instr_Reg:IR
+}
+# lmf
+|users|nmf2|quartus|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
 # macro_sequence
 
 # end
@@ -1162,7 +1155,7 @@ ON
 # case_sensitive
 # source_file
 up.sv
-eb7dd01c484426a0ae117ca21f8b1ea7
+71d04d955f9e5bb0219c77ea26f3c2
 9
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT
@@ -1182,6 +1175,42 @@ VERILOG_NON_CONSTANT_LOOP_LIMIT
 }
 # hierarchies {
 |
+}
+# macro_sequence
+
+# end
+# entity
+UC
+# storage
+db|atividade1.(1).cnf
+db|atividade1.(1).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_sensitive
+# source_file
+uc.sv
+6e59dd39b9f14cd82cac5ede54a6d4
+9
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+IGNORE_VERILOG_INITIAL_CONSTRUCTS
+OFF
+VERILOG_CONSTANT_LOOP_LIMIT
+5000
+VERILOG_NON_CONSTANT_LOOP_LIMIT
+250
+}
+# hierarchies {
+UC:uni_c
 }
 # macro_sequence
 

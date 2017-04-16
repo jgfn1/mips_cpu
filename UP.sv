@@ -2,7 +2,7 @@ module UP(input logic clk, input logic reset, output logic [31:0] alu_result);
 
 //alu
 logic of_alu, negf_alu, zf_alu, menorf_alu, maiorf_alu, igualf_alu;
-logic [2:0] seletor_alu;
+logic [2:0] alu_op;
 logic [31:0] mux32_alu_a_output, mux32_alu_b_output, mux32_alu_output;
 
 //alu out
@@ -11,12 +11,12 @@ logic alu_out_load;
 
 //pc and pc bound
 logic [31:0] pc_output/* output do próprio do pc*/, mux32_memory_output /* output do mux q está perto do pc*/, pc_input;
-logic reset_pc, load_pc; // I/O da UC
-logic [1:0] aluSrcB_pc;
+logic reset_pc, pc_write, pc_write_cond; // I/O da UC;
+
 
 //uc and uc bound
-logic reg_write, reg_dst, mem_write, iorD, alu_src_a, alu_src_b;
-logic [1:0] pc_source;
+logic reg_write, reg_dst, mem_write, iorD, alu_src_a;
+logic [1:0] pc_source, alu_src_b;
 
 //IR and IR bound
 logic ir_write;
@@ -44,19 +44,29 @@ logic mdr_load;
 //extensor de sinal
 logic [31:0] sign_ex_output;
 
-
-UC uni_c (.Clk(clk),
-		.Reset_PC(reset), 
-		.Load_PC(load_pc), 
-		.Empty_PC(reset_pc), 
-		.Seletor_alu(seletor_alu),
-		.IRWrite(ir_write)
+UC uni_c (
+	.Clk        (clk        ),
+	.PCWriteCond(pc_write_cond),
+	.PCWrite    (pc_write    ),
+	.IorD       (iorD       ),
+	.MemWrite   (mem_write   ),
+	.MemtoReg   (mem_to_reg   ),
+	.IRWrite    (ir_write    ),
+	.PCSource   (pc_source   ),
+	.ALUOp      (alu_op      ),
+	.ALUSrcA    (alu_src_a    ),
+	.ALUSrcB    (alu_src_b    ),
+	.RegWrite   (reg_write   ),
+	.RegDst     (reg_dst     ),
+	.Reset      (reset      ),
+	.Op         (op         )
 );
+
 
 Registrador PC(
 			.Clk(clk),
 			.Reset(reset_pc),
-			.Load(load_pc),
+			.Load( (pc_write | (pc_write_cond & zf_alu))/*pequeno circuito do lado esquerdo da UC*/),
 			.Entrada(pc_input),
 			.Saida(pc_output)
 );
@@ -66,7 +76,8 @@ Mux32_2_1 mux3221_mem ( //mux3221_mem = mux de 32 bits de 2 pra 1 o qual a saída
 	.B(alu_out),
 	.Mux32_seletor(iorD),
 	.Mux32_out(mux32_memory_output)
-);/*
+);
+/*
 	input  logic  [31:0] A, 
 	input  logic  [31:0] B,
 	input  logic  Mux32_seletor, 
@@ -86,13 +97,15 @@ Memoria memory(
 		// Datain	: IN  STD_LOGIC_VECTOR(31 DOWNTO 0);	-- Valor lido da memória quando Wr = 0
 		// Dataout	: OUT STD_LOGIC_VECTOR(31 DOWNTO 0)		-- Valor a ser escrito quando Wr = 1
 
-IR inst_reg (.IRWrite(ir_write),
+Instr_Reg IR (
 	.Clk(clk),
-	.MemData(mem_data),
-	.Op(op),
-	.Rs(rs),
-	.Rt(rt),
-	.Addr_imm(addr_imm)
+	.Reset(reset),
+	.Load_ir(ir_write),
+	.Entrada(mem_data),
+	.Instr31_26(op),
+	.Instr25_21(rs),
+	.Instr20_16	(rt),
+	.Instr15_0(addr_imm)
 );
 
 Registrador mdr ( //Memory Data Register
@@ -118,12 +131,12 @@ Mux32_2_1 mux3221_br ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a saída é
 	.Mux32_seletor(mem_to_reg),
 	.Mux32_out(mux32_br_output)
 );
-	/*
+/*
 	input  logic  [31:0] A, 
 	input  logic  [31:0] B,
 	input  logic  Mux32_seletor, 
 	output logic  [31:0]Mux32_out
-	*/
+*/
 
 
 Banco_reg banco_reg (
@@ -197,7 +210,7 @@ Ula32 ULA (.A(mux32_alu_a_output),
 		.B(mux32_alu_b_output),				//arrumar isso
 		.S(alu_result),
 		.Overflow(of_alu),
-		.Seletor(seletor_alu), 
+		.Seletor(alu_op), 
 		.Negativo(negf_alu), 
 		.z(zf_alu), 
 		.Igual(igualf_alu), 

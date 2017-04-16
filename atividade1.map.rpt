@@ -1,5 +1,5 @@
 Analysis & Synthesis report for atividade1
-Sun Apr 16 12:28:31 2017
+Sun Apr 16 15:21:37 2017
 Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
 
 
@@ -32,6 +32,7 @@ Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
  24. Port Connectivity Checks: "Mux32_4_1:comb_5"
  25. Port Connectivity Checks: "UC:uni_c"
  26. Analysis & Synthesis Messages
+ 27. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -57,18 +58,18 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +------------------------------------+----------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Apr 16 12:28:31 2017        ;
+; Analysis & Synthesis Status        ; Successful - Sun Apr 16 15:21:37 2017        ;
 ; Quartus II Version                 ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
 ; Revision Name                      ; atividade1                                   ;
 ; Top-level Entity Name              ; UP                                           ;
 ; Family                             ; Cyclone II                                   ;
-; Total logic elements               ; 28                                           ;
-;     Total combinational functions  ; 21                                           ;
-;     Dedicated logic registers      ; 18                                           ;
-; Total registers                    ; 18                                           ;
-; Total pins                         ; 34                                           ;
+; Total logic elements               ; 43                                           ;
+;     Total combinational functions  ; 10                                           ;
+;     Dedicated logic registers      ; 37                                           ;
+; Total registers                    ; 37                                           ;
+; Total pins                         ; 194                                          ;
 ; Total virtual pins                 ; 0                                            ;
-; Total memory bits                  ; 1,536                                        ;
+; Total memory bits                  ; 8,192                                        ;
 ; Embedded Multiplier 9-bit elements ; 0                                            ;
 ; Total PLLs                         ; 0                                            ;
 +------------------------------------+----------------------------------------------+
@@ -170,29 +171,29 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                             ;
-+----------------------------------+-----------------+----------------------------------------+----------------------------------------------------------------------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                         ;
-+----------------------------------+-----------------+----------------------------------------+----------------------------------------------------------------------+
-; Mux5_2_1.sv                      ; yes             ; User SystemVerilog HDL File            ; C:/Users/nmf2/cpu-mips/Mux5_2_1.sv                                   ;
-; Mux32_2_1.sv                     ; yes             ; User SystemVerilog HDL File            ; C:/Users/nmf2/cpu-mips/Mux32_2_1.sv                                  ;
-; Mux32_4_1.sv                     ; yes             ; User SystemVerilog HDL File            ; C:/Users/nmf2/cpu-mips/Mux32_4_1.sv                                  ;
-; Banco_reg.vhd                    ; yes             ; User VHDL File                         ; C:/Users/nmf2/cpu-mips/Banco_reg.vhd                                 ;
-; Instr_Reg.vhd                    ; yes             ; User VHDL File                         ; C:/Users/nmf2/cpu-mips/Instr_Reg.vhd                                 ;
-; Memoria.vhd                      ; yes             ; User VHDL File                         ; C:/Users/nmf2/cpu-mips/Memoria.vhd                                   ;
-; Registrador.vhd                  ; yes             ; User VHDL File                         ; C:/Users/nmf2/cpu-mips/Registrador.vhd                               ;
-; ula32.vhd                        ; yes             ; User VHDL File                         ; C:/Users/nmf2/cpu-mips/ula32.vhd                                     ;
-; UP.sv                            ; yes             ; User SystemVerilog HDL File            ; C:/Users/nmf2/cpu-mips/UP.sv                                         ;
-; UC.sv                            ; yes             ; User SystemVerilog HDL File            ; C:/Users/nmf2/cpu-mips/UC.sv                                         ;
-; Extensor_sinal.sv                ; yes             ; User SystemVerilog HDL File            ; C:/Users/nmf2/cpu-mips/Extensor_sinal.sv                             ;
-; Mux32_3_1.sv                     ; yes             ; User SystemVerilog HDL File            ; C:/Users/nmf2/cpu-mips/Mux32_3_1.sv                                  ;
-; lpm_ram_dq.tdf                   ; yes             ; Megafunction                           ; c:/users/nmf2/quartus/quartus/libraries/megafunctions/lpm_ram_dq.tdf ;
-; altram.tdf                       ; yes             ; Megafunction                           ; c:/users/nmf2/quartus/quartus/libraries/megafunctions/altram.tdf     ;
-; altsyncram.tdf                   ; yes             ; Megafunction                           ; c:/users/nmf2/quartus/quartus/libraries/megafunctions/altsyncram.tdf ;
-; db/altsyncram_e1a1.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/nmf2/cpu-mips/db/altsyncram_e1a1.tdf                        ;
-; instrucoes.mif                   ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/nmf2/cpu-mips/instrucoes.mif                                ;
-+----------------------------------+-----------------+----------------------------------------+----------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                       ;
++----------------------------------+-----------------+----------------------------------+----------------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                        ; File Name with Absolute Path                                         ;
++----------------------------------+-----------------+----------------------------------+----------------------------------------------------------------------+
+; instrucoes.mif                   ; yes             ; User Memory Initialization File  ; C:/Users/nmf2/cpu-mips/instrucoes.mif                                ;
+; Mux5_2_1.sv                      ; yes             ; User SystemVerilog HDL File      ; C:/Users/nmf2/cpu-mips/Mux5_2_1.sv                                   ;
+; Mux32_2_1.sv                     ; yes             ; User SystemVerilog HDL File      ; C:/Users/nmf2/cpu-mips/Mux32_2_1.sv                                  ;
+; Mux32_4_1.sv                     ; yes             ; User SystemVerilog HDL File      ; C:/Users/nmf2/cpu-mips/Mux32_4_1.sv                                  ;
+; Banco_reg.vhd                    ; yes             ; User VHDL File                   ; C:/Users/nmf2/cpu-mips/Banco_reg.vhd                                 ;
+; Instr_Reg.vhd                    ; yes             ; User VHDL File                   ; C:/Users/nmf2/cpu-mips/Instr_Reg.vhd                                 ;
+; Memoria.vhd                      ; yes             ; User VHDL File                   ; C:/Users/nmf2/cpu-mips/Memoria.vhd                                   ;
+; Registrador.vhd                  ; yes             ; User VHDL File                   ; C:/Users/nmf2/cpu-mips/Registrador.vhd                               ;
+; ula32.vhd                        ; yes             ; User VHDL File                   ; C:/Users/nmf2/cpu-mips/ula32.vhd                                     ;
+; UP.sv                            ; yes             ; User SystemVerilog HDL File      ; C:/Users/nmf2/cpu-mips/UP.sv                                         ;
+; UC.sv                            ; yes             ; User SystemVerilog HDL File      ; C:/Users/nmf2/cpu-mips/UC.sv                                         ;
+; Extensor_sinal.sv                ; yes             ; User SystemVerilog HDL File      ; C:/Users/nmf2/cpu-mips/Extensor_sinal.sv                             ;
+; Mux32_3_1.sv                     ; yes             ; User SystemVerilog HDL File      ; C:/Users/nmf2/cpu-mips/Mux32_3_1.sv                                  ;
+; lpm_ram_dq.tdf                   ; yes             ; Megafunction                     ; c:/users/nmf2/quartus/quartus/libraries/megafunctions/lpm_ram_dq.tdf ;
+; altram.tdf                       ; yes             ; Megafunction                     ; c:/users/nmf2/quartus/quartus/libraries/megafunctions/altram.tdf     ;
+; altsyncram.tdf                   ; yes             ; Megafunction                     ; c:/users/nmf2/quartus/quartus/libraries/megafunctions/altsyncram.tdf ;
+; db/altsyncram_e1a1.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/Users/nmf2/cpu-mips/db/altsyncram_e1a1.tdf                        ;
++----------------------------------+-----------------+----------------------------------+----------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -200,57 +201,72 @@ applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Estimated Total logic elements              ; 28    ;
+; Estimated Total logic elements              ; 43    ;
 ;                                             ;       ;
-; Total combinational functions               ; 21    ;
+; Total combinational functions               ; 10    ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 6     ;
-;     -- 3 input functions                    ; 11    ;
+;     -- 4 input functions                    ; 3     ;
+;     -- 3 input functions                    ; 3     ;
 ;     -- <=2 input functions                  ; 4     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 21    ;
+;     -- normal mode                          ; 10    ;
 ;     -- arithmetic mode                      ; 0     ;
 ;                                             ;       ;
-; Total registers                             ; 18    ;
-;     -- Dedicated logic registers            ; 18    ;
+; Total registers                             ; 37    ;
+;     -- Dedicated logic registers            ; 37    ;
 ;     -- I/O registers                        ; 0     ;
 ;                                             ;       ;
-; I/O pins                                    ; 34    ;
-; Total memory bits                           ; 1536  ;
+; I/O pins                                    ; 194   ;
+; Total memory bits                           ; 8192  ;
 ; Maximum fan-out node                        ; clk   ;
-; Maximum fan-out                             ; 24    ;
-; Total fan-out                               ; 162   ;
-; Average fan-out                             ; 2.05  ;
+; Maximum fan-out                             ; 69    ;
+; Total fan-out                               ; 356   ;
+; Average fan-out                             ; 1.30  ;
 +---------------------------------------------+-------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                            ;
-+-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------+--------------+
-; Compilation Hierarchy Node                      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                               ; Library Name ;
-+-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------+--------------+
-; |UP                                             ; 21 (1)            ; 18 (0)       ; 1536        ; 0            ; 0       ; 0         ; 34   ; 0            ; |UP                                                                                               ; work         ;
-;    |Instr_Reg:IR|                               ; 0 (0)             ; 6 (6)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Instr_Reg:IR                                                                                  ; work         ;
-;    |Memoria:memory|                             ; 0 (0)             ; 0 (0)        ; 1536        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory                                                                                ; work         ;
-;       |lpm_ram_dq:MEM|                          ; 0 (0)             ; 0 (0)        ; 1536        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM                                                                 ; work         ;
-;          |altram:sram|                          ; 0 (0)             ; 0 (0)        ; 1536        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM|altram:sram                                                     ; work         ;
-;             |altsyncram:ram_block|              ; 0 (0)             ; 0 (0)        ; 1536        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM|altram:sram|altsyncram:ram_block                                ; work         ;
-;                |altsyncram_e1a1:auto_generated| ; 0 (0)             ; 0 (0)        ; 1536        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated ; work         ;
-;    |Registrador:PC|                             ; 0 (0)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Registrador:PC                                                                                ; work         ;
-;    |UC:uni_c|                                   ; 8 (8)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|UC:uni_c                                                                                      ;              ;
-;    |Ula32:ULA|                                  ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Ula32:ULA                                                                                     ; work         ;
-+-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                       ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                          ; Library Name ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------+--------------+
+; |UP                                             ; 10 (1)            ; 37 (0)       ; 8192        ; 0            ; 0       ; 0         ; 194  ; 0            ; |UP                                                                                                          ; work         ;
+;    |Instr_Reg:IR|                               ; 0 (0)             ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Instr_Reg:IR                                                                                             ; work         ;
+;    |Memoria:memory|                             ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory                                                                                           ;              ;
+;       |lpm_ram_dq:MEM_plus_One|                 ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_One                                                                   ; work         ;
+;          |altram:sram|                          ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram                                                       ; work         ;
+;             |altsyncram:ram_block|              ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block                                  ; work         ;
+;                |altsyncram_e1a1:auto_generated| ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated   ;              ;
+;       |lpm_ram_dq:MEM_plus_Three|               ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_Three                                                                 ;              ;
+;          |altram:sram|                          ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram                                                     ;              ;
+;             |altsyncram:ram_block|              ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block                                ;              ;
+;                |altsyncram_e1a1:auto_generated| ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated ; work         ;
+;       |lpm_ram_dq:MEM_plus_Two|                 ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_Two                                                                   ;              ;
+;          |altram:sram|                          ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram                                                       ;              ;
+;             |altsyncram:ram_block|              ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block                                  ;              ;
+;                |altsyncram_e1a1:auto_generated| ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated   ;              ;
+;       |lpm_ram_dq:MEM|                          ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM                                                                            ; work         ;
+;          |altram:sram|                          ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM|altram:sram                                                                ; work         ;
+;             |altsyncram:ram_block|              ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM|altram:sram|altsyncram:ram_block                                           ; work         ;
+;                |altsyncram_e1a1:auto_generated| ; 0 (0)             ; 0 (0)        ; 2048        ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Memoria:memory|lpm_ram_dq:MEM|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated            ; work         ;
+;    |Registrador:PC|                             ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Registrador:PC                                                                                           ;              ;
+;    |UC:uni_c|                                   ; 8 (8)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|UC:uni_c                                                                                                 ;              ;
+;    |Ula32:ULA|                                  ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |UP|Ula32:ULA                                                                                                ; work         ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis RAM Summary                                                                                                                                                                                  ;
-+----------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+----------------+
-; Name                                                                                                     ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF            ;
-+----------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+----------------+
-; Memoria:memory|lpm_ram_dq:MEM|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 256          ; 8            ; --           ; --           ; 2048 ; instrucoes.mif ;
-+----------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+----------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                             ;
++---------------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+----------------+
+; Name                                                                                                                ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF            ;
++---------------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+----------------+
+; Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|ALTSYNCRAM   ; AUTO ; Single Port ; 256          ; 8            ; --           ; --           ; 2048 ; instrucoes.mif ;
+; Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 256          ; 8            ; --           ; --           ; 2048 ; instrucoes.mif ;
+; Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|ALTSYNCRAM   ; AUTO ; Single Port ; 256          ; 8            ; --           ; --           ; 2048 ; instrucoes.mif ;
+; Memoria:memory|lpm_ram_dq:MEM|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|ALTSYNCRAM            ; AUTO ; Single Port ; 256          ; 8            ; --           ; --           ; 2048 ; instrucoes.mif ;
++---------------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+------+----------------+
 
 
 Encoding Type:  One-Hot
@@ -279,366 +295,304 @@ Encoding Type:  One-Hot
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
-+------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                             ;
-+--------------------------------------------------+---------------------------------------------+
-; Register name                                    ; Reason for Removal                          ;
-+--------------------------------------------------+---------------------------------------------+
-; Registrador:ALUOut|Saida[0..31]                  ; Stuck at GND due to stuck port clock_enable ;
-; Registrador:B|Saida[0..31]                       ; Stuck at GND due to stuck port clock_enable ;
-; Registrador:A|Saida[0..31]                       ; Stuck at GND due to stuck port clock_enable ;
-; Instr_Reg:IR|Instr25_21[0..4]                    ; Lost fanout                                 ;
-; Registrador:mdr|Saida[0..31]                     ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg0[0..10,21..25]           ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg1[0..10,21..25]           ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg2[0..10,21..25]           ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg3[0..10,21..25]           ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg4[0..10,21..25]           ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg5[0..10,21..25]           ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg6[0..10,21..25]           ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg7[0..10,21..25]           ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg8[0..10,21..25]           ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg9[0..10,21..25]           ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg10[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg11[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg12[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg13[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg14[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg15[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg16[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg17[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg18[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg19[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg20[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg21[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg22[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg23[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg24[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg25[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg26[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg27[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg28[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg29[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg30[0..10,21..25]          ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg31[0..10,21..25]          ; Lost fanout                                 ;
-; Instr_Reg:IR|Instr15_0[0..10]                    ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg0[11,14,28,30]            ; Merged with Banco_reg:banco_reg|Reg0[31]    ;
-; Banco_reg:banco_reg|Reg0[12..13,20]              ; Merged with Banco_reg:banco_reg|Reg0[29]    ;
-; Banco_reg:banco_reg|Reg0[16,18..19]              ; Merged with Banco_reg:banco_reg|Reg0[27]    ;
-; Banco_reg:banco_reg|Reg0[15,17]                  ; Merged with Banco_reg:banco_reg|Reg0[26]    ;
-; Banco_reg:banco_reg|Reg1[26,28,30]               ; Merged with Banco_reg:banco_reg|Reg1[31]    ;
-; Banco_reg:banco_reg|Reg1[16,20]                  ; Merged with Banco_reg:banco_reg|Reg1[29]    ;
-; Banco_reg:banco_reg|Reg1[11,14,18]               ; Merged with Banco_reg:banco_reg|Reg1[27]    ;
-; Banco_reg:banco_reg|Reg1[13,15,17]               ; Merged with Banco_reg:banco_reg|Reg1[19]    ;
-; Banco_reg:banco_reg|Reg2[14,18,27]               ; Merged with Banco_reg:banco_reg|Reg2[31]    ;
-; Banco_reg:banco_reg|Reg2[13,15,17,19,26,28]      ; Merged with Banco_reg:banco_reg|Reg2[30]    ;
-; Banco_reg:banco_reg|Reg2[12,16,20]               ; Merged with Banco_reg:banco_reg|Reg2[29]    ;
-; Banco_reg:banco_reg|Reg3[14,18,27]               ; Merged with Banco_reg:banco_reg|Reg3[31]    ;
-; Banco_reg:banco_reg|Reg3[13,15,17,19,26,28]      ; Merged with Banco_reg:banco_reg|Reg3[30]    ;
-; Banco_reg:banco_reg|Reg3[11,16,20]               ; Merged with Banco_reg:banco_reg|Reg3[29]    ;
-; Banco_reg:banco_reg|Reg4[12,16,20,29]            ; Merged with Banco_reg:banco_reg|Reg4[31]    ;
-; Banco_reg:banco_reg|Reg4[14,18,27]               ; Merged with Banco_reg:banco_reg|Reg4[30]    ;
-; Banco_reg:banco_reg|Reg4[11,13,15,17,19,26]      ; Merged with Banco_reg:banco_reg|Reg4[28]    ;
-; Banco_reg:banco_reg|Reg5[14,18,27]               ; Merged with Banco_reg:banco_reg|Reg5[31]    ;
-; Banco_reg:banco_reg|Reg5[11,13,15,17,19,26,28]   ; Merged with Banco_reg:banco_reg|Reg5[30]    ;
-; Banco_reg:banco_reg|Reg5[12,16,20]               ; Merged with Banco_reg:banco_reg|Reg5[29]    ;
-; Banco_reg:banco_reg|Reg6[14,18,27]               ; Merged with Banco_reg:banco_reg|Reg6[31]    ;
-; Banco_reg:banco_reg|Reg6[11,13,15,17,19,26,28]   ; Merged with Banco_reg:banco_reg|Reg6[30]    ;
-; Banco_reg:banco_reg|Reg6[12,16,20]               ; Merged with Banco_reg:banco_reg|Reg6[29]    ;
-; Banco_reg:banco_reg|Reg7[14,18,27]               ; Merged with Banco_reg:banco_reg|Reg7[31]    ;
-; Banco_reg:banco_reg|Reg7[11,19,26,28]            ; Merged with Banco_reg:banco_reg|Reg7[30]    ;
-; Banco_reg:banco_reg|Reg7[16,20]                  ; Merged with Banco_reg:banco_reg|Reg7[29]    ;
-; Banco_reg:banco_reg|Reg7[12..13,15]              ; Merged with Banco_reg:banco_reg|Reg7[17]    ;
-; Banco_reg:banco_reg|Reg8[11,13,15,17,26..28,30]  ; Merged with Banco_reg:banco_reg|Reg8[31]    ;
-; Banco_reg:banco_reg|Reg8[14,18]                  ; Merged with Banco_reg:banco_reg|Reg8[29]    ;
-; Banco_reg:banco_reg|Reg8[12,16]                  ; Merged with Banco_reg:banco_reg|Reg8[20]    ;
-; Banco_reg:banco_reg|Reg9[14,18,27]               ; Merged with Banco_reg:banco_reg|Reg9[31]    ;
-; Banco_reg:banco_reg|Reg9[11,13,15,17,19,26,28]   ; Merged with Banco_reg:banco_reg|Reg9[30]    ;
-; Banco_reg:banco_reg|Reg9[12,16,20]               ; Merged with Banco_reg:banco_reg|Reg9[29]    ;
-; Banco_reg:banco_reg|Reg10[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg10[31]   ;
-; Banco_reg:banco_reg|Reg10[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg10[30]   ;
-; Banco_reg:banco_reg|Reg10[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg10[29]   ;
-; Banco_reg:banco_reg|Reg11[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg11[31]   ;
-; Banco_reg:banco_reg|Reg11[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg11[30]   ;
-; Banco_reg:banco_reg|Reg11[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg11[29]   ;
-; Banco_reg:banco_reg|Reg12[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg12[31]   ;
-; Banco_reg:banco_reg|Reg12[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg12[30]   ;
-; Banco_reg:banco_reg|Reg12[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg12[29]   ;
-; Banco_reg:banco_reg|Reg13[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg13[31]   ;
-; Banco_reg:banco_reg|Reg13[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg13[30]   ;
-; Banco_reg:banco_reg|Reg13[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg13[29]   ;
-; Banco_reg:banco_reg|Reg14[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg14[31]   ;
-; Banco_reg:banco_reg|Reg14[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg14[30]   ;
-; Banco_reg:banco_reg|Reg14[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg14[29]   ;
-; Banco_reg:banco_reg|Reg15[11,14,18,27]           ; Merged with Banco_reg:banco_reg|Reg15[31]   ;
-; Banco_reg:banco_reg|Reg15[12..13,15,17,19,26,28] ; Merged with Banco_reg:banco_reg|Reg15[30]   ;
-; Banco_reg:banco_reg|Reg15[16,20]                 ; Merged with Banco_reg:banco_reg|Reg15[29]   ;
-; Banco_reg:banco_reg|Reg16[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg16[31]   ;
-; Banco_reg:banco_reg|Reg16[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg16[30]   ;
-; Banco_reg:banco_reg|Reg16[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg16[29]   ;
-; Banco_reg:banco_reg|Reg17[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg17[31]   ;
-; Banco_reg:banco_reg|Reg17[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg17[30]   ;
-; Banco_reg:banco_reg|Reg17[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg17[29]   ;
-; Banco_reg:banco_reg|Reg18[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg18[31]   ;
-; Banco_reg:banco_reg|Reg18[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg18[30]   ;
-; Banco_reg:banco_reg|Reg18[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg18[29]   ;
-; Banco_reg:banco_reg|Reg19[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg19[31]   ;
-; Banco_reg:banco_reg|Reg19[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg19[30]   ;
-; Banco_reg:banco_reg|Reg19[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg19[29]   ;
-; Banco_reg:banco_reg|Reg20[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg20[31]   ;
-; Banco_reg:banco_reg|Reg20[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg20[30]   ;
-; Banco_reg:banco_reg|Reg20[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg20[29]   ;
-; Banco_reg:banco_reg|Reg21[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg21[31]   ;
-; Banco_reg:banco_reg|Reg21[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg21[30]   ;
-; Banco_reg:banco_reg|Reg21[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg21[29]   ;
-; Banco_reg:banco_reg|Reg22[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg22[31]   ;
-; Banco_reg:banco_reg|Reg22[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg22[30]   ;
-; Banco_reg:banco_reg|Reg22[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg22[29]   ;
-; Banco_reg:banco_reg|Reg23[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg23[31]   ;
-; Banco_reg:banco_reg|Reg23[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg23[30]   ;
-; Banco_reg:banco_reg|Reg23[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg23[29]   ;
-; Banco_reg:banco_reg|Reg24[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg24[31]   ;
-; Banco_reg:banco_reg|Reg24[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg24[30]   ;
-; Banco_reg:banco_reg|Reg24[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg24[29]   ;
-; Banco_reg:banco_reg|Reg25[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg25[31]   ;
-; Banco_reg:banco_reg|Reg25[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg25[30]   ;
-; Banco_reg:banco_reg|Reg25[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg25[29]   ;
-; Banco_reg:banco_reg|Reg26[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg26[31]   ;
-; Banco_reg:banco_reg|Reg26[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg26[30]   ;
-; Banco_reg:banco_reg|Reg26[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg26[29]   ;
-; Banco_reg:banco_reg|Reg27[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg27[31]   ;
-; Banco_reg:banco_reg|Reg27[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg27[30]   ;
-; Banco_reg:banco_reg|Reg27[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg27[29]   ;
-; Banco_reg:banco_reg|Reg28[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg28[31]   ;
-; Banco_reg:banco_reg|Reg28[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg28[30]   ;
-; Banco_reg:banco_reg|Reg28[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg28[29]   ;
-; Banco_reg:banco_reg|Reg29[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg29[31]   ;
-; Banco_reg:banco_reg|Reg29[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg29[30]   ;
-; Banco_reg:banco_reg|Reg29[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg29[29]   ;
-; Banco_reg:banco_reg|Reg30[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg30[31]   ;
-; Banco_reg:banco_reg|Reg30[11,13,15,17,19,26,28]  ; Merged with Banco_reg:banco_reg|Reg30[30]   ;
-; Banco_reg:banco_reg|Reg30[12,16,20]              ; Merged with Banco_reg:banco_reg|Reg30[29]   ;
-; Banco_reg:banco_reg|Reg31[14,18,27]              ; Merged with Banco_reg:banco_reg|Reg31[31]   ;
-; Banco_reg:banco_reg|Reg31[11..13,15,17,19,26,28] ; Merged with Banco_reg:banco_reg|Reg31[30]   ;
-; Banco_reg:banco_reg|Reg31[16,20]                 ; Merged with Banco_reg:banco_reg|Reg31[29]   ;
-; Banco_reg:banco_reg|Reg0[26..27,29]              ; Merged with Banco_reg:banco_reg|Reg0[31]    ;
-; Banco_reg:banco_reg|Reg1[12,19,27,29]            ; Merged with Banco_reg:banco_reg|Reg1[31]    ;
-; Banco_reg:banco_reg|Reg2[11,29..30]              ; Merged with Banco_reg:banco_reg|Reg2[31]    ;
-; Banco_reg:banco_reg|Reg3[12,29..30]              ; Merged with Banco_reg:banco_reg|Reg3[31]    ;
-; Banco_reg:banco_reg|Reg4[28,30]                  ; Merged with Banco_reg:banco_reg|Reg4[31]    ;
-; Banco_reg:banco_reg|Reg5[29..30]                 ; Merged with Banco_reg:banco_reg|Reg5[31]    ;
-; Banco_reg:banco_reg|Reg6[29..30]                 ; Merged with Banco_reg:banco_reg|Reg6[31]    ;
-; Banco_reg:banco_reg|Reg7[17,29..30]              ; Merged with Banco_reg:banco_reg|Reg7[31]    ;
-; Banco_reg:banco_reg|Reg8[19..20,29]              ; Merged with Banco_reg:banco_reg|Reg8[31]    ;
-; Banco_reg:banco_reg|Reg9[29..30]                 ; Merged with Banco_reg:banco_reg|Reg9[31]    ;
-; Banco_reg:banco_reg|Reg10[29..30]                ; Merged with Banco_reg:banco_reg|Reg10[31]   ;
-; Banco_reg:banco_reg|Reg11[29..30]                ; Merged with Banco_reg:banco_reg|Reg11[31]   ;
-; Banco_reg:banco_reg|Reg12[29..30]                ; Merged with Banco_reg:banco_reg|Reg12[31]   ;
-; Banco_reg:banco_reg|Reg13[29..30]                ; Merged with Banco_reg:banco_reg|Reg13[31]   ;
-; Banco_reg:banco_reg|Reg14[29..30]                ; Merged with Banco_reg:banco_reg|Reg14[31]   ;
-; Banco_reg:banco_reg|Reg15[29..30]                ; Merged with Banco_reg:banco_reg|Reg15[31]   ;
-; Banco_reg:banco_reg|Reg16[29..30]                ; Merged with Banco_reg:banco_reg|Reg16[31]   ;
-; Banco_reg:banco_reg|Reg17[29..30]                ; Merged with Banco_reg:banco_reg|Reg17[31]   ;
-; Banco_reg:banco_reg|Reg18[29..30]                ; Merged with Banco_reg:banco_reg|Reg18[31]   ;
-; Banco_reg:banco_reg|Reg19[29..30]                ; Merged with Banco_reg:banco_reg|Reg19[31]   ;
-; Banco_reg:banco_reg|Reg20[29..30]                ; Merged with Banco_reg:banco_reg|Reg20[31]   ;
-; Banco_reg:banco_reg|Reg21[29..30]                ; Merged with Banco_reg:banco_reg|Reg21[31]   ;
-; Banco_reg:banco_reg|Reg22[29..30]                ; Merged with Banco_reg:banco_reg|Reg22[31]   ;
-; Banco_reg:banco_reg|Reg23[29..30]                ; Merged with Banco_reg:banco_reg|Reg23[31]   ;
-; Banco_reg:banco_reg|Reg24[29..30]                ; Merged with Banco_reg:banco_reg|Reg24[31]   ;
-; Banco_reg:banco_reg|Reg25[29..30]                ; Merged with Banco_reg:banco_reg|Reg25[31]   ;
-; Banco_reg:banco_reg|Reg26[29..30]                ; Merged with Banco_reg:banco_reg|Reg26[31]   ;
-; Banco_reg:banco_reg|Reg27[29..30]                ; Merged with Banco_reg:banco_reg|Reg27[31]   ;
-; Banco_reg:banco_reg|Reg28[29..30]                ; Merged with Banco_reg:banco_reg|Reg28[31]   ;
-; Banco_reg:banco_reg|Reg29[29..30]                ; Merged with Banco_reg:banco_reg|Reg29[31]   ;
-; Banco_reg:banco_reg|Reg30[29..30]                ; Merged with Banco_reg:banco_reg|Reg30[31]   ;
-; Banco_reg:banco_reg|Reg31[29..30]                ; Merged with Banco_reg:banco_reg|Reg31[31]   ;
-; Instr_Reg:IR|Instr15_0[11..15]                   ; Lost fanout                                 ;
-; Banco_reg:banco_reg|Reg0[31]                     ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg1[31]                     ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg2[31]                     ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg3[31]                     ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg4[31]                     ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg5[31]                     ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg6[31]                     ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg7[31]                     ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg8[31]                     ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg9[31]                     ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg10[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg11[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg12[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg13[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg14[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg15[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg16[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg17[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg18[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg19[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg20[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg21[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg22[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg23[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg24[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg25[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg26[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg27[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg28[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg29[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg30[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Banco_reg:banco_reg|Reg31[31]                    ; Stuck at GND due to stuck port data_in      ;
-; Instr_Reg:IR|Instr20_16[0..4]                    ; Lost fanout                                 ;
-; Registrador:PC|Saida[0..1]                       ; Stuck at GND due to stuck port data_in      ;
-; UC:uni_c|state~8                                 ; Lost fanout                                 ;
-; UC:uni_c|state~9                                 ; Lost fanout                                 ;
-; UC:uni_c|state~10                                ; Lost fanout                                 ;
-; UC:uni_c|state~11                                ; Lost fanout                                 ;
-; UC:uni_c|state~12                                ; Lost fanout                                 ;
-; Registrador:PC|Saida[4]                          ; Merged with Registrador:PC|Saida[3]         ;
-; Registrador:PC|Saida[6]                          ; Merged with Registrador:PC|Saida[5]         ;
-; Registrador:PC|Saida[8]                          ; Merged with Registrador:PC|Saida[7]         ;
-; Registrador:PC|Saida[10]                         ; Merged with Registrador:PC|Saida[9]         ;
-; Registrador:PC|Saida[12]                         ; Merged with Registrador:PC|Saida[11]        ;
-; Registrador:PC|Saida[14]                         ; Merged with Registrador:PC|Saida[13]        ;
-; Registrador:PC|Saida[16]                         ; Merged with Registrador:PC|Saida[15]        ;
-; Registrador:PC|Saida[18]                         ; Merged with Registrador:PC|Saida[17]        ;
-; Registrador:PC|Saida[20]                         ; Merged with Registrador:PC|Saida[19]        ;
-; Registrador:PC|Saida[22]                         ; Merged with Registrador:PC|Saida[21]        ;
-; Registrador:PC|Saida[24]                         ; Merged with Registrador:PC|Saida[23]        ;
-; Registrador:PC|Saida[26]                         ; Merged with Registrador:PC|Saida[25]        ;
-; Registrador:PC|Saida[28]                         ; Merged with Registrador:PC|Saida[27]        ;
-; Registrador:PC|Saida[30]                         ; Merged with Registrador:PC|Saida[29]        ;
-; Registrador:PC|Saida[3]                          ; Merged with Registrador:PC|Saida[2]         ;
-; Registrador:PC|Saida[7]                          ; Merged with Registrador:PC|Saida[5]         ;
-; Registrador:PC|Saida[11]                         ; Merged with Registrador:PC|Saida[9]         ;
-; Registrador:PC|Saida[15]                         ; Merged with Registrador:PC|Saida[13]        ;
-; Registrador:PC|Saida[19]                         ; Merged with Registrador:PC|Saida[17]        ;
-; Registrador:PC|Saida[23]                         ; Merged with Registrador:PC|Saida[21]        ;
-; Registrador:PC|Saida[27]                         ; Merged with Registrador:PC|Saida[25]        ;
-; Registrador:PC|Saida[31]                         ; Merged with Registrador:PC|Saida[29]        ;
-; Total Number of Removed Registers = 1207         ;                                             ;
-+--------------------------------------------------+---------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                ;
++---------------------------------------------------------------------+---------------------------------------------+
+; Register name                                                       ; Reason for Removal                          ;
++---------------------------------------------------------------------+---------------------------------------------+
+; Registrador:ALUOut|Saida[0..31]                                     ; Stuck at GND due to stuck port clock_enable ;
+; Registrador:mdr|Saida[0..31]                                        ; Stuck at GND due to stuck port clock_enable ;
+; Banco_reg:banco_reg|Reg0[12,14,22]                                  ; Merged with Banco_reg:banco_reg|Reg0[31]    ;
+; Banco_reg:banco_reg|Reg0[0,3,24,28]                                 ; Merged with Banco_reg:banco_reg|Reg0[30]    ;
+; Banco_reg:banco_reg|Reg0[1..2,17,25]                                ; Merged with Banco_reg:banco_reg|Reg0[29]    ;
+; Banco_reg:banco_reg|Reg0[7,11,19]                                   ; Merged with Banco_reg:banco_reg|Reg0[27]    ;
+; Banco_reg:banco_reg|Reg0[4,6,18]                                    ; Merged with Banco_reg:banco_reg|Reg0[26]    ;
+; Banco_reg:banco_reg|Reg0[5,15..16]                                  ; Merged with Banco_reg:banco_reg|Reg0[23]    ;
+; Banco_reg:banco_reg|Reg0[9,13]                                      ; Merged with Banco_reg:banco_reg|Reg0[21]    ;
+; Banco_reg:banco_reg|Reg0[8,10]                                      ; Merged with Banco_reg:banco_reg|Reg0[20]    ;
+; Banco_reg:banco_reg|Reg1[26,28,30]                                  ; Merged with Banco_reg:banco_reg|Reg1[31]    ;
+; Banco_reg:banco_reg|Reg1[9,17,25]                                   ; Merged with Banco_reg:banco_reg|Reg1[29]    ;
+; Banco_reg:banco_reg|Reg1[15,19,23]                                  ; Merged with Banco_reg:banco_reg|Reg1[27]    ;
+; Banco_reg:banco_reg|Reg1[18,20,22]                                  ; Merged with Banco_reg:banco_reg|Reg1[24]    ;
+; Banco_reg:banco_reg|Reg1[5,13]                                      ; Merged with Banco_reg:banco_reg|Reg1[21]    ;
+; Banco_reg:banco_reg|Reg1[10,12,14]                                  ; Merged with Banco_reg:banco_reg|Reg1[16]    ;
+; Banco_reg:banco_reg|Reg1[0,3,7]                                     ; Merged with Banco_reg:banco_reg|Reg1[11]    ;
+; Banco_reg:banco_reg|Reg1[2,4,6]                                     ; Merged with Banco_reg:banco_reg|Reg1[8]     ;
+; Banco_reg:banco_reg|Reg2[7,11,15,19,23,27]                          ; Merged with Banco_reg:banco_reg|Reg2[31]    ;
+; Banco_reg:banco_reg|Reg2[18,20,22,24,26,28]                         ; Merged with Banco_reg:banco_reg|Reg2[30]    ;
+; Banco_reg:banco_reg|Reg2[5,13,21]                                   ; Merged with Banco_reg:banco_reg|Reg2[29]    ;
+; Banco_reg:banco_reg|Reg2[1,9,17]                                    ; Merged with Banco_reg:banco_reg|Reg2[25]    ;
+; Banco_reg:banco_reg|Reg2[4,6,8,10,12,14]                            ; Merged with Banco_reg:banco_reg|Reg2[16]    ;
+; Banco_reg:banco_reg|Reg2[0]                                         ; Merged with Banco_reg:banco_reg|Reg2[2]     ;
+; Banco_reg:banco_reg|Reg3[7,11,15,19,23,27]                          ; Merged with Banco_reg:banco_reg|Reg3[31]    ;
+; Banco_reg:banco_reg|Reg3[18,20,22,24,26,28]                         ; Merged with Banco_reg:banco_reg|Reg3[30]    ;
+; Banco_reg:banco_reg|Reg3[0,5,13,21]                                 ; Merged with Banco_reg:banco_reg|Reg3[29]    ;
+; Banco_reg:banco_reg|Reg3[9,17]                                      ; Merged with Banco_reg:banco_reg|Reg3[25]    ;
+; Banco_reg:banco_reg|Reg3[4,6,8,10,12,14]                            ; Merged with Banco_reg:banco_reg|Reg3[16]    ;
+; Banco_reg:banco_reg|Reg3[1]                                         ; Merged with Banco_reg:banco_reg|Reg3[2]     ;
+; Banco_reg:banco_reg|Reg4[5,13,21]                                   ; Merged with Banco_reg:banco_reg|Reg4[31]    ;
+; Banco_reg:banco_reg|Reg4[3,7,11,15,19,23,27]                        ; Merged with Banco_reg:banco_reg|Reg4[30]    ;
+; Banco_reg:banco_reg|Reg4[1,9,17,25]                                 ; Merged with Banco_reg:banco_reg|Reg4[29]    ;
+; Banco_reg:banco_reg|Reg4[4,6,8,10,12,14,16,18,20,22,24,26]          ; Merged with Banco_reg:banco_reg|Reg4[28]    ;
+; Banco_reg:banco_reg|Reg4[0]                                         ; Merged with Banco_reg:banco_reg|Reg4[2]     ;
+; Banco_reg:banco_reg|Reg5[3,7,11,15,19,23,27]                        ; Merged with Banco_reg:banco_reg|Reg5[31]    ;
+; Banco_reg:banco_reg|Reg5[6,8,10,12,14,16,18,20,22,24,26,28]         ; Merged with Banco_reg:banco_reg|Reg5[30]    ;
+; Banco_reg:banco_reg|Reg5[5,13,21]                                   ; Merged with Banco_reg:banco_reg|Reg5[29]    ;
+; Banco_reg:banco_reg|Reg5[1,9,17]                                    ; Merged with Banco_reg:banco_reg|Reg5[25]    ;
+; Banco_reg:banco_reg|Reg5[0,2]                                       ; Merged with Banco_reg:banco_reg|Reg5[4]     ;
+; Banco_reg:banco_reg|Reg6[3,7,11,15,19,23,27]                        ; Merged with Banco_reg:banco_reg|Reg6[31]    ;
+; Banco_reg:banco_reg|Reg6[6,8,10,12,14,16,18,20,22,24,26,28]         ; Merged with Banco_reg:banco_reg|Reg6[30]    ;
+; Banco_reg:banco_reg|Reg6[5,13,21]                                   ; Merged with Banco_reg:banco_reg|Reg6[29]    ;
+; Banco_reg:banco_reg|Reg6[1,9,17]                                    ; Merged with Banco_reg:banco_reg|Reg6[25]    ;
+; Banco_reg:banco_reg|Reg6[0,2]                                       ; Merged with Banco_reg:banco_reg|Reg6[4]     ;
+; Banco_reg:banco_reg|Reg7[3,7,11,15,19,23,27]                        ; Merged with Banco_reg:banco_reg|Reg7[31]    ;
+; Banco_reg:banco_reg|Reg7[6,8,10,12,14,16,18,20,22,24,26,28]         ; Merged with Banco_reg:banco_reg|Reg7[30]    ;
+; Banco_reg:banco_reg|Reg7[5,13,21]                                   ; Merged with Banco_reg:banco_reg|Reg7[29]    ;
+; Banco_reg:banco_reg|Reg7[9,17]                                      ; Merged with Banco_reg:banco_reg|Reg7[25]    ;
+; Banco_reg:banco_reg|Reg7[1..2]                                      ; Merged with Banco_reg:banco_reg|Reg7[4]     ;
+; Banco_reg:banco_reg|Reg8[0,2,4,6,8,10,12,14,16,18,20,22,24,26..28]  ; Merged with Banco_reg:banco_reg|Reg8[31]    ;
+; Banco_reg:banco_reg|Reg8[3,7,11,15,19,23]                           ; Merged with Banco_reg:banco_reg|Reg8[29]    ;
+; Banco_reg:banco_reg|Reg8[5,13,21]                                   ; Merged with Banco_reg:banco_reg|Reg8[25]    ;
+; Banco_reg:banco_reg|Reg8[1,9]                                       ; Merged with Banco_reg:banco_reg|Reg8[17]    ;
+; Banco_reg:banco_reg|Reg9[3,7,11,15,19,23,27]                        ; Merged with Banco_reg:banco_reg|Reg9[31]    ;
+; Banco_reg:banco_reg|Reg9[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]   ; Merged with Banco_reg:banco_reg|Reg9[30]    ;
+; Banco_reg:banco_reg|Reg9[5,13,21]                                   ; Merged with Banco_reg:banco_reg|Reg9[29]    ;
+; Banco_reg:banco_reg|Reg9[1,9,17]                                    ; Merged with Banco_reg:banco_reg|Reg9[25]    ;
+; Banco_reg:banco_reg|Reg10[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg10[31]   ;
+; Banco_reg:banco_reg|Reg10[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg10[30]   ;
+; Banco_reg:banco_reg|Reg10[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg10[29]   ;
+; Banco_reg:banco_reg|Reg10[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg10[25]   ;
+; Banco_reg:banco_reg|Reg11[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg11[31]   ;
+; Banco_reg:banco_reg|Reg11[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg11[30]   ;
+; Banco_reg:banco_reg|Reg11[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg11[29]   ;
+; Banco_reg:banco_reg|Reg11[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg11[25]   ;
+; Banco_reg:banco_reg|Reg12[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg12[31]   ;
+; Banco_reg:banco_reg|Reg12[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg12[30]   ;
+; Banco_reg:banco_reg|Reg12[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg12[29]   ;
+; Banco_reg:banco_reg|Reg12[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg12[25]   ;
+; Banco_reg:banco_reg|Reg13[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg13[31]   ;
+; Banco_reg:banco_reg|Reg13[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg13[30]   ;
+; Banco_reg:banco_reg|Reg13[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg13[29]   ;
+; Banco_reg:banco_reg|Reg13[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg13[25]   ;
+; Banco_reg:banco_reg|Reg14[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg14[31]   ;
+; Banco_reg:banco_reg|Reg14[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg14[30]   ;
+; Banco_reg:banco_reg|Reg14[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg14[29]   ;
+; Banco_reg:banco_reg|Reg14[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg14[25]   ;
+; Banco_reg:banco_reg|Reg15[0,3,7,11,15,19,23,27]                     ; Merged with Banco_reg:banco_reg|Reg15[31]   ;
+; Banco_reg:banco_reg|Reg15[1..2,4,6,8,10,12,14,16,18,20,22,24,26,28] ; Merged with Banco_reg:banco_reg|Reg15[30]   ;
+; Banco_reg:banco_reg|Reg15[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg15[29]   ;
+; Banco_reg:banco_reg|Reg15[9,17]                                     ; Merged with Banco_reg:banco_reg|Reg15[25]   ;
+; Banco_reg:banco_reg|Reg16[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg16[31]   ;
+; Banco_reg:banco_reg|Reg16[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg16[30]   ;
+; Banco_reg:banco_reg|Reg16[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg16[29]   ;
+; Banco_reg:banco_reg|Reg16[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg16[25]   ;
+; Banco_reg:banco_reg|Reg17[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg17[31]   ;
+; Banco_reg:banco_reg|Reg17[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg17[30]   ;
+; Banco_reg:banco_reg|Reg17[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg17[29]   ;
+; Banco_reg:banco_reg|Reg17[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg17[25]   ;
+; Banco_reg:banco_reg|Reg18[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg18[31]   ;
+; Banco_reg:banco_reg|Reg18[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg18[30]   ;
+; Banco_reg:banco_reg|Reg18[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg18[29]   ;
+; Banco_reg:banco_reg|Reg18[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg18[25]   ;
+; Banco_reg:banco_reg|Reg19[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg19[31]   ;
+; Banco_reg:banco_reg|Reg19[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg19[30]   ;
+; Banco_reg:banco_reg|Reg19[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg19[29]   ;
+; Banco_reg:banco_reg|Reg19[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg19[25]   ;
+; Banco_reg:banco_reg|Reg20[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg20[31]   ;
+; Banco_reg:banco_reg|Reg20[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg20[30]   ;
+; Banco_reg:banco_reg|Reg20[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg20[29]   ;
+; Banco_reg:banco_reg|Reg20[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg20[25]   ;
+; Banco_reg:banco_reg|Reg21[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg21[31]   ;
+; Banco_reg:banco_reg|Reg21[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg21[30]   ;
+; Banco_reg:banco_reg|Reg21[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg21[29]   ;
+; Banco_reg:banco_reg|Reg21[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg21[25]   ;
+; Banco_reg:banco_reg|Reg22[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg22[31]   ;
+; Banco_reg:banco_reg|Reg22[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg22[30]   ;
+; Banco_reg:banco_reg|Reg22[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg22[29]   ;
+; Banco_reg:banco_reg|Reg22[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg22[25]   ;
+; Banco_reg:banco_reg|Reg23[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg23[31]   ;
+; Banco_reg:banco_reg|Reg23[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg23[30]   ;
+; Banco_reg:banco_reg|Reg23[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg23[29]   ;
+; Banco_reg:banco_reg|Reg23[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg23[25]   ;
+; Banco_reg:banco_reg|Reg24[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg24[31]   ;
+; Banco_reg:banco_reg|Reg24[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg24[30]   ;
+; Banco_reg:banco_reg|Reg24[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg24[29]   ;
+; Banco_reg:banco_reg|Reg24[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg24[25]   ;
+; Banco_reg:banco_reg|Reg25[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg25[31]   ;
+; Banco_reg:banco_reg|Reg25[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg25[30]   ;
+; Banco_reg:banco_reg|Reg25[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg25[29]   ;
+; Banco_reg:banco_reg|Reg25[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg25[25]   ;
+; Banco_reg:banco_reg|Reg26[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg26[31]   ;
+; Banco_reg:banco_reg|Reg26[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg26[30]   ;
+; Banco_reg:banco_reg|Reg26[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg26[29]   ;
+; Banco_reg:banco_reg|Reg26[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg26[25]   ;
+; Banco_reg:banco_reg|Reg27[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg27[31]   ;
+; Banco_reg:banco_reg|Reg27[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg27[30]   ;
+; Banco_reg:banco_reg|Reg27[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg27[29]   ;
+; Banco_reg:banco_reg|Reg27[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg27[25]   ;
+; Banco_reg:banco_reg|Reg28[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg28[31]   ;
+; Banco_reg:banco_reg|Reg28[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg28[30]   ;
+; Banco_reg:banco_reg|Reg28[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg28[29]   ;
+; Banco_reg:banco_reg|Reg28[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg28[25]   ;
+; Banco_reg:banco_reg|Reg29[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg29[31]   ;
+; Banco_reg:banco_reg|Reg29[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg29[30]   ;
+; Banco_reg:banco_reg|Reg29[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg29[29]   ;
+; Banco_reg:banco_reg|Reg29[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg29[25]   ;
+; Banco_reg:banco_reg|Reg30[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg30[31]   ;
+; Banco_reg:banco_reg|Reg30[0,2,4,6,8,10,12,14,16,18,20,22,24,26,28]  ; Merged with Banco_reg:banco_reg|Reg30[30]   ;
+; Banco_reg:banco_reg|Reg30[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg30[29]   ;
+; Banco_reg:banco_reg|Reg30[1,9,17]                                   ; Merged with Banco_reg:banco_reg|Reg30[25]   ;
+; Banco_reg:banco_reg|Reg31[3,7,11,15,19,23,27]                       ; Merged with Banco_reg:banco_reg|Reg31[31]   ;
+; Banco_reg:banco_reg|Reg31[0..2,4,6,8,10,12,14,16,18,20,22,24,26,28] ; Merged with Banco_reg:banco_reg|Reg31[30]   ;
+; Banco_reg:banco_reg|Reg31[5,13,21]                                  ; Merged with Banco_reg:banco_reg|Reg31[29]   ;
+; Banco_reg:banco_reg|Reg31[9,17]                                     ; Merged with Banco_reg:banco_reg|Reg31[25]   ;
+; Banco_reg:banco_reg|Reg0[20..21,23,26..27,29..30]                   ; Merged with Banco_reg:banco_reg|Reg0[31]    ;
+; Banco_reg:banco_reg|Reg1[1,16,21,24,27,29]                          ; Merged with Banco_reg:banco_reg|Reg1[31]    ;
+; Banco_reg:banco_reg|Reg1[8]                                         ; Merged with Banco_reg:banco_reg|Reg1[11]    ;
+; Banco_reg:banco_reg|Reg2[2..3,16,25,29..30]                         ; Merged with Banco_reg:banco_reg|Reg2[31]    ;
+; Banco_reg:banco_reg|Reg3[3,16,25,29..30]                            ; Merged with Banco_reg:banco_reg|Reg3[31]    ;
+; Banco_reg:banco_reg|Reg4[28,30]                                     ; Merged with Banco_reg:banco_reg|Reg4[31]    ;
+; Banco_reg:banco_reg|Reg4[2]                                         ; Merged with Banco_reg:banco_reg|Reg4[29]    ;
+; Banco_reg:banco_reg|Reg5[4,25,29]                                   ; Merged with Banco_reg:banco_reg|Reg5[30]    ;
+; Banco_reg:banco_reg|Reg6[4,25,29..30]                               ; Merged with Banco_reg:banco_reg|Reg6[31]    ;
+; Banco_reg:banco_reg|Reg7[0,4,25,29..30]                             ; Merged with Banco_reg:banco_reg|Reg7[31]    ;
+; Banco_reg:banco_reg|Reg8[17,25,29..30]                              ; Merged with Banco_reg:banco_reg|Reg8[31]    ;
+; Banco_reg:banco_reg|Reg9[25,29..30]                                 ; Merged with Banco_reg:banco_reg|Reg9[31]    ;
+; Banco_reg:banco_reg|Reg10[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg10[31]   ;
+; Banco_reg:banco_reg|Reg11[25,30]                                    ; Merged with Banco_reg:banco_reg|Reg11[31]   ;
+; Banco_reg:banco_reg|Reg12[29]                                       ; Merged with Banco_reg:banco_reg|Reg12[31]   ;
+; Banco_reg:banco_reg|Reg12[25]                                       ; Merged with Banco_reg:banco_reg|Reg12[30]   ;
+; Banco_reg:banco_reg|Reg13[25,29]                                    ; Merged with Banco_reg:banco_reg|Reg13[30]   ;
+; Banco_reg:banco_reg|Reg14[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg14[31]   ;
+; Banco_reg:banco_reg|Reg15[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg15[31]   ;
+; Banco_reg:banco_reg|Reg16[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg16[31]   ;
+; Banco_reg:banco_reg|Reg17[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg17[31]   ;
+; Banco_reg:banco_reg|Reg18[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg18[31]   ;
+; Banco_reg:banco_reg|Reg19[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg19[31]   ;
+; Banco_reg:banco_reg|Reg20[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg20[31]   ;
+; Banco_reg:banco_reg|Reg21[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg21[31]   ;
+; Banco_reg:banco_reg|Reg22[25,30]                                    ; Merged with Banco_reg:banco_reg|Reg22[31]   ;
+; Banco_reg:banco_reg|Reg23[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg23[31]   ;
+; Banco_reg:banco_reg|Reg24[25,30]                                    ; Merged with Banco_reg:banco_reg|Reg24[31]   ;
+; Banco_reg:banco_reg|Reg25[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg25[31]   ;
+; Banco_reg:banco_reg|Reg26[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg26[31]   ;
+; Banco_reg:banco_reg|Reg27[25,29..30]                                ; Merged with Banco_reg:banco_reg|Reg27[31]   ;
+; Banco_reg:banco_reg|Reg28[29]                                       ; Merged with Banco_reg:banco_reg|Reg28[31]   ;
+; Banco_reg:banco_reg|Reg28[25]                                       ; Merged with Banco_reg:banco_reg|Reg28[30]   ;
+; Banco_reg:banco_reg|Reg29[29]                                       ; Merged with Banco_reg:banco_reg|Reg29[31]   ;
+; Banco_reg:banco_reg|Reg29[25]                                       ; Merged with Banco_reg:banco_reg|Reg29[30]   ;
+; Banco_reg:banco_reg|Reg30[29]                                       ; Merged with Banco_reg:banco_reg|Reg30[31]   ;
+; Banco_reg:banco_reg|Reg30[25]                                       ; Merged with Banco_reg:banco_reg|Reg30[30]   ;
+; Banco_reg:banco_reg|Reg31[29]                                       ; Merged with Banco_reg:banco_reg|Reg31[31]   ;
+; Banco_reg:banco_reg|Reg31[25]                                       ; Merged with Banco_reg:banco_reg|Reg31[30]   ;
+; Banco_reg:banco_reg|Reg1[11]                                        ; Merged with Banco_reg:banco_reg|Reg1[31]    ;
+; Banco_reg:banco_reg|Reg3[2]                                         ; Merged with Banco_reg:banco_reg|Reg3[31]    ;
+; Banco_reg:banco_reg|Reg4[29]                                        ; Merged with Banco_reg:banco_reg|Reg4[31]    ;
+; Banco_reg:banco_reg|Reg5[30]                                        ; Merged with Banco_reg:banco_reg|Reg5[31]    ;
+; Banco_reg:banco_reg|Reg11[29]                                       ; Merged with Banco_reg:banco_reg|Reg11[31]   ;
+; Banco_reg:banco_reg|Reg12[30]                                       ; Merged with Banco_reg:banco_reg|Reg12[31]   ;
+; Banco_reg:banco_reg|Reg13[30]                                       ; Merged with Banco_reg:banco_reg|Reg13[31]   ;
+; Banco_reg:banco_reg|Reg22[29]                                       ; Merged with Banco_reg:banco_reg|Reg22[31]   ;
+; Banco_reg:banco_reg|Reg24[29]                                       ; Merged with Banco_reg:banco_reg|Reg24[31]   ;
+; Banco_reg:banco_reg|Reg28[30]                                       ; Merged with Banco_reg:banco_reg|Reg28[31]   ;
+; Banco_reg:banco_reg|Reg29[30]                                       ; Merged with Banco_reg:banco_reg|Reg29[31]   ;
+; Banco_reg:banco_reg|Reg30[30]                                       ; Merged with Banco_reg:banco_reg|Reg30[31]   ;
+; Banco_reg:banco_reg|Reg31[30]                                       ; Merged with Banco_reg:banco_reg|Reg31[31]   ;
+; Registrador:B|Saida[0..30]                                          ; Merged with Registrador:B|Saida[31]         ;
+; Registrador:A|Saida[0..30]                                          ; Merged with Registrador:A|Saida[31]         ;
+; Banco_reg:banco_reg|Reg0[31]                                        ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg1[31]                                        ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg2[31]                                        ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg3[31]                                        ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg4[31]                                        ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg5[31]                                        ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg6[31]                                        ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg7[31]                                        ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg8[31]                                        ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg9[31]                                        ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg10[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg11[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg12[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg13[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg14[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg15[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg16[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg17[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg18[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg19[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg20[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg21[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg22[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg23[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg24[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg25[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg26[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg27[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg28[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg29[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg30[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Banco_reg:banco_reg|Reg31[31]                                       ; Stuck at GND due to stuck port data_in      ;
+; Registrador:A|Saida[31]                                             ; Stuck at GND due to stuck port data_in      ;
+; Registrador:B|Saida[31]                                             ; Stuck at GND due to stuck port data_in      ;
+; Registrador:PC|Saida[0..1]                                          ; Stuck at GND due to stuck port data_in      ;
+; UC:uni_c|state~8                                                    ; Lost fanout                                 ;
+; UC:uni_c|state~9                                                    ; Lost fanout                                 ;
+; UC:uni_c|state~10                                                   ; Lost fanout                                 ;
+; Registrador:PC|Saida[3]                                             ; Merged with Registrador:PC|Saida[2]         ;
+; Registrador:PC|Saida[5]                                             ; Merged with Registrador:PC|Saida[4]         ;
+; Registrador:PC|Saida[7]                                             ; Merged with Registrador:PC|Saida[6]         ;
+; Registrador:PC|Saida[9]                                             ; Merged with Registrador:PC|Saida[8]         ;
+; Registrador:PC|Saida[11]                                            ; Merged with Registrador:PC|Saida[10]        ;
+; Registrador:PC|Saida[13]                                            ; Merged with Registrador:PC|Saida[12]        ;
+; Registrador:PC|Saida[15]                                            ; Merged with Registrador:PC|Saida[14]        ;
+; Registrador:PC|Saida[17]                                            ; Merged with Registrador:PC|Saida[16]        ;
+; Registrador:PC|Saida[19]                                            ; Merged with Registrador:PC|Saida[18]        ;
+; Registrador:PC|Saida[21]                                            ; Merged with Registrador:PC|Saida[20]        ;
+; Registrador:PC|Saida[23]                                            ; Merged with Registrador:PC|Saida[22]        ;
+; Registrador:PC|Saida[25]                                            ; Merged with Registrador:PC|Saida[24]        ;
+; Registrador:PC|Saida[27]                                            ; Merged with Registrador:PC|Saida[26]        ;
+; Registrador:PC|Saida[29]                                            ; Merged with Registrador:PC|Saida[28]        ;
+; Registrador:PC|Saida[31]                                            ; Merged with Registrador:PC|Saida[30]        ;
+; Registrador:PC|Saida[4,6,8,10,12,14,16,18,20,22,24,26,28,30]        ; Merged with Registrador:PC|Saida[2]         ;
+; Total Number of Removed Registers = 1186                            ;                                             ;
++---------------------------------------------------------------------+---------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                         ;
-+------------------------------+--------------------------------+-------------------------------------------------------------------------------------+
-; Register name                ; Reason for Removal             ; Registers Removed due to This Register                                              ;
-+------------------------------+--------------------------------+-------------------------------------------------------------------------------------+
-; Registrador:ALUOut|Saida[31] ; Stuck at GND                   ; Registrador:mdr|Saida[31], Instr_Reg:IR|Instr15_0[15], Instr_Reg:IR|Instr15_0[14],  ;
-;                              ; due to stuck port clock_enable ; Instr_Reg:IR|Instr15_0[13], Instr_Reg:IR|Instr15_0[12], Instr_Reg:IR|Instr15_0[11], ;
-;                              ;                                ; Banco_reg:banco_reg|Reg0[31], Banco_reg:banco_reg|Reg1[31],                         ;
-;                              ;                                ; Banco_reg:banco_reg|Reg2[31], Banco_reg:banco_reg|Reg3[31],                         ;
-;                              ;                                ; Banco_reg:banco_reg|Reg4[31], Banco_reg:banco_reg|Reg5[31],                         ;
-;                              ;                                ; Banco_reg:banco_reg|Reg6[31], Banco_reg:banco_reg|Reg7[31],                         ;
-;                              ;                                ; Banco_reg:banco_reg|Reg8[31], Banco_reg:banco_reg|Reg9[31],                         ;
-;                              ;                                ; Banco_reg:banco_reg|Reg10[31], Banco_reg:banco_reg|Reg11[31],                       ;
-;                              ;                                ; Banco_reg:banco_reg|Reg12[31], Banco_reg:banco_reg|Reg13[31],                       ;
-;                              ;                                ; Banco_reg:banco_reg|Reg14[31], Banco_reg:banco_reg|Reg15[31],                       ;
-;                              ;                                ; Banco_reg:banco_reg|Reg16[31], Banco_reg:banco_reg|Reg17[31],                       ;
-;                              ;                                ; Banco_reg:banco_reg|Reg18[31], Banco_reg:banco_reg|Reg19[31],                       ;
-;                              ;                                ; Banco_reg:banco_reg|Reg20[31], Banco_reg:banco_reg|Reg21[31],                       ;
-;                              ;                                ; Banco_reg:banco_reg|Reg22[31], Banco_reg:banco_reg|Reg23[31],                       ;
-;                              ;                                ; Banco_reg:banco_reg|Reg24[31], Banco_reg:banco_reg|Reg25[31],                       ;
-;                              ;                                ; Banco_reg:banco_reg|Reg26[31], Banco_reg:banco_reg|Reg27[31],                       ;
-;                              ;                                ; Banco_reg:banco_reg|Reg28[31], Banco_reg:banco_reg|Reg29[31],                       ;
-;                              ;                                ; Banco_reg:banco_reg|Reg30[31], Banco_reg:banco_reg|Reg31[31],                       ;
-;                              ;                                ; Instr_Reg:IR|Instr20_16[4], Instr_Reg:IR|Instr20_16[3], Instr_Reg:IR|Instr20_16[2], ;
-;                              ;                                ; Instr_Reg:IR|Instr20_16[1], Instr_Reg:IR|Instr20_16[0]                              ;
-; Registrador:B|Saida[2]       ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[2], Banco_reg:banco_reg|Reg1[2],                           ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[2], Banco_reg:banco_reg|Reg3[2]                            ;
-; Registrador:B|Saida[3]       ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[3], Banco_reg:banco_reg|Reg1[3],                           ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[3], Banco_reg:banco_reg|Reg3[3]                            ;
-; Registrador:B|Saida[5]       ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[5], Banco_reg:banco_reg|Reg1[5],                           ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[5], Banco_reg:banco_reg|Reg3[5]                            ;
-; Registrador:B|Saida[22]      ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[22], Banco_reg:banco_reg|Reg1[22],                         ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[22], Banco_reg:banco_reg|Reg3[22]                          ;
-; Registrador:B|Saida[23]      ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[23], Banco_reg:banco_reg|Reg1[23],                         ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[23], Banco_reg:banco_reg|Reg3[23]                          ;
-; Registrador:B|Saida[4]       ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[4], Banco_reg:banco_reg|Reg1[4],                           ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[4], Banco_reg:banco_reg|Reg3[4]                            ;
-; Registrador:B|Saida[24]      ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[24], Banco_reg:banco_reg|Reg1[24],                         ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[24], Banco_reg:banco_reg|Reg3[24]                          ;
-; Registrador:B|Saida[25]      ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[25], Banco_reg:banco_reg|Reg1[25],                         ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[25], Banco_reg:banco_reg|Reg3[25]                          ;
-; Registrador:B|Saida[6]       ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[6], Banco_reg:banco_reg|Reg1[6],                           ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[6], Banco_reg:banco_reg|Reg3[6]                            ;
-; Registrador:B|Saida[7]       ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[7], Banco_reg:banco_reg|Reg1[7],                           ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[7], Banco_reg:banco_reg|Reg3[7]                            ;
-; Registrador:B|Saida[8]       ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[8], Banco_reg:banco_reg|Reg1[8],                           ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[8], Banco_reg:banco_reg|Reg3[8]                            ;
-; Registrador:B|Saida[9]       ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[9], Banco_reg:banco_reg|Reg1[9],                           ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[9], Banco_reg:banco_reg|Reg3[9]                            ;
-; Registrador:B|Saida[10]      ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[10], Banco_reg:banco_reg|Reg1[10],                         ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[10], Banco_reg:banco_reg|Reg3[10]                          ;
-; Registrador:B|Saida[21]      ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[21], Banco_reg:banco_reg|Reg1[21],                         ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[21], Banco_reg:banco_reg|Reg3[21]                          ;
-; Registrador:B|Saida[1]       ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[1], Banco_reg:banco_reg|Reg1[1],                           ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[1], Banco_reg:banco_reg|Reg3[1]                            ;
-; Registrador:B|Saida[0]       ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[0], Banco_reg:banco_reg|Reg1[0],                           ;
-;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[0], Banco_reg:banco_reg|Reg3[0]                            ;
-; Registrador:ALUOut|Saida[24] ; Stuck at GND                   ; Instr_Reg:IR|Instr25_21[1], Registrador:mdr|Saida[24]                               ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[23] ; Stuck at GND                   ; Instr_Reg:IR|Instr25_21[0], Registrador:mdr|Saida[23]                               ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[12] ; Stuck at GND                   ; Registrador:mdr|Saida[12], Instr_Reg:IR|Instr15_0[10]                               ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[11] ; Stuck at GND                   ; Registrador:mdr|Saida[11], Instr_Reg:IR|Instr15_0[9]                                ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[10] ; Stuck at GND                   ; Registrador:mdr|Saida[10], Instr_Reg:IR|Instr15_0[8]                                ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[9]  ; Stuck at GND                   ; Registrador:mdr|Saida[9], Instr_Reg:IR|Instr15_0[7]                                 ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[8]  ; Stuck at GND                   ; Registrador:mdr|Saida[8], Instr_Reg:IR|Instr15_0[6]                                 ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[25] ; Stuck at GND                   ; Instr_Reg:IR|Instr25_21[2], Registrador:mdr|Saida[25]                               ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[27] ; Stuck at GND                   ; Instr_Reg:IR|Instr25_21[4], Registrador:mdr|Saida[27]                               ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[26] ; Stuck at GND                   ; Instr_Reg:IR|Instr25_21[3], Registrador:mdr|Saida[26]                               ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[4]  ; Stuck at GND                   ; Instr_Reg:IR|Instr15_0[2]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[3]  ; Stuck at GND                   ; Instr_Reg:IR|Instr15_0[1]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[2]  ; Stuck at GND                   ; Instr_Reg:IR|Instr15_0[0]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[7]  ; Stuck at GND                   ; Instr_Reg:IR|Instr15_0[5]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[14] ; Stuck at GND                   ; Registrador:mdr|Saida[14]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[15] ; Stuck at GND                   ; Registrador:mdr|Saida[15]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[16] ; Stuck at GND                   ; Registrador:mdr|Saida[16]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[17] ; Stuck at GND                   ; Registrador:mdr|Saida[17]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[18] ; Stuck at GND                   ; Registrador:mdr|Saida[18]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[19] ; Stuck at GND                   ; Registrador:mdr|Saida[19]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[20] ; Stuck at GND                   ; Registrador:mdr|Saida[20]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[21] ; Stuck at GND                   ; Registrador:mdr|Saida[21]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[22] ; Stuck at GND                   ; Registrador:mdr|Saida[22]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[28] ; Stuck at GND                   ; Registrador:mdr|Saida[28]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[13] ; Stuck at GND                   ; Registrador:mdr|Saida[13]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[29] ; Stuck at GND                   ; Registrador:mdr|Saida[29]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[30] ; Stuck at GND                   ; Registrador:mdr|Saida[30]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[6]  ; Stuck at GND                   ; Instr_Reg:IR|Instr15_0[4]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:ALUOut|Saida[5]  ; Stuck at GND                   ; Instr_Reg:IR|Instr15_0[3]                                                           ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:A|Saida[1]       ; Stuck at GND                   ; Registrador:PC|Saida[1]                                                             ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-; Registrador:A|Saida[0]       ; Stuck at GND                   ; Registrador:PC|Saida[0]                                                             ;
-;                              ; due to stuck port clock_enable ;                                                                                     ;
-+------------------------------+--------------------------------+-------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                      ;
++------------------------------+--------------------------------+----------------------------------------------------------------------------------+
+; Register name                ; Reason for Removal             ; Registers Removed due to This Register                                           ;
++------------------------------+--------------------------------+----------------------------------------------------------------------------------+
+; Registrador:ALUOut|Saida[31] ; Stuck at GND                   ; Banco_reg:banco_reg|Reg0[31], Banco_reg:banco_reg|Reg1[31],                      ;
+;                              ; due to stuck port clock_enable ; Banco_reg:banco_reg|Reg2[31], Banco_reg:banco_reg|Reg3[31],                      ;
+;                              ;                                ; Banco_reg:banco_reg|Reg4[31], Banco_reg:banco_reg|Reg5[31],                      ;
+;                              ;                                ; Banco_reg:banco_reg|Reg6[31], Banco_reg:banco_reg|Reg7[31],                      ;
+;                              ;                                ; Banco_reg:banco_reg|Reg8[31], Banco_reg:banco_reg|Reg9[31],                      ;
+;                              ;                                ; Banco_reg:banco_reg|Reg10[31], Banco_reg:banco_reg|Reg11[31],                    ;
+;                              ;                                ; Banco_reg:banco_reg|Reg12[31], Banco_reg:banco_reg|Reg13[31],                    ;
+;                              ;                                ; Banco_reg:banco_reg|Reg14[31], Banco_reg:banco_reg|Reg15[31],                    ;
+;                              ;                                ; Banco_reg:banco_reg|Reg16[31], Banco_reg:banco_reg|Reg17[31],                    ;
+;                              ;                                ; Banco_reg:banco_reg|Reg18[31], Banco_reg:banco_reg|Reg19[31],                    ;
+;                              ;                                ; Banco_reg:banco_reg|Reg20[31], Banco_reg:banco_reg|Reg21[31],                    ;
+;                              ;                                ; Banco_reg:banco_reg|Reg22[31], Banco_reg:banco_reg|Reg23[31],                    ;
+;                              ;                                ; Banco_reg:banco_reg|Reg24[31], Banco_reg:banco_reg|Reg25[31],                    ;
+;                              ;                                ; Banco_reg:banco_reg|Reg26[31], Banco_reg:banco_reg|Reg27[31],                    ;
+;                              ;                                ; Banco_reg:banco_reg|Reg28[31], Banco_reg:banco_reg|Reg29[31],                    ;
+;                              ;                                ; Banco_reg:banco_reg|Reg30[31], Banco_reg:banco_reg|Reg31[31],                    ;
+;                              ;                                ; Registrador:A|Saida[31], Registrador:B|Saida[31], Registrador:PC|Saida[0],       ;
+;                              ;                                ; Registrador:PC|Saida[1]                                                          ;
+; Registrador:ALUOut|Saida[7]  ; Stuck at GND                   ; Registrador:mdr|Saida[31], Registrador:mdr|Saida[30], Registrador:mdr|Saida[29], ;
+;                              ; due to stuck port clock_enable ; Registrador:mdr|Saida[28], Registrador:mdr|Saida[27], Registrador:mdr|Saida[26], ;
+;                              ;                                ; Registrador:mdr|Saida[25], Registrador:mdr|Saida[24], Registrador:mdr|Saida[23], ;
+;                              ;                                ; Registrador:mdr|Saida[22], Registrador:mdr|Saida[21], Registrador:mdr|Saida[20], ;
+;                              ;                                ; Registrador:mdr|Saida[19], Registrador:mdr|Saida[18], Registrador:mdr|Saida[17], ;
+;                              ;                                ; Registrador:mdr|Saida[16], Registrador:mdr|Saida[15], Registrador:mdr|Saida[14], ;
+;                              ;                                ; Registrador:mdr|Saida[13], Registrador:mdr|Saida[12], Registrador:mdr|Saida[11], ;
+;                              ;                                ; Registrador:mdr|Saida[10], Registrador:mdr|Saida[9], Registrador:mdr|Saida[8],   ;
+;                              ;                                ; Registrador:mdr|Saida[7], Registrador:mdr|Saida[6], Registrador:mdr|Saida[5],    ;
+;                              ;                                ; Registrador:mdr|Saida[4], Registrador:mdr|Saida[3], Registrador:mdr|Saida[2],    ;
+;                              ;                                ; Registrador:mdr|Saida[1], Registrador:mdr|Saida[0]                               ;
++------------------------------+--------------------------------+----------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -646,10 +600,10 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 18    ;
+; Total registers                              ; 37    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 10    ;
+; Number of registers using Asynchronous Clear ; 36    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
@@ -833,7 +787,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
-    Info: Processing started: Sun Apr 16 12:28:27 2017
+    Info: Processing started: Sun Apr 16 15:21:33 2017
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off atividade1 -c atividade1
 Info: Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info: Found 1 design units, including 1 entities, in source file shift_left2.sv
@@ -863,6 +817,7 @@ Info: Found 2 design units, including 1 entities, in source file registrador.vhd
 Info: Found 2 design units, including 1 entities, in source file ula32.vhd
     Info: Found design unit 1: Ula32-behavioral
     Info: Found entity 1: Ula32
+Warning (10090): Verilog HDL syntax warning at UP.sv(24): extra block comment delimiter characters /* within block comment
 Info: Found 1 design units, including 1 entities, in source file up.sv
     Info: Found entity 1: UP
 Info: Found 1 design units, including 1 entities, in source file uc.sv
@@ -873,27 +828,28 @@ Info: Found 1 design units, including 1 entities, in source file extensor_sinal.
     Info: Found entity 1: Extensor_sinal
 Info: Found 1 design units, including 1 entities, in source file mux32_3_1.sv
     Info: Found entity 1: Mux32_3_1
-Critical Warning (10846): Verilog HDL Instantiation warning at UP.sv(207): instance has no name
-Critical Warning (10846): Verilog HDL Instantiation warning at UP.sv(227): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at UP.sv(220): instance has no name
+Critical Warning (10846): Verilog HDL Instantiation warning at UP.sv(240): instance has no name
 Info: Elaborating entity "UP" for the top level hierarchy
 Info: Elaborating entity "UC" for hierarchy "UC:uni_c"
-Info (10264): Verilog HDL Case Statement information at UC.sv(23): all case item expressions in this case statement are onehot
-Warning (10230): Verilog HDL assignment warning at UC.sv(43): truncated value with size 2 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at UC.sv(46): truncated value with size 2 to match size of target (1)
 Warning (10034): Output port "PCWriteCond" at UC.sv(2) has no driver
-Info (10041): Inferred latch for "MemtoReg" at UC.sv(34)
-Info (10041): Inferred latch for "RegWrite" at UC.sv(34)
-Info (10041): Inferred latch for "RegDst" at UC.sv(34)
-Info (10041): Inferred latch for "PCWrite" at UC.sv(34)
-Info (10041): Inferred latch for "PCSource" at UC.sv(34)
-Info (10041): Inferred latch for "ALUOp[0]" at UC.sv(34)
-Info (10041): Inferred latch for "ALUOp[1]" at UC.sv(34)
-Info (10041): Inferred latch for "ALUOp[2]" at UC.sv(34)
-Info (10041): Inferred latch for "ALUSrcB[0]" at UC.sv(34)
-Info (10041): Inferred latch for "ALUSrcB[1]" at UC.sv(34)
-Info (10041): Inferred latch for "ALUSrcA" at UC.sv(34)
-Info (10041): Inferred latch for "IRWrite" at UC.sv(34)
-Info (10041): Inferred latch for "IorD" at UC.sv(34)
-Info (10041): Inferred latch for "MemWrite" at UC.sv(34)
+Info (10041): Inferred latch for "MemtoReg" at UC.sv(37)
+Info (10041): Inferred latch for "RegWrite" at UC.sv(37)
+Info (10041): Inferred latch for "RegDst" at UC.sv(37)
+Info (10041): Inferred latch for "BWrite" at UC.sv(37)
+Info (10041): Inferred latch for "AWrite" at UC.sv(37)
+Info (10041): Inferred latch for "PCWrite" at UC.sv(37)
+Info (10041): Inferred latch for "PCSource" at UC.sv(37)
+Info (10041): Inferred latch for "ALUOp[0]" at UC.sv(37)
+Info (10041): Inferred latch for "ALUOp[1]" at UC.sv(37)
+Info (10041): Inferred latch for "ALUOp[2]" at UC.sv(37)
+Info (10041): Inferred latch for "ALUSrcB[0]" at UC.sv(37)
+Info (10041): Inferred latch for "ALUSrcB[1]" at UC.sv(37)
+Info (10041): Inferred latch for "ALUSrcA" at UC.sv(37)
+Info (10041): Inferred latch for "IRWrite" at UC.sv(37)
+Info (10041): Inferred latch for "IorD" at UC.sv(37)
+Info (10041): Inferred latch for "MemWrite" at UC.sv(37)
 Info: Elaborating entity "Registrador" for hierarchy "Registrador:PC"
 Info: Elaborating entity "Mux32_2_1" for hierarchy "Mux32_2_1:mux3221_mem"
 Info: Elaborating entity "Memoria" for hierarchy "Memoria:memory"
@@ -928,631 +884,98 @@ Info: Elaborating entity "Ula32" for hierarchy "Ula32:ULA"
 Info: Elaborating entity "Mux32_3_1" for hierarchy "Mux32_3_1:comb_6"
 Warning: Net is missing source, defaulting to GND
     Warning (12110): Net "pc_source[1]" is missing source, defaulting to GND
-Warning: Synthesized away the following node(s):
-    Warning: Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[0]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[1]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[2]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[3]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[4]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[5]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[6]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Three|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[7]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[0]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[1]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[2]"
-Warning: Synthesized away the following node(s):
-    Warning: Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[5]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[6]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[7]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[0]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[1]"
-Warning: Synthesized away the following node(s):
-    Warning: Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[7]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[6]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[5]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[4]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_Two|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[3]"
-Warning: Synthesized away the following node(s):
-    Warning: Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[4]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[3]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[2]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[1]"
-        Warning (14320): Synthesized away node "Memoria:memory|lpm_ram_dq:MEM_plus_One|altram:sram|altsyncram:ram_block|altsyncram_e1a1:auto_generated|q_a[0]"
 Warning: 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info: Duplicate LATCH primitives merged into single LATCH primitive
     Info: Duplicate LATCH primitive "UC:uni_c|ALUOp[1]" merged with LATCH primitive "UC:uni_c|ALUSrcA"
 Warning: Output pins are stuck at VCC or GND
     Warning (13410): Pin "alu_result[0]" is stuck at GND
     Warning (13410): Pin "alu_result[1]" is stuck at GND
-Info: 575 registers lost all their fanouts during netlist optimizations. The first 575 are displayed below.
-    Info: Register "Instr_Reg:IR|Instr25_21[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr25_21[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr25_21[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr25_21[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr25_21[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[31]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[30]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[29]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[28]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[27]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[26]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[20]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[19]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[18]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[17]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[16]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[15]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[14]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[13]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[12]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[11]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Registrador:mdr|Saida[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg0[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg1[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg2[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg3[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg4[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg5[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg6[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg7[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg8[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg9[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg10[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg11[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg12[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg13[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg14[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg15[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg16[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg17[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg18[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg19[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg20[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg21[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg22[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg23[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg24[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg25[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg26[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg27[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg28[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg29[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg30[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[25]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[24]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[23]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[22]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[21]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Banco_reg:banco_reg|Reg31[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[10]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[9]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[8]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[7]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[6]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[5]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[0]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[15]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[14]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[13]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[12]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr15_0[11]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr20_16[4]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr20_16[3]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr20_16[2]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr20_16[1]" lost all its fanouts during netlist optimizations.
-    Info: Register "Instr_Reg:IR|Instr20_16[0]" lost all its fanouts during netlist optimizations.
+    Warning (13410): Pin "alu_out[0]" is stuck at GND
+    Warning (13410): Pin "alu_out[1]" is stuck at GND
+    Warning (13410): Pin "alu_out[2]" is stuck at GND
+    Warning (13410): Pin "alu_out[3]" is stuck at GND
+    Warning (13410): Pin "alu_out[4]" is stuck at GND
+    Warning (13410): Pin "alu_out[5]" is stuck at GND
+    Warning (13410): Pin "alu_out[6]" is stuck at GND
+    Warning (13410): Pin "alu_out[7]" is stuck at GND
+    Warning (13410): Pin "alu_out[8]" is stuck at GND
+    Warning (13410): Pin "alu_out[9]" is stuck at GND
+    Warning (13410): Pin "alu_out[10]" is stuck at GND
+    Warning (13410): Pin "alu_out[11]" is stuck at GND
+    Warning (13410): Pin "alu_out[12]" is stuck at GND
+    Warning (13410): Pin "alu_out[13]" is stuck at GND
+    Warning (13410): Pin "alu_out[14]" is stuck at GND
+    Warning (13410): Pin "alu_out[15]" is stuck at GND
+    Warning (13410): Pin "alu_out[16]" is stuck at GND
+    Warning (13410): Pin "alu_out[17]" is stuck at GND
+    Warning (13410): Pin "alu_out[18]" is stuck at GND
+    Warning (13410): Pin "alu_out[19]" is stuck at GND
+    Warning (13410): Pin "alu_out[20]" is stuck at GND
+    Warning (13410): Pin "alu_out[21]" is stuck at GND
+    Warning (13410): Pin "alu_out[22]" is stuck at GND
+    Warning (13410): Pin "alu_out[23]" is stuck at GND
+    Warning (13410): Pin "alu_out[24]" is stuck at GND
+    Warning (13410): Pin "alu_out[25]" is stuck at GND
+    Warning (13410): Pin "alu_out[26]" is stuck at GND
+    Warning (13410): Pin "alu_out[27]" is stuck at GND
+    Warning (13410): Pin "alu_out[28]" is stuck at GND
+    Warning (13410): Pin "alu_out[29]" is stuck at GND
+    Warning (13410): Pin "alu_out[30]" is stuck at GND
+    Warning (13410): Pin "alu_out[31]" is stuck at GND
+    Warning (13410): Pin "pc_output[0]" is stuck at GND
+    Warning (13410): Pin "pc_output[1]" is stuck at GND
+    Warning (13410): Pin "mdr_output[0]" is stuck at GND
+    Warning (13410): Pin "mdr_output[1]" is stuck at GND
+    Warning (13410): Pin "mdr_output[2]" is stuck at GND
+    Warning (13410): Pin "mdr_output[3]" is stuck at GND
+    Warning (13410): Pin "mdr_output[4]" is stuck at GND
+    Warning (13410): Pin "mdr_output[5]" is stuck at GND
+    Warning (13410): Pin "mdr_output[6]" is stuck at GND
+    Warning (13410): Pin "mdr_output[7]" is stuck at GND
+    Warning (13410): Pin "mdr_output[8]" is stuck at GND
+    Warning (13410): Pin "mdr_output[9]" is stuck at GND
+    Warning (13410): Pin "mdr_output[10]" is stuck at GND
+    Warning (13410): Pin "mdr_output[11]" is stuck at GND
+    Warning (13410): Pin "mdr_output[12]" is stuck at GND
+    Warning (13410): Pin "mdr_output[13]" is stuck at GND
+    Warning (13410): Pin "mdr_output[14]" is stuck at GND
+    Warning (13410): Pin "mdr_output[15]" is stuck at GND
+    Warning (13410): Pin "mdr_output[16]" is stuck at GND
+    Warning (13410): Pin "mdr_output[17]" is stuck at GND
+    Warning (13410): Pin "mdr_output[18]" is stuck at GND
+    Warning (13410): Pin "mdr_output[19]" is stuck at GND
+    Warning (13410): Pin "mdr_output[20]" is stuck at GND
+    Warning (13410): Pin "mdr_output[21]" is stuck at GND
+    Warning (13410): Pin "mdr_output[22]" is stuck at GND
+    Warning (13410): Pin "mdr_output[23]" is stuck at GND
+    Warning (13410): Pin "mdr_output[24]" is stuck at GND
+    Warning (13410): Pin "mdr_output[25]" is stuck at GND
+    Warning (13410): Pin "mdr_output[26]" is stuck at GND
+    Warning (13410): Pin "mdr_output[27]" is stuck at GND
+    Warning (13410): Pin "mdr_output[28]" is stuck at GND
+    Warning (13410): Pin "mdr_output[29]" is stuck at GND
+    Warning (13410): Pin "mdr_output[30]" is stuck at GND
+    Warning (13410): Pin "mdr_output[31]" is stuck at GND
+Info: 3 registers lost all their fanouts during netlist optimizations. The first 3 are displayed below.
     Info: Register "UC:uni_c|state~8" lost all its fanouts during netlist optimizations.
     Info: Register "UC:uni_c|state~9" lost all its fanouts during netlist optimizations.
     Info: Register "UC:uni_c|state~10" lost all its fanouts during netlist optimizations.
-    Info: Register "UC:uni_c|state~11" lost all its fanouts during netlist optimizations.
-    Info: Register "UC:uni_c|state~12" lost all its fanouts during netlist optimizations.
-Info: Implemented 76 device resources after synthesis - the final resource count might be different
+Info: Generated suppressed messages file C:/Users/nmf2/cpu-mips/atividade1.map.smsg
+Info: Implemented 270 device resources after synthesis - the final resource count might be different
     Info: Implemented 2 input pins
-    Info: Implemented 32 output pins
-    Info: Implemented 36 logic cells
-    Info: Implemented 6 RAM segments
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 45 warnings
-    Info: Peak virtual memory: 250 megabytes
-    Info: Processing ended: Sun Apr 16 12:28:31 2017
+    Info: Implemented 192 output pins
+    Info: Implemented 44 logic cells
+    Info: Implemented 32 RAM segments
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 78 warnings
+    Info: Peak virtual memory: 262 megabytes
+    Info: Processing ended: Sun Apr 16 15:21:37 2017
     Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Total CPU time (on all processors): 00:00:04
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/nmf2/cpu-mips/atividade1.map.smsg.
 
 

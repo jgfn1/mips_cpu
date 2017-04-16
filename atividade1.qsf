@@ -58,6 +58,7 @@ set_global_assignment -name ADD_DEFAULT_PINS_TO_SIMULATION_OUTPUT_WAVEFORMS ON
 set_global_assignment -name SIMULATION_MODE FUNCTIONAL
 set_global_assignment -name SEARCH_PATH "c:\\users\\nmf2\\quartus\\quartus\\libraries\\megafunctions"
 set_global_assignment -name SEARCH_PATH "c:\\users\\nmf2\\quartus\\quartus\\libraries\\megafunctions\\gates"
+set_global_assignment -name MIF_FILE instrucoes.mif
 set_global_assignment -name SYSTEMVERILOG_FILE Shift_left2.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Mux5_2_1.sv
 set_global_assignment -name SYSTEMVERILOG_FILE Mux32_2_1.sv

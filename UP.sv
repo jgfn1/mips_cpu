@@ -1,4 +1,15 @@
-module UP(input logic clk, input logic reset, output logic [31:0] alu_result);
+module UP(input logic clk, 
+		input logic reset, 
+		output logic [31:0] alu_result, 
+		output logic [31:0] alu_out, 
+		output logic [31:0] pc_output,
+		output logic [31:0] mem_data,
+		output logic [31:0] mdr_output,
+		output logic [5:0] op,
+		output logic [4:0] rs,
+		output logic [4:0] rt,
+		output logic [15:0]addr_imm
+);
 
 //alu
 logic of_alu, negf_alu, zf_alu, menorf_alu, maiorf_alu, igualf_alu;
@@ -6,11 +17,11 @@ logic [2:0] alu_op;
 logic [31:0] mux32_alu_a_output, mux32_alu_b_output, mux32_alu_output;
 
 //alu out
-logic [31:0] alu_out;
+//logic [31:0] alu_out;
 logic alu_out_load;
 
 //pc and pc bound
-logic [31:0] pc_output/* output do próprio do pc*/, mux32_memory_output /* output do mux q está perto do pc*/, pc_input;
+logic [31:0]/* pc_output,/* output do próprio do pc*/ mux32_memory_output /* output do mux q está perto do pc*/, pc_input;
 logic reset_pc, pc_write, pc_write_cond; // I/O da UC;
 
 
@@ -20,10 +31,10 @@ logic [1:0] pc_source, alu_src_b;
 
 //IR and IR bound
 logic ir_write;
-logic [5:0] op;
-logic [4:0] rs;
-logic [4:0] rt;
-logic [15:0]addr_imm;
+//logic [5:0] op;
+//logic [4:0] rs;
+//logic [4:0] rt;
+//logic [15:0]addr_imm;
 logic [4:0] mux5_out;
 logic mem_to_reg;
 
@@ -31,14 +42,14 @@ logic mem_to_reg;
 logic [31:0] read_data1, read_data2, mux32_br_output;
 
 //memory
-logic [31:0] mem_data;
+//logic [31:0] mem_data;
 
 //A e B
 logic [31:0] a_output, b_output;
 logic a_load, b_load;
 
 //mdr - Memory Data Register
-logic [31:0] mdr_output;
+//logic [31:0] mdr_output;
 logic mdr_load;
 
 //extensor de sinal
@@ -59,7 +70,9 @@ UC uni_c (
 	.RegWrite   (reg_write   ),
 	.RegDst     (reg_dst     ),
 	.Reset      (reset      ),
-	.Op         (op         )
+	.Op         (op         ),
+	.AWrite		(a_load 	),
+	.BWrite		(b_load 	)
 );
 
 

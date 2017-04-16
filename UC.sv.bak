@@ -12,10 +12,12 @@ module UC (input logic Clk,
 		output logic RegWrite,
 		output logic RegDst,
 		input logic  Reset,
-		input logic  [5:0] Op
+		input logic  [5:0] Op,
+		output logic AWrite,
+		output logic BWrite
 	);
 	
-	enum logic [4:0] {FETCH, DECODE, RTYPE, RTYPE_CONT} state;
+	enum logic [2:0] {FETCH, DECODE, RTYPE, RTYPE_CONT} state;
 	
 	always_ff@(posedge Clk or negedge Reset) begin
 		if (~Reset) state <= FETCH;
@@ -28,6 +30,7 @@ module UC (input logic Clk,
 					endcase
 				end
 				RTYPE: state <= RTYPE_CONT;
+				RTYPE_CONT: state <= FETCH;
 			endcase
 	end
 	always_latch
@@ -43,9 +46,10 @@ module UC (input logic Clk,
 				PCSource <= 2'b00;	// Indica que o valor que será carregado no PC será o que vem do ALUResult
 				PCWrite <= 1; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
 			 end
-			// DECODE: begin
-
-			// end
+			DECODE: begin
+				AWrite = 1;
+				BWrite = 1;
+			end
 			RTYPE: begin
 				ALUSrcA <= 1; 		
 				ALUSrcB <= 2'b00;

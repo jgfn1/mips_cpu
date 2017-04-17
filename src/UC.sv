@@ -67,8 +67,7 @@ module UC (
 				RegWrite		<= 0;
 				RegDst			<= 0;		//-fVictor
 				AWrite			<= 0;		//-fVictor
-				BWrite			<= 0;		//-fVictor
-							
+				BWrite			<= 0;		//-fVictor	
 			 end
 			DECODE: begin
 
@@ -86,10 +85,8 @@ module UC (
 				RegDst			<= 0;		//-fVictor
 				AWrite			<= 1;		//-fVictor
 				BWrite			<= 1;		//-fVictor
-
 			end
 			RTYPE: begin
-
 				PCWriteCond 	<= 0;		//-fVictor
 				PCWrite 		<= 0; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
 				IorD 			<= 0;			// o endere�o a ser carregado na porta "address" da mem�ria vem do ALUOut
@@ -141,6 +138,7 @@ module UC (
 			
 			LW:
 			begin
+				PCWriteCond 	<= 0;
 				PCWrite <= 0;
 				IorD <= 0;
 				MemWrite <= 0;
@@ -158,6 +156,7 @@ module UC (
 			
 			LW1:
 			begin
+				PCWriteCond <= 0;
 				PCWrite <= 0;
 				IorD <= 1;
 				MemWrite <= 0;
@@ -175,6 +174,7 @@ module UC (
 			
 			LW2:
 			begin
+				PCWriteCond <= 0;
 				PCWrite <= 0;
 				IorD <= 0;
 				MemWrite <= 0;
@@ -192,6 +192,7 @@ module UC (
 
 			SW:
 			begin
+				PCWriteCond <= 0;
 				PCWrite <= 0;
 				IorD <= 0;
 				MemWrite <= 0;
@@ -209,6 +210,7 @@ module UC (
 			
 			SW1:
 			begin
+				PCWriteCond <= 0;
 				PCWrite <= 0;
 				IorD <= 1;
 				MemWrite <= 1;
@@ -223,7 +225,6 @@ module UC (
 				PCWriteCond <= 0;
 				IRWrite <= 0;
 			end
-			
 			J: begin
 				PCWriteCond 	<= 0;		//-fVictor
 				PCWrite 		<= 0; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
@@ -242,7 +243,7 @@ module UC (
 				
 				//PCSource <= 2'b10;			
 			end
-/*			default: begin
+			/*default: begin
 				PCWrite <= 0;
 				IorD <= 0;
 				MemWrite <= 0;

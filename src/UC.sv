@@ -39,6 +39,7 @@ module UC (
 						6'h2:  state <= J;
 					endcase
 				end
+<<<<<<< HEAD
 				RTYPE: state <= RTYPE_CONT;
 				RTYPE_CONT: state <= FETCH;
 				BEQ: state <= FETCH;
@@ -56,6 +57,24 @@ module UC (
 				J: state <= FETCH;
 				BREAK: state <= BREAK;
 				default: state <= FETCH;
+=======
+				RTYPE: 			state <= RTYPE_CONT;
+				RTYPE_CONT: 	state <= FETCH;
+				BEQ: 			state <= FETCH;
+				BNE: 			state <= FETCH;
+				LW: 			state <= LW1;
+				LW1: 			state <= DELAY1_LW;
+				DELAY1_LW: 		state <= DELAY2_LW;
+				DELAY2_LW: 		state <= LW2;
+				LW2: 			state <= FETCH;
+				SW: 			state <= DELAY1_SW;
+				DELAY1_SW: 		state <= DELAY2_SW;
+				DELAY2_SW: 		state <= SW1;
+				SW1: 			state <= FETCH;
+				LUI: 			state <= FETCH/*???*/;
+				J: 				state <= FETCH;
+				default: 		state <= FETCH;
+>>>>>>> 3cf15019b54dd77d5e9cbea180ea59fa2324e65b
 			endcase
 	end
 	always_comb		
@@ -227,15 +246,15 @@ module UC (
 				BWrite 			= 0;		
 			end
 			BEQ: begin
-				PCWriteCond 	= 0;		
+				PCWriteCond 	= 1;		
 				PCWrite 		= 0; 		
 				IorD 			= 0;		
 				MemWrite 		= 0;		
 				MemtoReg		= 0; 		
 				IRWrite 		= 0;		
-				PCSource 		= 0;		
+				PCSource 		= 2'b01;		
 				ALUOp			= 2'b01;		
-				ALUSrcA 		= 0;		
+				ALUSrcA 		= 1;		
 				ALUSrcB 		= 0;		
 				RegWrite		= 0;
 				RegDst			= 0;		
@@ -249,16 +268,14 @@ module UC (
 				MemWrite 		= 0;		
 				MemtoReg		= 0; 		
 				IRWrite 		= 0;		
-				PCSource 		= 0;		
+				PCSource 		= 2'b10;		
 				ALUOp			= 0;		
 				ALUSrcA 		= 0;		
 				ALUSrcB 		= 0;		
 				RegWrite		= 0;
 				RegDst			= 0;		
 				AWrite			= 0;		
-				BWrite			= 0;		
-				
-				//PCSource = 2'b10;			
+				BWrite			= 0;				
 			end
 			DELAY1_LW:
 			begin			

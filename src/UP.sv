@@ -77,8 +77,8 @@ UC uni_c (
 	.Reset      (~reset      ),
 	.Op         (op         ),
 	.AWrite		(a_load 	),
-	.BWrite		(b_load 	),
-	.Break		(brk 		)
+	.BWrite		(b_load 	)/*,
+	.Break		(brk 		)*/
 );
 
 
@@ -241,8 +241,8 @@ Ula32 ULA (.A(mux32_alu_a_output),
 ALUControl ALUControl (
 	.Entrada(addr_imm[5-:6]), 
 	.ALUOp(alu_op), 
-	.Saida(alu_control_output),
-	.Break(brk)
+	.Saida(alu_control_output)//,
+	//.Break(brk)
 );
 
 

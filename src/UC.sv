@@ -137,12 +137,6 @@ module UC (
 				RegDst			<= 0;		//-fVictor
 				AWrite			<= 0;		//-fVictor
 				BWrite			<= 0;		//-fVictor							
-				
-				/*PCWriteCond <= 1;
-				PCWrite <= 1;
-				ALUSrcA <= 1; 		
-				ALUSrcB <= 2'b00;
-				ALUOp <= 2'b01;*/
 			end
 			
 			LW:

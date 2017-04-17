@@ -21,7 +21,7 @@ logic [31:0] mux32_alu_a_output, mux32_alu_b_output, mux32_alu_output;
 logic alu_out_load;
 
 //pc and pc bound
-logic [31:0]/* pc_output,/* output do pr�prio do pc*/ mux32_memory_output /* output do mux q est� perto do pc*/, pc_input;
+logic [31:0]/* pc_output, output do pr�prio do pc*/ mux32_memory_output /* output do mux q est� perto do pc*/, pc_input;
 logic reset_pc, pc_write, pc_write_cond; // I/O da UC;
 
 

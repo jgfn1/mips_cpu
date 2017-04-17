@@ -152,6 +152,8 @@ module UC (
 				RegDst <= 0;
 				PCWriteCond <= 0;
 				IRWrite <= 0;
+				AWrite <= 0;		//-fVictor
+				BWrite <= 0;		//-fVictor
 			end
 			
 			LW1:
@@ -170,6 +172,8 @@ module UC (
 				RegDst <= 0;
 				PCWriteCond <= 0;
 				IRWrite <= 0;
+				AWrite <= 0;		//-fVictor
+				BWrite <= 0;		//-fVictor
 			end
 			
 			LW2:
@@ -188,6 +192,8 @@ module UC (
 				RegDst <= 0;
 				PCWriteCond <= 0;
 				IRWrite <= 0;
+				AWrite <= 0;		//-fVictor
+				BWrite <= 0;		//-fVictor
 			end
 
 			SW:
@@ -206,6 +212,8 @@ module UC (
 				RegDst <= 0;
 				PCWriteCond <= 0;
 				IRWrite <= 0;
+				AWrite <= 0;		//-fVictor
+				BWrite <= 0;		//-fVictor
 			end
 			
 			SW1:
@@ -224,6 +232,8 @@ module UC (
 				RegDst <= 0;
 				PCWriteCond <= 0;
 				IRWrite <= 0;
+				AWrite <= 0;		//-fVictor
+				BWrite <= 0;		//-fVictor
 			end
 			J: begin
 				PCWriteCond 	<= 0;		//-fVictor
@@ -243,7 +253,7 @@ module UC (
 				
 				//PCSource <= 2'b10;			
 			end
-			/*default: begin
+			default: begin
 				PCWrite <= 0;
 				IorD <= 0;
 				MemWrite <= 0;
@@ -257,6 +267,8 @@ module UC (
 				RegDst <= 0;
 				PCWriteCond <= 0;
 				IRWrite <= 0;
-			end*/
+				AWrite <= 0;
+				BWrite <= 0;
+			end
 		endcase	
 endmodule 

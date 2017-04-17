@@ -18,7 +18,7 @@ module UC (
 		output logic BWrite
 );
 	
-	enum logic [3:0] {FETCH, DECODE, RTYPE, RTYPE_CONT, BEQ, BNE, LW, SW, LUI, J} state;
+	enum logic [3:0] {FETCH, DECODE, RTYPE, RTYPE_CONT, BEQ, BNE, LW, LW1, LW2, SW, SW1, LUI, J} state;
 
 		
 	always_ff@(posedge Clk or posedge Reset) begin

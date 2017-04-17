@@ -18,7 +18,7 @@ module UC (
 		output logic BWrite
 );
 	
-	enum logic [3:0] {FETCH, DECODE, RTYPE, RTYPE_CONT, BEQ, BNE, LW, LW1, LW2, SW, SW1, LUI, J} state;
+	enum logic [4:0] {FETCH, DECODE, RTYPE, RTYPE_CONT, BEQ, BNE, LW, LW1, DELAY1_LW, DELAY2_LW, LW2, SW, DELAY1_SW, DELAY2_SW, SW1, LUI, J} state;
 
 		
 	always_ff@(posedge Clk or posedge Reset) begin
@@ -28,13 +28,13 @@ module UC (
 				FETCH: state <= DECODE;
 				DECODE: begin
 					case (Op)
-						6'h0:state <= RTYPE;
-						6'h4:state <= BEQ;
-						6'h5:state <= BNE;
-						6'h23:state <= LW;
-						6'h2b:state <= SW;
-						6'hf:state <= LUI;
-						6'h2:state <= J;
+						6'h0:  state <= RTYPE;
+						6'h4:  state <= BEQ;
+						6'h5:  state <= BNE;
+						6'h23: state <= LW;
+						6'h2b: state <= SW;
+						6'hf:  state <= LUI;
+						6'h2:  state <= J;
 					endcase
 				end
 				RTYPE: state <= RTYPE_CONT;
@@ -42,9 +42,13 @@ module UC (
 				BEQ: state <= FETCH;
 				BNE: state <= FETCH;
 				LW: state <= LW1;
-				LW1: state <= LW2;
+				LW1: state <= DELAY1_LW;
+				DELAY1_LW: state <= DELAY2_LW;
+				DELAY2_LW: state <= LW2;
 				LW2: state <= FETCH;
-				SW: state <= SW1;
+				SW: state <= DELAY1_SW;
+				DELAY1_SW: state <= DELAY2_SW;
+				DELAY2_SW: state <= SW1;
 				SW1: state <= FETCH;
 				LUI: state <= FETCH/*???*/;
 				J: state <= FETCH;
@@ -118,23 +122,7 @@ module UC (
 				AWrite			= 0;		
 				BWrite			= 0;		
 
-			end
-			BEQ: begin
-				PCWriteCond 	= 0;		
-				PCWrite 		= 0; 		
-				IorD 			= 0;		
-				MemWrite 		= 0;		
-				MemtoReg		= 0; 		
-				IRWrite 		= 0;		
-				PCSource 		= 0;		
-				ALUOp			= 0;		
-				ALUSrcA 		= 0;		
-				ALUSrcB 		= 0;		
-				RegWrite		= 0;
-				RegDst			= 0;		
-				AWrite			= 0;		
-				BWrite			= 0;									
-			end
+			end			
 			
 			LW:
 			begin
@@ -235,6 +223,22 @@ module UC (
 				AWrite 			= 0;		
 				BWrite 			= 0;		
 			end
+			BEQ: begin
+				PCWriteCond 	= 0;		
+				PCWrite 		= 0; 		
+				IorD 			= 0;		
+				MemWrite 		= 0;		
+				MemtoReg		= 0; 		
+				IRWrite 		= 0;		
+				PCSource 		= 0;		
+				ALUOp			= 2'b01;		
+				ALUSrcA 		= 0;		
+				ALUSrcB 		= 0;		
+				RegWrite		= 0;
+				RegDst			= 0;		
+				AWrite			= 0;		
+				BWrite			= 0;									
+			end
 			J: begin
 				PCWriteCond 	= 0;		
 				PCWrite 		= 0; 		
@@ -252,6 +256,78 @@ module UC (
 				BWrite			= 0;		
 				
 				//PCSource = 2'b10;			
+			end
+			DELAY1_LW:
+			begin			
+				PCWrite 		= 0;
+				IorD 			= 0;
+				MemWrite 		= 0;
+				MemtoReg 		= 0;
+				IRWrite 		= 0;
+				PCSource		= 0;
+				ALUOp			= 0;
+				ALUSrcA			= 0;
+				ALUSrcB			= 0;
+				RegWrite		= 0;
+				RegDst			= 0;
+				PCWriteCond		= 0;
+				IRWrite			= 0;
+				AWrite			= 0;
+				BWrite			= 0;
+			end
+			DELAY2_LW:
+			begin
+				PCWrite 		= 0;
+				IorD 			= 0;
+				MemWrite 		= 0;
+				MemtoReg 		= 0;
+				IRWrite 		= 0;
+				PCSource		= 0;
+				ALUOp			= 0;
+				ALUSrcA			= 0;
+				ALUSrcB			= 0;
+				RegWrite		= 0;
+				RegDst			= 0;
+				PCWriteCond		= 0;
+				IRWrite			= 0;
+				AWrite			= 0;
+				BWrite			= 0;	
+			end
+			DELAY1_SW:
+			begin			
+				PCWrite 		= 0;
+				IorD 			= 0;
+				MemWrite 		= 0;
+				MemtoReg 		= 0;
+				IRWrite 		= 0;
+				PCSource		= 0;
+				ALUOp			= 0;
+				ALUSrcA			= 0;
+				ALUSrcB			= 0;
+				RegWrite		= 0;
+				RegDst			= 0;
+				PCWriteCond		= 0;
+				IRWrite			= 0;
+				AWrite			= 0;
+				BWrite			= 0;
+			end
+			DELAY2_SW:
+			begin			
+				PCWrite 		= 0;
+				IorD 			= 0;
+				MemWrite 		= 0;
+				MemtoReg 		= 0;
+				IRWrite 		= 0;
+				PCSource		= 0;
+				ALUOp			= 0;
+				ALUSrcA			= 0;
+				ALUSrcB			= 0;
+				RegWrite		= 0;
+				RegDst			= 0;
+				PCWriteCond		= 0;
+				IRWrite			= 0;
+				AWrite			= 0;
+				BWrite			= 0;
 			end
 			default: begin
 				PCWrite 		= 0;

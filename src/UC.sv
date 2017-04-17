@@ -224,7 +224,7 @@ module UC (
 				BWrite 			= 0;		
 			end
 			BEQ: begin
-				PCWriteCond 	= 0;		
+				PCWriteCond 	= 1;		
 				PCWrite 		= 0; 		
 				IorD 			= 0;		
 				MemWrite 		= 0;		

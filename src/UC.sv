@@ -15,14 +15,16 @@ module UC (
 		output logic RegWrite,
 		output logic RegDst,		
 		output logic AWrite,
-		output logic BWrite
+		output logic BWrite,
+		output logic Break
 );
 	
-	enum logic [4:0] {FETCH, DECODE, RTYPE, RTYPE_CONT, BEQ, BNE, LW, LW1, DELAY1_LW, DELAY2_LW, LW2, SW, DELAY1_SW, DELAY2_SW, SW1, LUI, J} state;
+	enum logic [4:0] {FETCH, DECODE, RTYPE, RTYPE_CONT, BEQ, BNE, LW, LW1, DELAY1_LW, DELAY2_LW, LW2, SW, DELAY1_SW, DELAY2_SW, SW1, LUI, J, BREAK} state;
 
 		
 	always_ff@(posedge Clk or posedge Reset) begin
 		if (Reset) state <= FETCH;
+		if (Break) state <= BREAK;
 		else
 			case (state)
 				FETCH: state <= DECODE;
@@ -52,6 +54,7 @@ module UC (
 				SW1: state <= FETCH;
 				LUI: state <= FETCH/*???*/;
 				J: state <= FETCH;
+				BREAK: state <= BREAK;
 				default: state <= FETCH;
 			endcase
 	end
@@ -327,6 +330,22 @@ module UC (
 				PCWriteCond		= 0;
 				IRWrite			= 0;
 				AWrite			= 0;
+				BWrite			= 0;
+			end
+			BREAK: begin
+				PCWriteCond 	= 0;		
+				PCWrite 		= 0; 		
+				IorD 			= 0;		
+				MemWrite 		= 0;		
+				MemtoReg		= 0; 		
+				IRWrite 		= 0;		
+				PCSource 		= 0;		
+				ALUOp			= 0;		
+				ALUSrcA 		= 0;		
+				ALUSrcB 		= 0;		
+				RegWrite		= 0;
+				RegDst			= 0;		
+				AWrite			= 0;		
 				BWrite			= 0;
 			end
 			default: begin

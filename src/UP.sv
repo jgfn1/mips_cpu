@@ -16,6 +16,8 @@ logic of_alu, negf_alu, zf_alu, menorf_alu, maiorf_alu, igualf_alu;
 logic [2:0] alu_op;
 logic [31:0] mux32_alu_a_output, mux32_alu_b_output, mux32_alu_output;
 
+logic brk;
+
 //alu out
 //logic [31:0] alu_out;
 logic alu_out_load;
@@ -75,7 +77,8 @@ UC uni_c (
 	.Reset      (~reset      ),
 	.Op         (op         ),
 	.AWrite		(a_load 	),
-	.BWrite		(b_load 	)
+	.BWrite		(b_load 	),
+	.Break		(brk 		)
 );
 
 
@@ -238,7 +241,8 @@ Ula32 ULA (.A(mux32_alu_a_output),
 ALUControl ALUControl (
 	.Entrada(addr_imm[5-:6]), 
 	.ALUOp(alu_op), 
-	.Saida(alu_control_output)
+	.Saida(alu_control_output),
+	.Break(brk)
 );
 
 

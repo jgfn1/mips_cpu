@@ -8,11 +8,13 @@ module UP(input logic clk,
 		output logic [31:0] mux32_alu_b_output,
 		output logic [31:0] b_output,
 		output logic [31:0] mux32_alu_a_output,
-		output logic [5:0] op,
+		output logic [5:0] op_out,
 		output logic [4:0] rs,
 		output logic [4:0] rt,
 		output logic [15:0]addr_imm,
-		output logic zf_alu
+		output logic zf_alu,
+		output logic [5:0] state_output,
+		output logic pc_write
 );
 
 //alu
@@ -28,7 +30,7 @@ logic alu_out_load;
 
 //pc and pc bound
 logic [31:0]/* pc_output, output do pr�prio do pc*/ mux32_memory_output /* output do mux q est� perto do pc*/, pc_input;
-logic reset_pc, pc_write, pc_write_cond; // I/O da UC;
+logic reset_pc, /*pc_write,*/ pc_write_cond; // I/O da UC;
 
 
 //uc and uc bound
@@ -37,7 +39,7 @@ logic [1:0] pc_source, alu_src_b;
 
 //IR and IR bound
 logic ir_write;
-//logic [5:0] op;
+logic [5:0] op;
 //logic [4:0] rs;
 //logic [4:0] rt;
 //logic [15:0]addr_imm;
@@ -64,6 +66,8 @@ logic [31:0] sign_ex_output;
 //alu control
 logic [2:0] alu_control_output;
 
+
+
 UC uni_c (
 	.Clk        (clk        ),
 	.PCWriteCond(pc_write_cond),
@@ -78,10 +82,11 @@ UC uni_c (
 	.ALUSrcB    (alu_src_b    ),
 	.RegWrite   (reg_write   ),
 	.RegDst     (reg_dst     ),
-	.Reset      (~reset      ),
+	.Reset      (reset      ),
 	.Op         (op         ),
 	.AWrite		(a_load 	),
-	.BWrite		(b_load 	)/*,
+	.BWrite		(b_load 	),
+	.State_out	(state_output)/*,
 	.Break		(brk 		)*/
 );
 
@@ -89,8 +94,8 @@ UC uni_c (
 Registrador PC(
 			.Clk(clk),
 			.Reset(reset_pc),
-			.Load( 1 ),/*pequeno circuito do lado esquerdo da UC*/			
-			//(pc_write | (pc_write_cond & zf_alu)
+			.Load( (pc_write || (pc_write_cond && zf_alu)) ),/*pequeno circuito do lado esquerdo da UC*/			
+			//
 			.Entrada(pc_input),
 			.Saida(pc_output)
 );
@@ -121,6 +126,8 @@ Instr_Reg IR (
 	.Instr20_16	(rt),
 	.Instr15_0(addr_imm)
 );
+
+assign op_out = op;
 
 Registrador mdr ( //Memory Data Register
 	.Clk(clk),
@@ -191,7 +198,7 @@ Mux32_4_1 mux32441NATHANFUCKINGUY(
 	.B(4), //4'd
 	.C(sign_ex_output),
 	.D((sign_ex_output << 2)), //shitf_left2 est� implicito
- 	.ALUSrcB(0),
+ 	.ALUSrcB(alu_src_b),
  	.Mux32_4_out(mux32_alu_b_output)
  );
 

@@ -17,7 +17,8 @@ module UC (
 		output logic AWrite,
 		output logic BWrite,
 		output logic Break,
-		output logic [5:0] State_out
+		output logic [5:0] State_out,
+		output logic ALUOutLoad
 );
 	
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, RTYPE, RTYPE_CONT, BEQ, BNE, LW, LW1, DELAY1_LW, DELAY2_LW, LW2, SW, DELAY1_SW, DELAY2_SW, SW1, LUI, J, BREAK} state;
@@ -81,16 +82,17 @@ module UC (
 				RegWrite		= 1'b0;
 				RegDst			= 1'b0;		
 				AWrite			= 1'b0;		
-				BWrite			= 1'b0;			
+				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;			
 			end
 			F1: begin
-				PCWrite 		= 1'b1;		
+				PCWrite 		= 1'b0;		
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 1'b0;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
-				ALUOp 			= 2'b00;
+				ALUOp 			= 3'b111;
 				ALUSrcA			= 1'b0;
 				ALUSrcB			= 2'b01;
 				RegWrite		= 1'b0;
@@ -98,22 +100,24 @@ module UC (
 				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
 			end
 			F2: begin
-				PCWrite 		= 1'b0;
+				PCWrite 		= 1'b1;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 1'b0;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
-				ALUOp 			= 2'b00;
+				ALUOp 			= 3'b111;
 				ALUSrcA			= 1'b0;
-				ALUSrcB			= 2'b00;
+				ALUSrcB			= 2'b01;
 				RegWrite		= 1'b0;
 				RegDst			= 1'b0;
 				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
 			end
 			F3: begin
 				PCWrite 		= 1'b0;
@@ -130,55 +134,75 @@ module UC (
 				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
+			end
+			LUI: begin
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 2'b10;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 2'b00;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b1;
+				RegDst			= 1'b0;
+				PCWriteCond		= 1'b0;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
 			end
 			DECODE: begin
 				PCWriteCond 	= 1'b0;		
-				PCWrite 		= 1'b0; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
-				IorD 			= 1'b0;			// o endereco a ser carregado na porta "address" da memoria vem do ALUOut
-				MemWrite 		= 1'b1;		// ler da memoria				
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;	
 				MemtoReg		= 1'b0; 		
-				IRWrite 		= 1'b1;		// Carregar o IR com o que esta em MemData
-				PCSource 		= 2'b00;		// Indica que o valor que sera carregado no PC sera o que vem do ALUResult
-				ALUOp 			= 2'b00;		// Faz com que a operacao da ALU seja a de soma
-				ALUSrcA 		= 1'b0;		// A fonte da porta A da ALU sera o valor do PC (isso controla um MUX)
-				ALUSrcB 		= 2'b11;		// A fonte da porta B da ALU sera o numero 4 (isso controla um MUX)				
+				IRWrite 		= 1'b1;
+				PCSource 		= 2'b00;
+				ALUOp 			= 2'b00;
+				ALUSrcA 		= 1'b0;	
+				ALUSrcB 		= 2'b11;
 				RegWrite		= 1'b0;
 				RegDst			= 1'b0;		
 				AWrite			= 1'b1;		
-				BWrite			= 1'b1;		
+				BWrite			= 1'b1;
+				ALUOutLoad		= 1'b1;
 			end
 			RTYPE: begin
 				PCWriteCond 	= 1'b0;		
-				PCWrite 		= 1'b0; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
-				IorD 			= 1'b0;			// o endere�o a ser carregado na porta "address" da mem�ria vem do ALUOut
-				MemWrite 		= 1'b1;		// ler da mem�ria				
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;	
 				MemtoReg		= 1'b0; 		
-				IRWrite 		= 1'b0;		// Carregar o IR com o que est� em MemData
-				PCSource 		= 2'b00;		// Indica que o valor que ser� carregado no PC ser� o que vem do ALUResult
-				ALUOp			= 2'b10;	// Faz com que a opera��o da ALU seja a de soma
-				ALUSrcA 		= 1'b1;		// A fonte da porta A da ALU ser� o valor do PC (isso controla um MUX)
-				ALUSrcB 		= 2'b00;	// A fonte da porta B da ALU ser� o n�mero 4 (isso controla um MUX)				
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 2'b10;
+				ALUSrcA 		= 1'b1;	
+				ALUSrcB 		= 2'b00;
 				RegWrite		= 1'b0;
 				RegDst			= 1'b0;		
 				AWrite			= 1'b0;		
 				BWrite			= 1'b0;		
+				ALUOutLoad		= 1'b0;
 			end
 			RTYPE_CONT: begin
 				PCWriteCond 	= 1'b0;		
-				PCWrite 		= 1'b1; 		// Faz com que o que o valor na entrada do pc seja realmente carregado.
-				IorD 			= 1'b0;		// o endere�o a ser carregado na porta "address" da mem�ria vem do ALUOut
-				MemWrite 		= 1'b1;		// ler da mem�ria				
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;	
 				MemtoReg		= 1'b0; 		
-				IRWrite 		= 1'b0;		// Carregar o IR com o que est� em MemData
-				PCSource 		= 2'b00;		// Indica que o valor que ser� carregado no PC ser� o que vem do ALUResult
-				ALUOp 			= 2'b00;		// Faz com que a opera��o da ALU seja a de soma
-				ALUSrcA 		= 1'b0;		// A fonte da porta A da ALU ser� o valor do PC (isso controla um MUX)
-				ALUSrcB 		= 2'b00;		// A fonte da porta B da ALU ser� o n�mero 4 (isso controla um MUX)				
-				RegWrite		= 1'b0;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp 			= 2'b00;
+				ALUSrcA 		= 1'b0;	
+				ALUSrcB 		= 2'b00;
+				RegWrite		= 1'b1;
 				RegDst			= 1'b1;		
 				AWrite			= 1'b0;		
-				BWrite			= 1'b0;		
-
+				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b1;
 			end			
 			
 			LW:
@@ -198,6 +222,7 @@ module UC (
 				PCWriteCond 	= 1'b0;
 				AWrite 			= 1'b0;		
 				BWrite 			= 1'b0;		
+				ALUOutLoad		= 1'b0;
 			end
 			
 			LW1:
@@ -217,6 +242,7 @@ module UC (
 				PCWriteCond 	= 1'b0;
 				AWrite 			= 1'b0;		
 				BWrite 			= 1'b0;		
+				ALUOutLoad		= 1'b0;
 			end
 			
 			LW2:
@@ -236,6 +262,7 @@ module UC (
 				PCWriteCond 	= 1'b0;
 				AWrite 			= 1'b0;		
 				BWrite 			= 1'b0;		
+				ALUOutLoad		= 1'b0;
 			end
 
 			SW:
@@ -255,6 +282,7 @@ module UC (
 				PCWriteCond 	= 1'b0;
 				AWrite 			= 1'b0;		
 				BWrite 			= 1'b0;		
+				ALUOutLoad		= 1'b1;
 			end
 			
 			SW1:
@@ -274,6 +302,7 @@ module UC (
 				PCWriteCond 	= 1'b0;
 				AWrite 			= 1'b0;		
 				BWrite 			= 1'b0;		
+				ALUOutLoad		= 1'b0;
 			end
 			BEQ: begin
 				PCWriteCond 	= 1'b1;		
@@ -290,6 +319,7 @@ module UC (
 				RegDst			= 1'b0;		
 				AWrite			= 1'b0;		
 				BWrite			= 1'b0;									
+				ALUOutLoad		= 1'b0;
 			end
 			J: begin
 				PCWriteCond 	= 1'b0;		
@@ -306,6 +336,7 @@ module UC (
 				RegDst			= 1'b0;		
 				AWrite			= 1'b0;		
 				BWrite			= 1'b0;				
+				ALUOutLoad		= 1'b0;
 			end
 			DELAY1_LW:
 			begin			
@@ -323,6 +354,7 @@ module UC (
 				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
 			end
 			DELAY2_LW:
 			begin
@@ -340,6 +372,7 @@ module UC (
 				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;	
+				ALUOutLoad		= 1'b0;
 			end
 			DELAY1_SW:
 			begin			
@@ -357,6 +390,7 @@ module UC (
 				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
 			end
 			DELAY2_SW:
 			begin			
@@ -374,6 +408,7 @@ module UC (
 				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
 			end
 			BREAK: begin
 				PCWrite 		= 1'b0;
@@ -390,6 +425,7 @@ module UC (
 				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
 			end
 			default: begin
 				PCWrite 		= 1'b0;
@@ -406,6 +442,7 @@ module UC (
 				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
 			end
 		endcase	
 endmodule 

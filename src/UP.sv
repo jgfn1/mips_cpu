@@ -4,7 +4,7 @@
 		output logic [5:0] state_output, 		
 		output logic [31:0] Alu, 
 		output logic [31:0] AluOut, 
-		//output logic [31:0] PC,
+		output logic [31:0] PC,
 		output logic [31:0] Mem_Data,
 		output logic [31:0] Address,
 		output logic [31:0] MDR,
@@ -17,103 +17,105 @@
 		output logic [4:0] rt,
 		output logic [31:0] instruction,
 		output logic [15:0] addr_imm,
-		//output logic zf_alu,
-		//output logic pc_write,
+		output logic zf_alu,
+		output logic pc_write,
 		output logic [1:0] mem_to_reg,
 		output logic [31:0] write_data_br,
-		//output logic IRWrite,
+		output logic IRWrite,
 		output logic mem_write,
 		output logic alu_out_load,
 		output logic a_load,
 		output logic b_load,
-		// output logic [2:0] alu_op,
-		// output logic [1:0] pc_source, 
+		output logic [2:0] alu_op,
+		output logic [1:0] pc_source, 
 		output logic [1:0] alu_src_b,
 		output logic alu_src_a,
 		output logic [2:0] alu_control_output,
-		//output logic [31:0] read_data1,
-		//output logic [31:0] read_data2,
-		//output logic [31:0] lui_number,
-		//output logic [31:0] pc_input,
+		output logic [31:0] read_data1,
+		output logic [31:0] read_data2,
+		output logic [31:0] lui_number,
+		output logic [31:0] pc_input,
 		output logic [31:0] a_output,
 		output logic [4:0] write_reg_br,
 		output logic reg_write, 
-		output logic reg_dst, 
+		output logic reg_dst,
 		output logic iorD,
 		output logic [31:0] sign_ex_output
 );
 
-logic [31:0] PC;
+/*		PC AND PC BOUND 	*/
+//logic [31:0] PC;
+//logic [31:0] pc_input;
+//logic pc_write;
+//logic [1:0] pc_source; 
+logic reset_pc;
+
+/*		MEMORY 		*/
 //logic [31:0] Mem_Data;
 //logic [31:0] Address;
-//logic [31:0] MDR;
-logic zf_alu;
-logic pc_write;
-logic IRWrite;
 //logic mem_write;
-logic [31:0] pc_input;
-logic [2:0] alu_op;
-logic [1:0] pc_source;
-logic [31:0] read_data1;
-logic [31:0] read_data2;
-logic [31:0] lui_number;
+//logic iorD;
 
-//alu
-logic of_alu, negf_alu, /*zf_alu,*/ menorf_alu, maiorf_alu, igualf_alu;
-//logic [2:0] alu_op;
-
-logic brk;
-
-//alu out
-//logic [31:0] AluOut;
-//logic alu_out_load;
-
-assign instruction = {op, rs, rt, addr_imm};
-
-//pc and pc bound
-//logic [31:0] pc_input;
-logic reset_pc, /*pc_write,*/ pc_write_cond; // I/O da UC;
-
-
-//uc and uc bound
-//logic reg_write, reg_dst, iorD; //alu_src_a;
-//logic [1:0] pc_source, alu_src_b;
-
-//IR and IR bound
-//logic IRWrite;
-//logic [5:0] op;
-//logic [4:0] rs;
-//logic [4:0] rt;
-//logic [15:0]addr_imm;
-//logic [4:0] write_reg_br;
-//logic [1:0] mem_to_reg;
-
-//br
-//logic [31:0] read_data1, read_data2; //write_data_br, lui_number;
-assign lui_number = { addr_imm, {16{1'b0}} };
-
-//memory
-//logic [31:0] Mem_Data;
-
-//A e B
-/*logic [31:0] a_output, b_output*/
-//logic a_load, b_load;
-
-//mdr - Memory Data Register
+/*		MRD 		*/
 //logic [31:0] MDR;
 //logic mdr_load;
 
-//extensor de sinal
+/*		IR 			*/
+//logic [5:0] op;
+//logic [4:0] rs;
+//logic [4:0] rt;
+//logic [15:0] addr_imm;
+//logic [31:0] instruction;
+//logic IRWrite;
+/*		SIGN EXTENDER		*/
 //logic [31:0] sign_ex_output;
 
-//alu control
-//logic [2:0] alu_control_output;
+/*		UC BOUND	*/
+//logic [5:0] state_output;
+logic brk;
 
+/*		REGISTERS BANK		*/
+//logic [1:0] mem_to_reg;
+//logic [31:0] write_data_br;
+//logic [4:0] write_reg_br;
+//logic reg_write; 
+//logic reg_dst;
+//logic [31:0] lui_number;
+//logic [31:0] read_data1;
+//logic [31:0] read_data2;
+
+/*		A and B 	*/
+//logic [31:0] a_output;
+//logic [31:0] b_output;
+//logic a_load;
+//logic b_load;
+
+/*		ALU 	*/
+//logic [31:0] Alu;
+//logic [31:0] alu_b_input;
+//logic [31:0] alu_a_input;
+//logic [2:0] alu_op;
+//logic [1:0] alu_src_b;
+//logic alu_src_a;
+//logic [2:0] alu_control_output;
+logic of_alu; 
+logic negf_alu;
+logic menorf_alu;
+logic maiorf_alu;
+logic igualf_alu;
+//logic zf_alu;
+
+/*		ALUOut 		*/
+//logic alu_out_load;
+//logic [31:0] AluOut;
+
+/*		ASSIGNs		*/
+assign lui_number = { addr_imm, {16{1'b0}} };
+assign instruction = {op, rs, rt, addr_imm};
 
 
 UC uni_c (
 	.Clk        (clk        ),
-	.PCWriteCond(pc_write_cond),
 	.PCWrite    (pc_write    ),
 	.IorD       (iorD       ),
 	.MemWrite   (mem_write   ),
@@ -132,14 +134,15 @@ UC uni_c (
 	.State_out	(state_output),
 	.Break		(brk 		),
 	.ALUOutLoad	(alu_out_load),
-	.MDRLoad 	(mdr_load	)
+	.MDRLoad 	(mdr_load	),
+	.ZeroFlag	(zf_alu		)
 );
 
 
 Registrador pc(
 			.Clk(clk),
 			.Reset(reset_pc),
-			.Load( (pc_write || (pc_write_cond && zf_alu) ) ),/*pequeno circuito do lado esquerdo da UC*/			
+			.Load( pc_write ),/*pequeno circuito do lado esquerdo da UC*/			
 			.Entrada(pc_input),
 			.Saida(PC)
 );

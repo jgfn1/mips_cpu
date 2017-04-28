@@ -2,7 +2,7 @@ module UC (
 		input logic Clk, 
 		input logic  Reset,
 		input logic  [5:0] Op,
-		output logic PCWriteCond,
+		input logic ZeroFlag,
 		output logic PCWrite,
 		output logic IorD,
 		output logic MemWrite,
@@ -71,7 +71,6 @@ module UC (
 	always_comb		
 		case(state)
 			FETCH: begin		//reads from memory and sums up PC
-				PCWriteCond 	= 1'b0;		
 				PCWrite 		= 1'b0; 	
 				IorD 			= 1'b0;		//address used by the memory comes from the PC
 				MemWrite 		= 1'b0;		//make memory read	
@@ -100,7 +99,6 @@ module UC (
 				ALUSrcB			= 2'b00;	//B port of the ALU recieves 4
 				RegWrite		= 1'b0;
 				RegDst			= 1'b0;
-				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
 				ALUOutLoad		= 1'b0;
@@ -118,7 +116,6 @@ module UC (
 				ALUSrcB			= 2'b00;
 				RegWrite		= 1'b0;
 				RegDst			= 1'b0;
-				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
 				ALUOutLoad		= 1'b0;
@@ -136,14 +133,12 @@ module UC (
 				ALUSrcB			= 2'b00;
 				RegWrite		= 1'b0;
 				RegDst			= 1'b0;
-				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
 				ALUOutLoad		= 1'b0;
 				MDRLoad			= 1'b0;
 			end
 			DECODE: begin		//Output do IR disponível
-				PCWriteCond 	= 1'b0;		
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;	
@@ -159,7 +154,7 @@ module UC (
 				BWrite			= 1'b1;		// escrever rt em B
 				ALUOutLoad		= 1'b1;		// Aluout = PC + (sign_ex_output << 2)
 				MDRLoad			= 1'b0;
-				//Aluout recebe esse valor pra agilizar um possível jump. pag 326
+				//Aluout recebe esse valor pra agilizar um possível branch. pag 326
 			end
 			LUI: begin
 				PCWrite 		= 1'b0;		
@@ -173,14 +168,12 @@ module UC (
 				ALUSrcB			= 2'b00;
 				RegWrite		= 1'b1;
 				RegDst			= 1'b0;
-				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
 				ALUOutLoad		= 1'b0;
 				MDRLoad			= 1'b0;
 			end
 			RTYPE: begin
-				PCWriteCond 	= 1'b0;		
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;	
@@ -198,7 +191,6 @@ module UC (
 				MDRLoad			= 1'b0;
 			end
 			RTYPE_CONT: begin
-				PCWriteCond 	= 1'b0;		
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;	
@@ -217,7 +209,6 @@ module UC (
 			end			
 			
 			LW: begin			//make the sum for the address of the addr_imm and the value of A (rs)
-				PCWriteCond 	= 1'b0;		
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;	
@@ -236,7 +227,6 @@ module UC (
 			end
 			
 			LW1: begin
-				PCWriteCond 	= 1'b0;
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b1;		//Get address from ALUOut
 				MemWrite 		= 1'b0;		//Read from memory
@@ -248,7 +238,6 @@ module UC (
 				ALUSrcB 		= 2'b00;
 				RegWrite 		= 1'b0;
 				RegDst 			= 1'b0;
-				PCWriteCond 	= 1'b0;
 				AWrite 			= 1'b0;		
 				BWrite 			= 1'b0;		
 				ALUOutLoad		= 1'b0;
@@ -257,7 +246,6 @@ module UC (
 			
 			LW2:
 			begin				//memory delay
-				PCWriteCond 	= 1'b0;
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
@@ -269,7 +257,6 @@ module UC (
 				ALUSrcB 		= 2'b00;
 				RegWrite 		= 1'b0;
 				RegDst 			= 1'b0;
-				PCWriteCond 	= 1'b0;
 				AWrite 			= 1'b0;		
 				BWrite 			= 1'b0;		
 				ALUOutLoad		= 1'b0;
@@ -277,7 +264,6 @@ module UC (
 			end
 			LW3:
 			begin				//Write to MDR
-				PCWriteCond 	= 1'b0;
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
@@ -289,7 +275,6 @@ module UC (
 				ALUSrcB 		= 2'b00;
 				RegWrite 		= 1'b0;
 				RegDst 			= 1'b0;
-				PCWriteCond 	= 1'b0;
 				AWrite 			= 1'b0;		
 				BWrite 			= 1'b0;		
 				ALUOutLoad		= 1'b0;
@@ -297,7 +282,6 @@ module UC (
 			end
 			LW4:
 			begin				//write ro register (rt)
-				PCWriteCond 	= 1'b0;
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;		
@@ -309,14 +293,12 @@ module UC (
 				ALUSrcB 		= 2'b00;
 				RegWrite 		= 1'b1;
 				RegDst 			= 1'b0;		//register specified is rt (IR[20:16])
-				PCWriteCond 	= 1'b0;
 				AWrite 			= 1'b0;		
 				BWrite 			= 1'b0;		
 				ALUOutLoad		= 1'b0;
 				MDRLoad			= 1'b0;
 			end
 			SW: begin			//make the sum for the address, addr_imm plus the value of A (rs)
-				PCWriteCond 	= 1'b0;		
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;	
@@ -335,7 +317,6 @@ module UC (
 			end
 			
 			SW1: begin			//write the value of B to memory in the address calculated by ALUOut
-				PCWriteCond 	= 1'b0;
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b1;		//Get address from ALUOut
 				MemWrite 		= 1'b1;		//Write to memory
@@ -347,23 +328,38 @@ module UC (
 				ALUSrcB 		= 2'b00;
 				RegWrite 		= 1'b0;
 				RegDst 			= 1'b0;
-				PCWriteCond 	= 1'b0;
 				AWrite 			= 1'b0;		
 				BWrite 			= 1'b0;		
 				ALUOutLoad		= 1'b0;
 				MDRLoad			= 1'b0;
 			end
-			BEQ: begin
-				PCWriteCond 	= 1'b1;		
-				PCWrite 		= 1'b0; 		
-				IorD 			= 1'b0;		
-				MemWrite 		= 1'b0;		
+			BEQ: begin			//jump or not
+				PCWrite 		= ZeroFlag; 	//if its one then both numbers are equal, write to PC. Else, numbers are different don't write.
+				IorD 			= 1'b0;			
+				MemWrite 		= 1'b0;			
 				MemtoReg		= 2'b00; 		
 				IRWrite 		= 1'b0;		
-				PCSource 		= 2'b01;		
-				ALUOp			= 3'b01;		
-				ALUSrcA 		= 1'b1;		
-				ALUSrcB 		= 2'b00;		
+				PCSource 		= 2'b01;		//get address from aluout, calculated in DECODE
+				ALUOp			= 3'b01;		//Subtract
+				ALUSrcA 		= 1'b1;			//Value of A, reg rs, calculated on DECODE
+				ALUSrcB 		= 2'b00;		//Value of B, reg rt, calculated on DECODE
+				RegWrite		= 1'b0;
+				RegDst			= 1'b0;		
+				AWrite			= 1'b0;		
+				BWrite			= 1'b0;									
+				ALUOutLoad		= 1'b0;
+				MDRLoad			= 1'b0;
+			end
+			BNE: begin			//jump or not
+				PCWrite 		= ~ZeroFlag; 	//if its one then both numbers are equal, don't write. Else, numbers are different, write to PC.
+				IorD 			= 1'b0;			
+				MemWrite 		= 1'b0;			
+				MemtoReg		= 2'b00; 		
+				IRWrite 		= 1'b0;		
+				PCSource 		= 2'b01;		//get address from aluout, calculated in DECODE
+				ALUOp			= 3'b01;		//Subtract
+				ALUSrcA 		= 1'b1;			//Value of A, reg rs, calculated on DECODE
+				ALUSrcB 		= 2'b00;		//Value of B, reg rt, calculated on DECODE
 				RegWrite		= 1'b0;
 				RegDst			= 1'b0;		
 				AWrite			= 1'b0;		
@@ -372,13 +368,12 @@ module UC (
 				MDRLoad			= 1'b0;
 			end
 			J: begin
-				PCWriteCond 	= 1'b0;		
-				PCWrite 		= 1'b0; 		
+				PCWrite 		= 1'b1; 		//write to PC
 				IorD 			= 1'b0;		
 				MemWrite 		= 1'b0;		
 				MemtoReg		= 2'b00; 		
 				IRWrite 		= 1'b0;		
-				PCSource 		= 2'b10;		
+				PCSource 		= 2'b10;		// get {PC[31:28], IR[25:0], 2b'00} into the PC.
 				ALUOp 			= 3'b000;		
 				ALUSrcA 		= 1'b0;		
 				ALUSrcB 		= 2'b00;		
@@ -401,14 +396,12 @@ module UC (
 				ALUSrcB			= 2'b00;
 				RegWrite		= 1'b0;
 				RegDst			= 1'b0;
-				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
 				ALUOutLoad		= 1'b0;
 				MDRLoad			= 1'b0;
 			end
 			ADDI1: begin			//make the sum, save indo ALUOut
-				PCWriteCond 	= 1'b0;		
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;	
@@ -426,7 +419,6 @@ module UC (
 				MDRLoad			= 1'b0;
 			end
 			ADDI2: begin			//ALUOut updated, write to register.
-				PCWriteCond 	= 1'b0;		
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;	
@@ -455,7 +447,6 @@ module UC (
 				ALUSrcB			= 2'b00;
 				RegWrite		= 1'b0;
 				RegDst			= 1'b0;
-				PCWriteCond		= 1'b0;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
 				ALUOutLoad		= 1'b0;

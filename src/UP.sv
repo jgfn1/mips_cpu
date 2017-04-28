@@ -1,11 +1,14 @@
-module UP(input logic clk, 
-		input logic reset, 		
+	module UP(
+		input logic clk, 
+		input logic reset,
+		output logic [5:0] state_output, 		
 		output logic [31:0] Alu, 
 		output logic [31:0] AluOut, 
-		output logic [31:0] PC,
+		//output logic [31:0] PC,
 		output logic [31:0] Mem_Data,
 		output logic [31:0] Address,
 		output logic [31:0] MDR,
+		output logic mdr_load,
 		output logic [31:0] alu_b_input,
 		output logic [31:0] b_output,
 		output logic [31:0] alu_a_input,
@@ -13,28 +16,47 @@ module UP(input logic clk,
 		output logic [4:0] rs,
 		output logic [4:0] rt,
 		output logic [31:0] instruction,
-		output logic [15:0]addr_imm,
-		output logic zf_alu,
-		output logic [5:0] state_output,
-		output logic pc_write,
+		output logic [15:0] addr_imm,
+		//output logic zf_alu,
+		//output logic pc_write,
 		output logic [1:0] mem_to_reg,
 		output logic [31:0] write_data_br,
-		output logic IRWrite,
-		output logic wr,
+		//output logic IRWrite,
+		output logic mem_write,
 		output logic alu_out_load,
 		output logic a_load,
 		output logic b_load,
-		output logic [2:0] alu_op,
-		output logic [1:0] pc_source, 
+		// output logic [2:0] alu_op,
+		// output logic [1:0] pc_source, 
 		output logic [1:0] alu_src_b,
 		output logic alu_src_a,
 		output logic [2:0] alu_control_output,
-		output logic [31:0] read_data1,
-		output logic [31:0] read_data2,
-		output logic [31:0] lui_number,
-		output logic [31:0] pc_input
-
+		//output logic [31:0] read_data1,
+		//output logic [31:0] read_data2,
+		//output logic [31:0] lui_number,
+		//output logic [31:0] pc_input,
+		output logic [31:0] a_output,
+		output logic [4:0] write_reg_br,
+		output logic reg_write, 
+		output logic reg_dst, 
+		output logic iorD,
+		output logic [31:0] sign_ex_output
 );
+
+logic [31:0] PC;
+//logic [31:0] Mem_Data;
+//logic [31:0] Address;
+//logic [31:0] MDR;
+logic zf_alu;
+logic pc_write;
+logic IRWrite;
+//logic mem_write;
+logic [31:0] pc_input;
+logic [2:0] alu_op;
+logic [1:0] pc_source;
+logic [31:0] read_data1;
+logic [31:0] read_data2;
+logic [31:0] lui_number;
 
 //alu
 logic of_alu, negf_alu, /*zf_alu,*/ menorf_alu, maiorf_alu, igualf_alu;
@@ -54,7 +76,7 @@ logic reset_pc, /*pc_write,*/ pc_write_cond; // I/O da UC;
 
 
 //uc and uc bound
-logic reg_write, reg_dst, iorD; //alu_src_a;
+//logic reg_write, reg_dst, iorD; //alu_src_a;
 //logic [1:0] pc_source, alu_src_b;
 
 //IR and IR bound
@@ -63,7 +85,7 @@ logic reg_write, reg_dst, iorD; //alu_src_a;
 //logic [4:0] rs;
 //logic [4:0] rt;
 //logic [15:0]addr_imm;
-logic [4:0] ir_write_data;
+//logic [4:0] write_reg_br;
 //logic [1:0] mem_to_reg;
 
 //br
@@ -74,15 +96,15 @@ assign lui_number = { addr_imm, {16{1'b0}} };
 //logic [31:0] Mem_Data;
 
 //A e B
-logic [31:0] a_output;/*, b_output*/
+/*logic [31:0] a_output, b_output*/
 //logic a_load, b_load;
 
 //mdr - Memory Data Register
 //logic [31:0] MDR;
-logic mdr_load;
+//logic mdr_load;
 
 //extensor de sinal
-logic [31:0] sign_ex_output;
+//logic [31:0] sign_ex_output;
 
 //alu control
 //logic [2:0] alu_control_output;
@@ -94,7 +116,7 @@ UC uni_c (
 	.PCWriteCond(pc_write_cond),
 	.PCWrite    (pc_write    ),
 	.IorD       (iorD       ),
-	.MemWrite   (wr   ),
+	.MemWrite   (mem_write   ),
 	.MemtoReg   (mem_to_reg   ),
 	.IRWrite    (IRWrite    ),
 	.PCSource   (pc_source   ),
@@ -109,7 +131,8 @@ UC uni_c (
 	.BWrite		(b_load 	),
 	.State_out	(state_output),
 	.Break		(brk 		),
-	.ALUOutLoad	(alu_out_load)
+	.ALUOutLoad	(alu_out_load),
+	.MDRLoad 	(mdr_load	)
 );
 
 
@@ -132,7 +155,7 @@ Mux32_2_1 mux_memory ( //mux3221_mem = mux de 32 bits de 2 pra 1 o qual a sa?da 
 Memoria memory(
 	.Address(Address),
 	.Clock(clk),
-	.Wr(wr),
+	.Wr(mem_write),
 	.Datain(read_data2), /*veio do reg B*/ //Write data
 	.Dataout(Mem_Data)
 );
@@ -157,14 +180,14 @@ Registrador mdr_reg ( //Memory Data Register
 	.Saida(MDR)
 );
 
-Mux5_2_1 mux_ir_wr_reg (
+Mux5_2_1 mux_br_wr_reg (
 	.A(rt),
 	.B(addr_imm[15-:5]), //pega apenas os primeiros 5 bits de addr_imm, que ? uma saida do IR. Livro pag 322.
 	.Mux5_seletor(reg_dst),
-	.Mux5_out(ir_write_data)
+	.Mux5_out(write_reg_br)
 );
 
-Mux32_3_1 mux_ir_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
+Mux32_3_1 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
 	.A(AluOut),
 	.B(MDR),
 	.C(lui_number),		//ISSO E PARA O LUI, NAO MEXER
@@ -179,7 +202,7 @@ Banco_reg banco_reg (
 	.RegWrite(reg_write),
 	.ReadReg1(rs),
 	.ReadReg2(rt),
-	.WriteReg(ir_write_data),
+	.WriteReg(write_reg_br),
 	.WriteData(write_data_br),
 	.ReadData1(read_data1),
 	.ReadData2(read_data2)		

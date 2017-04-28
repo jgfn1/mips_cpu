@@ -6,22 +6,18 @@ module ALUControl(
 );
 	assign Break = (Entrada == 6'h0d) ? 1'b1: 1'b0;
 	always_comb
-		if(ALUOp == 3'b000)						
+		if(ALUOp == 3'b000)							 //soma			
 			Saida = 3'b001;
-		else if(ALUOp == 3'b001)					//subtração					
+		else if(ALUOp == 3'b001)					 //subtração					
 			Saida = 3'b010;
-		else if(ALUOp == 3'b010 || Entrada == 6'h20) // soma com a fuct
+		else if(ALUOp == 3'b010 && Entrada == 6'h20) // soma com a fuct
 			Saida = 3'b001;
-		else if(ALUOp == 3'b010 || Entrada == 6'h24) // AND
+		else if(ALUOp == 3'b010 && Entrada == 6'h24) // AND com a fuct
 			Saida = 3'b011;
-		else if(ALUOp == 3'b010 || Entrada == 6'h22) // sub com a fuct
+		else if(ALUOp == 3'b010 && Entrada == 6'h22) // sub com a fuct
 			Saida = 3'b010;
-		else if(ALUOp == 3'b010 || Entrada == 6'h26) // xor
+		else if(ALUOp == 3'b010 && Entrada == 6'h26) // xor com a fuct
 			Saida = 3'b110;
-		else if(ALUOp == 3'b000)
-			Saida = 3'b001;
-		else if(ALUOp == 3'b111)  //forçar soma
-			Saida = 3'b001;
 		else 						//soma
 			Saida = 3'b001;
 endmodule 

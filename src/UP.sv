@@ -9,6 +9,8 @@
 		output logic [31:0] Address,
 		output logic [31:0] MDR,
 		output logic mdr_load,
+		output logic [1:0] mdr_in_size,
+		output logic [31:0] mdr_input,
 		output logic [31:0] alu_b_input,
 		output logic [31:0] b_output,
 		output logic [31:0] alu_a_input,
@@ -17,6 +19,7 @@
 		output logic [4:0] rt,
 		output logic [31:0] instruction,
 		output logic [15:0] addr_imm,
+		output logic of_alu,
 		output logic zf_alu,
 		output logic pc_write,
 		output logic [1:0] mem_to_reg,
@@ -59,6 +62,8 @@ logic reset_pc;
 /*		MRD 		*/
 //logic [31:0] MDR;
 //logic mdr_load;
+//logic [31:0] mdr_input;
+//logic [1:0] mdr_in_size;
 
 /*		IR 			*/
 //logic [5:0] op;
@@ -98,7 +103,7 @@ logic brk;
 //logic [1:0] alu_src_b;
 //logic alu_src_a;
 //logic [2:0] alu_control_output;
-logic of_alu; 
+//logic of_alu; 
 logic negf_alu;
 logic menorf_alu;
 logic maiorf_alu;
@@ -116,26 +121,29 @@ assign instruction = {op, rs, rt, addr_imm};
 
 UC uni_c (
 	.Clk        (clk        ),
-	.PCWrite    (pc_write    ),
-	.IorD       (iorD       ),
-	.MemWrite   (mem_write   ),
-	.MemtoReg   (mem_to_reg   ),
-	.IRWrite    (IRWrite    ),
-	.PCSource   (pc_source   ),
 	.ALUOp      (alu_op      ),
+	.ALUOutLoad	(alu_out_load),
 	.ALUSrcA    (alu_src_a    ),
 	.ALUSrcB    (alu_src_b    ),
-	.RegWrite   (reg_write   ),
-	.RegDst     (reg_dst     ),
-	.Reset      (reset      ),
-	.Op         (op         ),
 	.AWrite		(a_load 	),
-	.BWrite		(b_load 	),
-	.State_out	(state_output),
 	.Break		(brk 		),
-	.ALUOutLoad	(alu_out_load),
+	.BWrite		(b_load 	),
+	.IorD       (iorD       ),
+	.IRWrite    (IRWrite    ),
+	.MDRInSize	(mdr_in_size)
 	.MDRLoad 	(mdr_load	),
-	.ZeroFlag	(zf_alu		)
+	.MemtoReg   (mem_to_reg   ),
+	.MemWrite   (mem_write   ),
+	.OFlag		(of_alu 	),
+	.Op         (op         ),
+	.Overflow	(overflow 	) //sinal que decide se o overflow deve ser tratado
+	.PCSource   (pc_source   ),
+	.PCWrite    (pc_write    ),
+	.RegDst     (reg_dst     ),
+	.RegWrite   (reg_write   ),
+	.Reset      (reset      ),
+	.State_out	(state_output),
+	.ZeroFlag	(zf_alu		),
 );
 
 
@@ -174,12 +182,20 @@ Instr_Reg IR (
 	.Instr15_0(addr_imm)
 );
 
+Mux32_3_1 mux_mdr_input (	//mux de 32 bits que define a entrada do MDR, que pode ser uma palavra (32bits), meia palavra (16 bits) ou um byte.
+							//obs: para meia palavra e um byte os bits menos significativos s? coletados e extendidos com zero. Usado no lhu e lbu.
+	.A(Mem_Data),
+	.B({ {16{1'b0}}, Mem_Data[15-:16]}),
+	.C({ {24{1'b0}}, Mem_Data[7-:8]}),
+	.Seletor(mdr_in_size),
+	.Saida(mdr_input)
+);
 
 Registrador mdr_reg ( //Memory Data Register
 	.Clk(clk),
 	.Reset(reset),
 	.Load(mdr_load),
-	.Entrada(Mem_Data),
+	.Entrada(mdr_input),
 	.Saida(MDR)
 );
 

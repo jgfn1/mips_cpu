@@ -24,11 +24,12 @@ module UC (
 		output logic Overflow, 		// em instruções que não causam overflow só é forçar 0 no estado ao invés de usar OFlag
 		output logic PCWrite,
 		output logic [1:0] RegDst,
-		output logic RegWrite
+		output logic RegWrite,
+		output logic [1:0] SeletorMemWriteData
 );
 
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, LOAD, LOAD1,
-	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, JAL, JR, SLT, SLT_CONT, SLTI} state;
+	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
 	initial state = FETCH;
@@ -117,6 +118,7 @@ module UC (
 				BWrite			= 1'b0;
 				ALUOutLoad		= 1'b1;		//writes in ALUOut
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -137,12 +139,13 @@ module UC (
 				BWrite			= 1'b0;
 				ALUOutLoad  = 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 			end
 			F2: begin
 				PCWrite 		= 1'b1;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 2'b00;
 				IRWrite 		= 1'b1;
@@ -154,15 +157,16 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			F3: begin			//memória terminou seu delay
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 2'b00;
 				IRWrite 		= 1'b0;
@@ -174,15 +178,16 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			DECODE: begin		//Output do IR disponível
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -194,8 +199,9 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b1;		// escrever rs em A
 				BWrite			= 1'b1;		// escrever rt em B
-				ALUOutLoad  = 1'b1;		// Aluout = PC + (sign_ex_output << 2)
+				ALUOutLoad  	= 1'b1;		// Aluout = PC + (sign_ex_output << 2)
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -203,7 +209,7 @@ module UC (
 			end
 			LUI: begin
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 2'b10;
 				IRWrite 		= 1'b0;
@@ -215,15 +221,16 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			RTYPE: begin
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -235,15 +242,16 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b1;		//write to ALUOut
+				ALUOutLoad  	= 1'b1;		//write to ALUOut
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			RTYPE_CONT: begin
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000; 	//write data comes from ALUOut
 				IRWrite 		= 1'b0;
@@ -255,14 +263,15 @@ module UC (
 				RegDst			= 2'b01;		//select rd to be written into.
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 			end
 			LOAD: begin			//make the sum for the address of the addr_imm and the value of A (rs)
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -274,14 +283,15 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b1;		//write to ALUOut
+				ALUOutLoad  	= 1'b1;		//write to ALUOut
 				MDRLoad			= 1'b0;
-				MDRInSize		= load_size;	//size of the load(WORD, HALF or BYTE. Depends on the opcode)
+				SeletorMemWriteData = 2'b00;
+        MDRInSize		= load_size;	//size of the load(WORD, HALF or BYTE. Depends on the opcode)
 				//Overflow		= OFlag;
 			end
 			LOAD1: begin
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b1;		//Get address from ALUOut
+				IorD 			= 1'b1;		//Get address from ALUOut
 				MemWrite 		= 1'b0;		//Read from memory
 				MemtoReg 		= 2'b00;
 				IRWrite 		= 1'b0;
@@ -293,8 +303,9 @@ module UC (
 				RegDst 			= 1'b0;
 				AWrite 			= 1'b0;
 				BWrite 			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -303,7 +314,7 @@ module UC (
 			LOAD2:
 			begin				//memory delay
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 2'b00;
 				IRWrite 		= 1'b0;
@@ -315,8 +326,9 @@ module UC (
 				RegDst 			= 1'b0;
 				AWrite 			= 1'b0;
 				BWrite 			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -324,7 +336,7 @@ module UC (
 			LOAD3:
 			begin				//Write to MDR
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 2'b00;
 				IRWrite 		= 1'b0;
@@ -336,8 +348,9 @@ module UC (
 				RegDst 			= 1'b0;
 				AWrite 			= 1'b0;
 				BWrite 			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b1;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -345,7 +358,7 @@ module UC (
 			LOAD4:
 			begin				//write ro register (rt)
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 2'b01;	//writes the output of MDR
 				IRWrite 		= 1'b1;		//writes in the specified regsiter
@@ -357,15 +370,16 @@ module UC (
 				RegDst 			= 1'b0;		//register specified is rt (IR[20:16])
 				AWrite 			= 1'b0;
 				BWrite 			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			SW: begin			//make the sum for the address, addr_imm plus the value of A (rs)
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -377,8 +391,9 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b1;		//write to ALUOut
+				ALUOutLoad  	= 1'b1;		//write to ALUOut
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -386,7 +401,7 @@ module UC (
 
 			SW1: begin			//write the value of B to memory in the address calculated by ALUOut
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b1;		//Get address from ALUOut
+				IorD 			= 1'b1;		//Get address from ALUOut
 				MemWrite 		= 1'b1;		//Write to memory
 				MemtoReg 		= 2'b00;
 				IRWrite 		= 1'b0;
@@ -398,15 +413,16 @@ module UC (
 				RegDst 			= 1'b0;
 				AWrite 			= 1'b0;
 				BWrite 			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			BEQ: begin			//jump or not
 				PCWrite 		= ZeroFlag; 	//if its one then both numbers are equal, write to PC. Else, numbers are different don't write.
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -418,15 +434,16 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			BNE: begin			//jump or not
 				PCWrite 		= ~ZeroFlag; 	//if its one then both numbers are equal, don't write. Else, numbers are different, write to PC.
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -438,15 +455,16 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			J: begin
 				PCWrite 		= 1'b1; 		//write to PC
-				IorD 			    = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -458,15 +476,16 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			BREAK: begin
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 2'b00;
 				IRWrite 		= 1'b0;
@@ -478,15 +497,16 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			ADDI1: begin			//make the sum, save indo ALUOut
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -498,15 +518,16 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b1;		//write to ALUOut
+				ALUOutLoad  	= 1'b1;		//write to ALUOut
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 
 			end
 			ADDI2: begin			//ALUOut updated, write to register.
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000; 	//write data comes from ALUOut
 				IRWrite 		= 1'b0;
@@ -518,33 +539,35 @@ module UC (
 				RegDst			= 2'b00;		//select rt to be written into.
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 			end
 			// Mesmo JR sendo RTYPE (pois escreve em registrador..) no meu caso o RD é sempre 31 e eu não tenho como setar isso usando RTYPE e RTYPE_CONT
 			JR: begin
-					PCWrite 		= 1'b1; 		//write to PC
-					IorD 			    = 1'b0;
-					MemWrite 		= 1'b0;
-					MemtoReg		= 3'b000;
-					IRWrite 		= 1'b0;
-					PCSource 		= 2'b00;	// Out of ALU is the content on register A.
-					ALUOp 			= 3'b000;
-					ALUSrcA 		= 1'b1;		// (rs) register A to ALU
-					ALUSrcB 		= 2'b00;
-					RegWrite		= 1'b0;
-					RegDst			= 2'b00;
-					AWrite			= 1'b0;
-					BWrite			= 1'b0;
-					ALUOutLoad	= 1'b0;
-					MDRLoad			= 1'b0;
-					MDRInSize		= 2'b00;
+				PCWrite 		= 1'b1; 		//write to PC
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 3'b000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;	// Out of ALU is the content on register A.
+				ALUOp 			= 3'b000;
+				ALUSrcA 		= 1'b1;		// (rs) register A to ALU
+				ALUSrcB 		= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
 			end
 			JAL: begin
 				PCWrite 		= 1'b1; 		//Write in pc
-				IorD 			    = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -556,14 +579,15 @@ module UC (
 				RegDst			= 2'b10;		// opção 3 do mux_br_wr_data setando 31 como endereço do registrador.
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad	= 1'b0;			// PC+4 está em ALUOUT devido ao FETCH
+				ALUOutLoad		= 1'b0;			// PC+4 está em ALUOUT devido ao FETCH
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 			end
 			SLT: begin								//Passando A e B para ALU, caso tenha flag de A < B, então vai escrever em rd 1 ou 0
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -575,13 +599,14 @@ module UC (
 				RegDst			= 2'b01;			// Setando (rd)
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad	= 1'b1;				//Salvando resultado no registrador ALU
+				ALUOutLoad		= 1'b1;				//Salvando resultado no registrador ALU
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 			end
 			SLTI: begin								//Passando A e B para ALU, caso tenha flag de A < B, então vai escrever em rd 1 ou 0
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
@@ -593,34 +618,124 @@ module UC (
 				RegDst			= 2'b01;			// Setando (rd)
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad	= 1'b1;				//Salvando resultado no registrador ALU
+				ALUOutLoad		= 1'b1;				//Salvando resultado no registrador ALU
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 			end
 			SLT_CONT: begin
-					PCWrite 		= 1'b0;
-					IorD 			  = 1'b0;
-					MemWrite 		= 1'b0;
-					MemtoReg		= MenorFlag ? 3'b100 : 3'b011; // Se RS é menor, então ALU retornou TRUE em menor flag e irá setar 1 (opção do 4 do mux_br_wr_data)
-					IRWrite 		= 1'b0;
-					PCSource 		= 2'b00;
-					ALUOp 			= 3'b000;
-					ALUSrcA 		= 1'b0;
-					ALUSrcB 		= 2'b00;
-					RegWrite		= 1'b1;					// Escrever no banco de registradores
-					RegDst			= 2'b01;				// Escrever em RD
-					AWrite			= 1'b0;
-					BWrite			= 1'b0;
-					ALUOutLoad	= 1'b0;
-					MDRLoad			= 1'b0;
-					MDRInSize		= 2'b00;
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;
+				MemtoReg		= MenorFlag ? 3'b100 : 3'b011; // Se RS é menor, então ALU retornou TRUE em menor flag e irá setar 1 (opção do 4 do mux_br_wr_data)
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA 		= 1'b0;
+				ALUSrcB 		= 2'b00;
+				RegWrite		= 1'b1;					// Escrever no banco de registradores
+				RegDst			= 2'b01;				// Escrever em RD
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
 			// Eu acho que tem erro, porque acho que o MenorFlag já não está mais setado quando passa para SLT_CONT.
 			// Mas pela lógica do ZeroFlag funciona...
+			end
+			SB: begin
 
+				/*  Primeiro RS, ir� passar pela ALU e irei escrever em ALUOut,
+				para setar IorD para 1, e dessa forma no pr�ximo (pq ALUOut � registrador.) ciclo eu vou escrever no Address[rs]
+
+				Ent�o no ciclo dois � que seto IorD para 1, e usarei ALUout (rs) como endere�o..
+				Meu BYTE que � o RT.. est� carregado no registrador B... (0xff & $RT) (metodo para obter a parte que quero */
+
+				//Realizando o calculo de endereço.
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 3'b000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 1'b1;			// O valor do registrador A (rs)
+				ALUSrcB 		= 2'b10;		// get the value of addr_imm extended to 32 bits
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b1;		//write to ALUOut
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				//Overflow		= OFlag;
+			end
+			SB1: begin
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b1;			//Pegando o endereço que foi calculado em SB.. e está em ALUOUT
+				MemWrite 		= 1'b1;		//Setando a memória para escrita
+				MemtoReg 		= 2'b00;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA 		= 1'b0;
+				ALUSrcB 		= 2'b00;
+				RegWrite 		= 1'b0;
+				RegDst 			= 1'b0;
+				AWrite 			= 1'b0;
+				BWrite 			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b01; // Indicando que é apenas 1 byte que deve ser escrito.
+				MDRInSize		= 2'b00;
+				//Overflow		= OFlag;
+			end
+			SH: begin
+				/*  Se a SB estiver correta então... */
+				//Realizando o calculo de endereço.
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 3'b000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 1'b1;			// O valor do registrador A (rs)
+				ALUSrcB 		= 2'b10;		// get the value of addr_imm extended to 32 bits
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b1;		//write to ALUOut
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+			end
+			SH1: begin
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b1;			//Pegando o endereço que foi calculado em SB.. e está em ALUOUT
+				MemWrite 		= 1'b1;		//Setando a memória para escrita
+				MemtoReg 		= 2'b00;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA 		= 1'b0;
+				ALUSrcB 		= 2'b00;
+				RegWrite 		= 1'b0;
+				RegDst 			= 1'b0;
+				AWrite 			= 1'b0;
+				BWrite 			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b10; // Indicando que meia palavra deve ser escrita.
+				MDRInSize		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			default: begin					//isso vai virar o caso do opcode indexistente
 				PCWrite 		= 1'b0;
-				IorD 			  = 1'b0;
+				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 2'b00;
 				IRWrite 		= 1'b0;
@@ -632,8 +747,9 @@ module UC (
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad  = 1'b0;
+				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 

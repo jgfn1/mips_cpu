@@ -54,6 +54,7 @@
 logic reset_pc;
 
 /*		MEMORY 		*/
+logic [31:0] memDataIn;
 //logic [31:0] Mem_Data;
 //logic [31:0] Address;
 //logic mem_write;
@@ -145,6 +146,7 @@ UC uni_c (
 	.RegWrite   (reg_write   ),
 	.Reset      (reset      ),
 	.State_out	(state_output),
+	.SeletorMemWriteData (seletorMemWriteData),
 	.ZeroFlag	(zf_alu		),
 );
 
@@ -164,12 +166,19 @@ Mux32_2 mux_memory ( //mux3221_mem = mux de 32 bits de 2 pra 1 o qual a sa?da ? 
 	.Saida(Address)
 );
 
+Mux32_3 mem_in (
+		.A(read_data2),
+		.B(32'hFF & read_data2), 						// to Store byte[rt]     [ f = 1111... só pra lembrar]
+		.C(32'hFFFF & read_data2),					// to Store Halfword
+		.Seletor(seletorMemWriteData),
+		.Saida(memDatIn)
+);
 
 Memoria memory(
 	.Address(Address),
 	.Clock(clk),
 	.Wr(mem_write),
-	.Datain(read_data2), /*veio do reg B*/ //Write data
+	.Datain(memDataIn), /*veio do reg B*/ //Write data
 	.Dataout(Mem_Data)
 );
 

@@ -54,6 +54,7 @@
 logic reset_pc;
 
 /*		MEMORY 		*/
+logic [1:0] seletorMemWriteData;
 logic [31:0] memDataIn;
 //logic [31:0] Mem_Data;
 //logic [31:0] Address;
@@ -171,7 +172,7 @@ Mux32_3 mem_in (
 		.B(32'hFF & read_data2), 						// to Store byte[rt]     [ f = 1111... só pra lembrar]
 		.C(32'hFFFF & read_data2),					// to Store Halfword
 		.Seletor(seletorMemWriteData),
-		.Saida(memDatIn)
+		.Saida(memDataIn)
 );
 
 Memoria memory(

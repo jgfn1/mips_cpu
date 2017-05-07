@@ -209,7 +209,7 @@ Mux5_3 mux_br_wr_reg (
 	.Saida(write_reg_br)
 );
 
-Mux32_3 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
+Mux32_5 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
 	.A(AluOut),
 	.B(MDR),
 	.C(lui_number),		//ISSO E PARA O LUI, NAO MEXER
@@ -218,11 +218,6 @@ Mux32_3 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da
 	.Seletor(mem_to_reg),
 	.Saida(write_data_br)
 );
-00000
-00001
-00010
-00011
-00100
 
 Banco_reg banco_reg (
 	.Clk(clk),

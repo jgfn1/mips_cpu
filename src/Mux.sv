@@ -90,10 +90,7 @@ endmodule
 //
 // 	---- MUX 32 bits - Com 5 entradas
 //
-//
-// 	---- MUX 32 bits - Com 4 entradas
-//
-module Mux32_4(
+module Mux32_5(
 			input logic [31:0] A,
 			input logic [31:0] B,
 			input logic [31:0] C,
@@ -110,5 +107,6 @@ module Mux32_4(
 					2: Saida = C;
 					3: Saida = D;
 					4: Saida = E;
+					default: Saida = A;						
 				endcase
 endmodule

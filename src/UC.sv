@@ -28,7 +28,7 @@ module UC (
 );
 
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, LOAD, LOAD1,
-	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, JAL, JR, SLT} state;
+	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, JAL, JR, SLT, SLT_CONT, SLTI} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
 	initial state = FETCH;
@@ -56,6 +56,7 @@ module UC (
 						end
 						6'h04:	state <= BEQ;
 						6'h05:	state <= BNE;
+						6'h0A: 	state <= SLTI;
 						6'h23:	begin
 								state <= LOAD;
 								load_size <= WORD;
@@ -76,24 +77,25 @@ module UC (
 					endcase
 				end
 				RTYPE: 					state <= RTYPE_CONT;
-				RTYPE_CONT: 		state <= FETCH;
-				BEQ: 						state <= FETCH;
-				BNE: 						state <= FETCH;
+				RTYPE_CONT: 			state <= FETCH;
+				BEQ: 					state <= FETCH;
+				BNE: 					state <= FETCH;
 				LOAD: 					state <= LOAD1;
 				LOAD1: 					state <= LOAD2;
 				LOAD2: 					state <= LOAD3;
 				LOAD3: 					state <= LOAD4;
 				LOAD4: 					state <= FETCH;
-				SW:							state <= SW1;
-				SW1:						state <= FETCH;
-				LUI: 						state <= FETCH/*???*/;
-				J: 							state <= FETCH;
+				SW:						state <= SW1;
+				SW1:					state <= FETCH;
+				LUI: 					state <= FETCH/*???*/;
+				J: 						state <= FETCH;
 				BREAK: 					state <= BREAK;
 				ADDI1:					state <= ADDI2;
 				ADDI2:					state <= FETCH;
-				JAL: 						state <= FETCH;
-				SLT: 						state <= SLT_CONT;
-				SLT_CONT: 			state <= FECTH;
+				JAL: 					state <= FETCH;
+				SLT: 					state <= SLT_CONT;
+				SLTI:					state <= SLT_CONT;
+				SLT_CONT: 				state <= FETCH;
 				default: 				state <= FETCH;
 			endcase
 	end
@@ -101,19 +103,19 @@ module UC (
 		case(state)
 			FETCH: begin		//reads from memory and sums up PC
 				PCWrite 		= 1'b0;
-				IorD 			  	= 1'b0;		//address used by the memory comes from the PC
+				IorD			= 1'b0;		//address used by the memory comes from the PC
 				MemWrite 		= 1'b0;		//make memory read
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
-				ALUOp				= 3'b00;
+				ALUOp			= 3'b00;
 				ALUSrcA 		= 1'b0;
 				ALUSrcB 		= 2'b01;
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad	= 1'b1;		//writes in ALUOut
+				ALUOutLoad		= 1'b1;		//writes in ALUOut
 				MDRLoad			= 1'b0;
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
@@ -559,40 +561,62 @@ module UC (
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
 			end
-			SLT: begin
-				PCWrite 		= 1'b0; 			//don't write to PC in first stage..
-				IorD 			  	= 1'b0;
+			SLT: begin								//Passando A e B para ALU, caso tenha flag de A < B, então vai escrever em rd 1 ou 0
+				PCWrite 		= 1'b0;
+				IorD 			  = 1'b0;
 				MemWrite 		= 1'b0;
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b1;
-				ALUSrcB 		= 2'b00;
-				RegWrite		= 1'b0;			// Escrita em registrador.
-				RegDst			= 2'b01;		// opção 3 do mux_br_wr_data setando 31 como endereço do registrador.
+				ALUSrcA 		= 1'b1;				// Passando A (rs)
+				ALUSrcB 		= 2'b00;			// Passando B (rt)
+				RegWrite		= 1'b0;				// Ler do banco de registradores
+				RegDst			= 2'b01;			// Setando (rd)
 				AWrite			= 1'b0;
 				BWrite			= 1'b0;
-				ALUOutLoad	= 1'b0;			// PC+4 está em ALUOUT devido ao FETCH
+				ALUOutLoad	= 1'b1;				//Salvando resultado no registrador ALU
 				MDRLoad			= 1'b0;
 				MDRInSize		= 2'b00;
+			end
+			SLTI: begin								//Passando A e B para ALU, caso tenha flag de A < B, então vai escrever em rd 1 ou 0
+				PCWrite 		= 1'b0;
+				IorD 			  = 1'b0;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 3'b000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA 		= 1'b1;				// Passando A (rs)
+				ALUSrcB 		= 2'b10;			// Passando B (immr[15-0])
+				RegWrite		= 1'b0;				// Ler do banco de registradores
+				RegDst			= 2'b01;			// Setando (rd)
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad	= 1'b1;				//Salvando resultado no registrador ALU
+				MDRLoad			= 1'b0;
+				MDRInSize		= 2'b00;
+			end
 			SLT_CONT: begin
 					PCWrite 		= 1'b0;
-					IorD 			  	= 1'b0;
+					IorD 			  = 1'b0;
 					MemWrite 		= 1'b0;
 					MemtoReg		= MenorFlag ? 3'b100 : 3'b011; // Se RS é menor, então ALU retornou TRUE em menor flag e irá setar 1 (opção do 4 do mux_br_wr_data)
 					IRWrite 		= 1'b0;
 					PCSource 		= 2'b00;
 					ALUOp 			= 3'b000;
-					ALUSrcA 		= 1'b1;
+					ALUSrcA 		= 1'b0;
 					ALUSrcB 		= 2'b00;
-					RegWrite		= 1'b0;
+					RegWrite		= 1'b1;					// Escrever no banco de registradores
 					RegDst			= 2'b01;				// Escrever em RD
 					AWrite			= 1'b0;
 					BWrite			= 1'b0;
 					ALUOutLoad	= 1'b0;
 					MDRLoad			= 1'b0;
 					MDRInSize		= 2'b00;
+			// Eu acho que tem erro, porque acho que o MenorFlag já não está mais setado quando passa para SLT_CONT.
+			// Mas pela lógica do ZeroFlag funciona...
+
 			end
 			default: begin					//isso vai virar o caso do opcode indexistente
 				PCWrite 		= 1'b0;

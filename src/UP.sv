@@ -279,7 +279,7 @@ RegDesloc reg_desloc_uncomplA (
 		.Shift(a_desloc_op), 	// Deslocamento a direita lógico, N vezes...
 		.Entrada(a_uncomplement),
 		.Saida(a_uncomplement_desloc)
-)
+);
 
 Mux32_3 mux_alu_a ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
 	.A(PC),
@@ -348,8 +348,8 @@ endmodule
 module Uncomplement(input logic [31:0] Input, output logic [31:00] Output);
 		always_comb begin
 				if(Input[31] == 1)
-						assign Output = ~Input + 1'b1;
+						/*assign*/ Output = ~Input + 1'b1;
 				else
-						assign Output = Input;
+						/*assign*/ Output = Input;
 		end
 endmodule

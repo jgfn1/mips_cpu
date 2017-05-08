@@ -26,7 +26,7 @@ module UC (
 		output logic [1:0] RegDst,
 		output logic RegWrite,
 		output logic [1:0] SeletorMemWriteData,
-		output logic [2:0] ADeslocOP,
+		output logic [2:0] ADeslocOP
 );
 
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, LOAD, LOAD1,

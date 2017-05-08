@@ -24,6 +24,8 @@ module UC (
 		output logic MemWrite,
 		output logic Overflow, 		// em instruções que não causam overflow só é forçar 0 no estado ao invés de usar OFlag
 		output logic PCWrite,
+		output logic EPCWrite,
+		output logic [2:0] EPCSelect,
 		output logic [1:0] RegDst,
 		output logic RegWrite,
 		output logic [1:0] SeletorMemWriteData,
@@ -40,6 +42,10 @@ module UC (
 		State_out <= state;
 		if (Reset) state <= FETCH;
 		else if (Break) state <= BREAK;
+		else if (OFlag)
+		begin
+
+		end
 		else
 			case (state)
 				FETCH: state <= F1;
@@ -80,7 +86,7 @@ module UC (
 						6'h02:	state <= J;
 						6'h08:	state <= ADDI1;
 						6'h09:	state <= ADDI1; //ADDI and ADDIU are the same instruction, but treated differently in case of Overflow
-						//default: state <= OPEXCEP;
+						//default: state <= OPEXCEPT;
 					endcase
 				end
 				RTYPE: 					state <= RTYPE_CONT;

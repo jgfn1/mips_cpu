@@ -5,6 +5,7 @@
 		output logic [31:0] Alu,
 		output logic [31:0] AluOut,
 		output logic [31:0] PC,
+		output logic [31:0] EPC,
 		//output logic [31:0] Mem_Data,
 		//output logic [31:0] Address,
 		output logic [31:0] MDR,
@@ -42,7 +43,7 @@
 		output logic [4:0] write_reg_br,
 		output logic reg_write,
 		output logic [1:0] reg_dst,
-		output logic iorD,
+		output logic [2:0] iorD,
 		output logic [31:0] sign_ex_output,
 		output logic [63:0] mult_product
 );
@@ -53,6 +54,9 @@
 //logic pc_write;
 //logic [1:0] pc_source;
 logic reset_pc;
+logic epc_write;
+logic [2:0] EPCSelect;
+logic [31:0] mux_pc_out;
 
 /*		MEMORY 		*/
 logic [1:0] seletorMemWriteData;
@@ -147,10 +151,12 @@ UC uni_c (
 	.MemWrite   (mem_write   ),
 	.OFlag		(of_alu 	),
 	.Op         (op         ),
-	.Funct			(addr_imm[5-:6]),
+	.Funct		(addr_imm[5-:6]),
 	.Overflow	(overflow 	), 				//sinal que decide se o overflow deve ser tratado
 	.PCSource   (pc_source   ),
 	.PCWrite    (pc_write    ),
+	.EPCWrite    (epc_write    ),
+	.EPCSelect	(epc_select	 ),
 	.RegDst     (reg_dst     ),
 	.RegWrite   (reg_write   ),
 	.Reset      (reset      ),
@@ -164,13 +170,31 @@ Registrador pc(
 			.Clk(clk),
 			.Reset(reset_pc),
 			.Load( pc_write ),/*pequeno circuito do lado esquerdo da UC*/
-			.Entrada(pc_input),
+			.Entrada(mux_pc_out),
 			.Saida(PC)
 );
 
-Mux32_2 mux_memory ( //mux3221_mem = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
+Registrador epc(
+			.Clk(clk),
+			.Reset(reset),
+			.Load( epc_write ),
+			.Entrada(PC),
+			.Saida(EPC)
+);
+
+Mux32_3 new_mux_pc(
+		.A(pc_input),
+		.B( {{26{1'b0}}, Mem_Data[31-:8]} ), //8 MSB read from memory concatenated with 26 0's
+		.C(EPC),
+		.Seletor(epc_select),
+		.Saida(mux_pc_out)
+);
+
+Mux32_4 mux_memory ( //mux3221_mem = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
 	.A(PC),
 	.B(AluOut),
+	.C(32'd254),
+	.D(32'd255),
 	.Seletor(iorD),
 	.Saida(Address)
 );

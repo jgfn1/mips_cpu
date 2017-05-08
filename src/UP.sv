@@ -43,7 +43,7 @@
 		output logic [4:0] write_reg_br,
 		output logic reg_write,
 		output logic [1:0] reg_dst,
-		output logic iorD,
+		output logic [2:0] iorD,
 		output logic [31:0] sign_ex_output
 );
 
@@ -184,9 +184,11 @@ Mux32_3 new_mux_pc(
 		.Saida(mux_pc_out)
 );
 
-Mux32_2 mux_memory ( //mux3221_mem = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
+Mux32_4 mux_memory ( //mux3221_mem = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
 	.A(PC),
 	.B(AluOut),
+	.C(32'd254),
+	.D(32'd255),
 	.Seletor(iorD),
 	.Saida(Address)
 );

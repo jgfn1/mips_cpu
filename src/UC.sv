@@ -506,7 +506,7 @@ module UC (
 				//Overflow		= OFlag;
 
 			end
-			ADDI1: begin			//make the sum, save indo ALUOut
+			ADDI1: begin			//make the sum, save into ALUOut
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;

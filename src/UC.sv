@@ -76,6 +76,7 @@ module UC (
 						6'h0f:	state <= LUI;
 						6'h02:	state <= J;
 						6'h08:	state <= ADDI1;
+						6'h09:	state <= ADDI1; //ADDI and ADDIU are the same instruction, but are treated differently in case of Overflow
 						//default: state <= OPEXCEP;
 					endcase
 				end

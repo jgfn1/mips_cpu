@@ -5,20 +5,20 @@
 		output logic [31:0] Alu,
 		output logic [31:0] AluOut,
 		output logic [31:0] PC,
-		output logic [31:0] Mem_Data,
-		output logic [31:0] Address,
+		//output logic [31:0] Mem_Data,
+		//output logic [31:0] Address,
 		output logic [31:0] MDR,
-		output logic mdr_load,
-		output logic [1:0] mdr_in_size,
-		output logic [31:0] mdr_input,
+		//output logic mdr_load,
+		//output logic [1:0] mdr_in_size,
+		//output logic [31:0] mdr_input,
 		output logic [31:0] alu_b_input,
 		output logic [31:0] b_output,
 		output logic [31:0] alu_a_input,
-		output logic [5:0] op,
-		output logic [4:0] rs,
-		output logic [4:0] rt,
+		//output logic [5:0] op,
+		//output logic [4:0] rs,
+		//output logic [4:0] rt,
 		output logic [31:0] instruction,
-		output logic [15:0] addr_imm,
+		//output logic [15:0] addr_imm,
 		output logic of_alu,
 		output logic zf_alu,
 		output logic pc_write,
@@ -31,8 +31,8 @@
 		output logic b_load,
 		output logic [2:0] alu_op,
 		output logic [1:0] pc_source,
-		output logic [1:0] alu_src_b,
-		output logic alu_src_a,
+		//output logic [1:0] alu_src_b,
+		//output logic alu_src_a,
 		output logic [2:0] alu_control_output,
 		output logic [31:0] read_data1,
 		output logic [31:0] read_data2,
@@ -56,22 +56,22 @@ logic reset_pc;
 /*		MEMORY 		*/
 logic [1:0] seletorMemWriteData;
 logic [31:0] memDataIn;
-//logic [31:0] Mem_Data;
-//logic [31:0] Address;
+logic [31:0] Mem_Data;
+logic [31:0] Address;
 //logic mem_write;
 //logic iorD;
 
 /*		MRD 		*/
 //logic [31:0] MDR;
-//logic mdr_load;
-//logic [31:0] mdr_input;
-//logic [1:0] mdr_in_size;
+logic mdr_load;
+logic [31:0] mdr_input;
+logic [1:0] mdr_in_size;
 
 /*		IR 			*/
-//logic [5:0] op;
-//logic [4:0] rs;
-//logic [4:0] rt;
-//logic [15:0] addr_imm;
+logic [5:0] op;
+logic [4:0] rs;
+logic [4:0] rt;
+logic [15:0] addr_imm;
 //logic [31:0] instruction;
 //logic IRWrite;
 /*		SIGN EXTENDER		*/
@@ -102,8 +102,8 @@ logic brk;
 //logic [31:0] alu_b_input;
 //logic [31:0] alu_a_input;
 //logic [2:0] alu_op;
-//logic [1:0] alu_src_b;
-//logic alu_src_a;
+logic [1:0] alu_src_b;
+logic alu_src_a;
 //logic [2:0] alu_control_output;
 //logic of_alu;
 logic negf_alu;

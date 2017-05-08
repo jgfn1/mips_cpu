@@ -7,6 +7,7 @@ module UC (
 		input logic OFlag,
 		input logic ZeroFlag,
 		input logic MenorFlag,
+		input logic EndMulFlag,
 		output logic [1:0] ALUSrcB,
 		output logic [1:0] MDRInSize,
 		output logic [2:0] MemtoReg, //it's 2 bits because the mux was extended for LUI
@@ -30,7 +31,7 @@ module UC (
 );
 
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, LOAD, LOAD1,
-	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1} state;
+	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1, MULT, MULT2} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
 	initial state = FETCH;
@@ -53,6 +54,7 @@ module UC (
 									case (Funct)
 											6'h8: begin 	state <= JR; end
 											6'h2A: begin 	state <= SLT; end
+											6'h18: begin 	state <= MULT; end
 											default: begin state <= RTYPE; end
 									endcase
 						end
@@ -104,6 +106,8 @@ module UC (
 				SLT: 					state <= SLT_CONT;
 				SLTI:					state <= SLT_CONT;
 				SLT_CONT: 				state <= FETCH;
+				MULT: 						state <= MULT2;
+				MULT2: 						state <= EndMulFlag ?  FETCH : MULT2;
 				default: 				state <= FETCH;
 			endcase
 	end

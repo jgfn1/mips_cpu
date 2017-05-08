@@ -43,7 +43,8 @@
 		output logic reg_write,
 		output logic [1:0] reg_dst,
 		output logic iorD,
-		output logic [31:0] sign_ex_output
+		output logic [31:0] sign_ex_output,
+		output logic [63:0] mult_product
 );
 
 /*		PC AND PC BOUND 	*/
@@ -90,7 +91,7 @@ logic brk;
 //logic [31:0] lui_number;
 //logic [31:0] read_data1;
 //logic [31:0] read_data2;
-logic [2:0] a_desloc_op;
+logic [2:0] multiplicando_op;
 
 /*		A and B 	*/
 //logic [31:0] a_output;
@@ -122,9 +123,13 @@ assign lui_number = { addr_imm, {16{1'b0}} };
 assign instruction = {op, rs, rt, addr_imm};
 
 
+/** Multiply **/
+//logic [63:0] mult_product; // Overflow[64];   HI [63-32];   LO[31:00];
+logic end_mul_flag;
+
 UC uni_c (
 	.Clk        (clk        ),
-	.ADeslocOP 	(a_desloc_op),
+	.ADeslocOP 	(multiplicando_op),
 	.ALUOp      (alu_op      ),
 	.ALUOutLoad	(alu_out_load),
 	.ALUSrcA    (alu_src_a    ),
@@ -132,6 +137,7 @@ UC uni_c (
 	.AWrite		(a_load 	),
 	.Break		(brk 		),
 	.BWrite		(b_load 	),
+	.EndMulFlag (end_mul_flag),
 	.IorD       (iorD       ),
 	.IRWrite    (IRWrite    ),
 	.MDRInSize	(mdr_in_size),
@@ -265,36 +271,26 @@ Registrador B (
 
 Uncomplement uncomplement_A (
 	.Input(a_output),
-	.Output(a_uncomplement)
+	.Output(a_uncomplemented)
 );
 
 Uncomplement uncomplement_B (
 	.Input(b_output),
-	.Output(b_uncomplement)
+	.Output(b_uncomplemented)
 );
 
-RegDesloc reg_desloc_uncomplA (
-		.Clk(clk),
-		.N(1),				// Quantidade de deslocamentos.
-		.Shift(a_desloc_op), 	// Deslocamento a direita lógico, N vezes...
-		.Entrada(a_uncomplement),
-		.Saida(a_uncomplement_desloc)
-);
-
-Mux32_3 mux_alu_a ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
+Mux32_2 mux_alu_a (
 	.A(PC),
 	.B(a_output),
-	.C(a_uncomplement_desloc),
 	.Seletor(alu_src_a),
 	.Saida(alu_a_input)
 );
 
-Mux32_5 mux_alu_b(
+Mux32_4 mux_alu_b(
 	.A(b_output),
 	.B(32'd4),
 	.C(sign_ex_output),
 	.D((sign_ex_output << 2)), //shitf_left2 esta implicito
-	.E(b_uncomplement),
  	.Seletor(alu_src_b),
  	.Saida(alu_b_input)
  );
@@ -337,19 +333,13 @@ Registrador ALUOut (
 );
 
 
-/****** MULTIPLICAÇÃO *****/
+Multiply multiply(
+	.Clk(clk),
+	.State(state_output),
+	.A(uncomplement_B),
+	.B(uncomplement_A),
+	.EndMulFlag(end_mul_flag),
+	.Produto(mult_product)
+);
 
-reg [64:0] produto; // Produto da multiplicação com 65bits;
-
-
-endmodule
-
-
-module Uncomplement(input logic [31:0] Input, output logic [31:00] Output);
-		always_comb begin
-				if(Input[31] == 1)
-						/*assign*/ Output = ~Input + 1'b1;
-				else
-						/*assign*/ Output = Input;
-		end
 endmodule

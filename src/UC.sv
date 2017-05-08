@@ -30,7 +30,7 @@ module UC (
 );
 
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, LOAD, LOAD1,
-	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1} state;
+	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
 	initial state = FETCH;
@@ -73,10 +73,11 @@ module UC (
 								load_size <= HALF;
 						end
 						6'h2b:	state <= SW;
+						6'he:	state <= SXORI1;
 						6'h0f:	state <= LUI;
 						6'h02:	state <= J;
 						6'h08:	state <= ADDI1;
-						6'h09:	state <= ADDI1; //ADDI and ADDIU are the same instruction, but are treated differently in case of Overflow
+						6'h09:	state <= ADDI1; //ADDI and ADDIU are the same instruction, but treated differently in case of Overflow
 						//default: state <= OPEXCEP;
 					endcase
 				end
@@ -91,11 +92,13 @@ module UC (
 				LOAD4: 					state <= FETCH;
 				SW:						state <= SW1;
 				SW1:					state <= FETCH;
-				LUI: 					state <= FETCH/*???*/;
+				LUI: 					state <= FETCH;
 				J: 						state <= FETCH;
 				BREAK: 					state <= BREAK;
 				ADDI1:					state <= ADDI2;
 				ADDI2:					state <= FETCH;
+				SXORI1:					state <= SXORI2;
+				SXORI2: 				state <= FETCH;
 				JAL: 					state <= FETCH;
 				JR: 					state <= FETCH;
 				SLT: 					state <= SLT_CONT;
@@ -515,7 +518,7 @@ module UC (
 				MemtoReg		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
-				ALUOp			= 3'b00;	//sum
+				ALUOp			= 3'b000;	//sum
 				ALUSrcA 		= 1'b1;		//get the value of reg A
 				ALUSrcB 		= 2'b10;	//get the value of addr_imm extended to 32 bits
 				RegWrite		= 1'b0;
@@ -530,6 +533,47 @@ module UC (
 
 			end
 			ADDI2: begin			//ALUOut updated, write to register.
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 3'b000; 	//write data comes from ALUOut
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA 		= 1'b0;
+				ALUSrcB 		= 2'b00;
+				RegWrite		= 1'b1;		//Write in register
+				RegDst			= 2'b00;		//select rt to be written into.
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				//Overflow		= OFlag;
+			end
+			SXORI1: begin			//make the XOR, save into ALUOut
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 3'b000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b011;	//xor
+				ALUSrcA 		= 1'b1;		//get the value of reg A
+				ALUSrcB 		= 2'b10;	//get the value of addr_imm extended to 32 bits
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b1;		//write to ALUOut
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				//Overflow		= OFlag;
+
+			end
+			SXORI2: begin			//ALUOut updated, write to register.
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;

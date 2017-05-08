@@ -12,6 +12,7 @@ module ALUControl(
 			3'b010: begin // O que será feito na ALU é definido pela FUNCT
 					case (Funct)
 						6'h20: 		Saida = 3'b001;// ADD definido na funct
+						6'h21: 		Saida = 3'b001;// ADDU definido na funct
 						6'h22: 		Saida = 3'b010;// SUB definido na funct				
 						6'h24: 		Saida = 3'b011;// AND definido na funct					
 						6'h26: 		Saida = 3'b110;// XOR definido na funct					

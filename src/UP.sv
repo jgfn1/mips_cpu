@@ -90,6 +90,7 @@ logic brk;
 //logic [31:0] lui_number;
 //logic [31:0] read_data1;
 //logic [31:0] read_data2;
+logic [2:0] a_desloc_op;
 
 /*		A and B 	*/
 //logic [31:0] a_output;
@@ -123,6 +124,7 @@ assign instruction = {op, rs, rt, addr_imm};
 
 UC uni_c (
 	.Clk        (clk        ),
+	.ADeslocOP 	(a_desloc_op),
 	.ALUOp      (alu_op      ),
 	.ALUOutLoad	(alu_out_load),
 	.ALUSrcA    (alu_src_a    ),
@@ -261,18 +263,38 @@ Registrador B (
 	.Saida(b_output)
 );
 
-Mux32_2 mux_alu_a ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
+Uncomplement uncomplement_A (
+	.Input(a_output),
+	.Output(a_uncomplement)
+);
+
+Uncomplement uncomplement_B (
+	.Input(b_output),
+	.Output(b_uncomplement)
+);
+
+RegDesloc reg_desloc_uncomplA (
+		.Clk(clk),
+		.N(1),				// Quantidade de deslocamentos.
+		.Shift(a_desloc_op), 	// Deslocamento a direita lógico, N vezes...
+		.Entrada(a_uncomplement),
+		.Saida(a_uncomplement_desloc)
+)
+
+Mux32_3 mux_alu_a ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
 	.A(PC),
 	.B(a_output),
+	.C(a_uncomplement_desloc),
 	.Seletor(alu_src_a),
 	.Saida(alu_a_input)
 );
 
-Mux32_4 mux_alu_b(
+Mux32_5 mux_alu_b(
 	.A(b_output),
 	.B(32'd4),
 	.C(sign_ex_output),
 	.D((sign_ex_output << 2)), //shitf_left2 esta implicito
+	.E(b_uncomplement),
  	.Seletor(alu_src_b),
  	.Saida(alu_b_input)
  );
@@ -314,4 +336,20 @@ Registrador ALUOut (
 	.Saida(AluOut)
 );
 
+
+/****** MULTIPLICAÇÃO *****/
+
+reg [64:0] produto; // Produto da multiplicação com 65bits;
+
+
+endmodule
+
+
+module Uncomplement(input logic [31:0] Input, output logic [31:00] Output);
+		always_comb begin
+				if(Input[31] == 1)
+						assign Output = ~Input + 1'b1;
+				else
+						assign Output = Input;
+		end
 endmodule

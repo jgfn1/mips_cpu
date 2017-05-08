@@ -50,11 +50,12 @@ module UC (
 						 			/* --------- RTYPE */
 									//state <= RTYPE;
 									case (Funct)
-											6'h8: begin 	state <= JAL; end
+											6'h8: begin 	state <= JR; end
 											6'h2A: begin 	state <= SLT; end
 											default: begin state <= RTYPE; end
 									endcase
 						end
+						6'h03:  state <= JAL;
 						6'h04:	state <= BEQ;
 						6'h05:	state <= BNE;
 						6'h0A: 	state <= SLTI;
@@ -94,6 +95,7 @@ module UC (
 				ADDI1:					state <= ADDI2;
 				ADDI2:					state <= FETCH;
 				JAL: 					state <= FETCH;
+				JR: 					state <= FETCH;
 				SLT: 					state <= SLT_CONT;
 				SLTI:					state <= SLT_CONT;
 				SLT_CONT: 				state <= FETCH;
@@ -286,7 +288,7 @@ module UC (
 				ALUOutLoad  	= 1'b1;		//write to ALUOut
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
-        MDRInSize		= load_size;	//size of the load(WORD, HALF or BYTE. Depends on the opcode)
+				MDRInSize		= load_size;	//size of the load(WORD, HALF or BYTE. Depends on the opcode)
 				//Overflow		= OFlag;
 			end
 			LOAD1: begin

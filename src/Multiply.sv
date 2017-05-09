@@ -8,15 +8,15 @@ module Multiply(
 );
 
 	input logic Clk;
-  input logic [5:0] State;
-  input logic [31:0] A;
-  input logic [31:0] B;
-  output reg  [64:0] Produto;
-  output logic EndMulFlag;
+	input logic [5:0] State;
+	input logic [31:0] A;
+	input logic [31:0] B;
+	output reg  [64:0] Produto;
+	output logic EndMulFlag;
 
-  reg signal;
-  reg [31:0] multiplicando;
-  reg [6:0] counter;
+	reg signal;
+	reg [31:0] multiplicando;
+	reg [6:0] counter;
 
   /** Algoritmo da multiplicacao da pagina 150 do Patterson 2th edition. **/
 

@@ -35,16 +35,16 @@
 		//output logic [1:0] alu_src_b,
 		//output logic alu_src_a,
 		output logic [2:0] alu_control_output,
-		output logic [31:0] read_data1,
-		output logic [31:0] read_data2,
-		output logic [31:0] lui_number,
-		//output logic [31:0] pc_input,
+		//output logic [31:0] read_data1,
+		//output logic [31:0] read_data2,
+		//output logic [31:0] lui_number,
+		output logic [31:0] pc_input,
 		output logic [31:0] a_output,
 		output logic [4:0] write_reg_br,
 		output logic reg_write,
 		output logic [1:0] reg_dst,
 		output logic [2:0] iorD,
-		output logic [31:0] sign_ex_output,
+		//output logic [31:0] sign_ex_output,
 		output logic [63:0] mult_product
 );
 
@@ -80,7 +80,7 @@ logic [15:0] addr_imm;
 //logic [31:0] instruction;
 //logic IRWrite;
 /*		SIGN EXTENDER		*/
-//logic [31:0] sign_ex_output;
+logic [31:0] sign_ex_output;
 
 /*		UC BOUND	*/
 //logic [5:0] state_output;
@@ -92,9 +92,9 @@ logic brk;
 //logic [4:0] write_reg_br;
 //logic reg_write;
 //logic reg_dst;
-//logic [31:0] lui_number;
-//logic [31:0] read_data1;
-//logic [31:0] read_data2;
+logic [31:0] lui_number;
+logic [31:0] read_data1;
+logic [31:0] read_data2;
 logic [2:0] multiplicando_op;
 
 /*		A and B 	*/
@@ -251,12 +251,14 @@ Mux5_3 mux_br_wr_reg (
 	.Saida(write_reg_br)
 );
 
-Mux32_5 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
+Mux32_7 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
 	.A(AluOut),
 	.B(MDR),
 	.C(lui_number),		//ISSO E PARA O LUI, NAO MEXER
 	.D(32'b0),
 	.E(32'b1),
+	.F(mult_product[63:32]),
+	.G(mult_product[31:0]),
 	.Seletor(mem_to_reg),
 	.Saida(write_data_br)
 );

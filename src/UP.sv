@@ -1,13 +1,13 @@
 	module UP(
 		input logic clk,
 		input logic reset,
-		output logic [5:0] state_output,
+		output logic [5:0] Estado,
 		output logic [31:0] Alu,
 		output logic [31:0] AluOut,
 		output logic [31:0] PC,
 		output logic [31:0] EPC,
-		//output logic [31:0] Mem_Data,
-		//output logic [31:0] Address,
+		output logic [31:0] Mem_Data,
+		output logic [31:0] Address,
 		output logic [31:0] MDR,
 		//output logic mdr_load,
 		//output logic [1:0] mdr_in_size,
@@ -24,9 +24,10 @@
 		output logic zf_alu,
 		output logic pc_write,
 		output logic [2:0] mem_to_reg,
-		output logic [31:0] write_data_br,
+		output logic [31:0] WriteDataReg,
+		output logic [31:0] WriteDataMem,
 		output logic IRWrite,
-		output logic mem_write,
+		output logic wr,
 		output logic alu_out_load,
 		output logic a_load,
 		output logic b_load,
@@ -40,8 +41,8 @@
 		//output logic [31:0] lui_number,
 		output logic [31:0] pc_input,
 		output logic [31:0] a_output,
-		output logic [4:0] write_reg_br,
-		output logic reg_write,
+		output logic [4:0] WriteRegister,
+		output logic RegWrite,
 		output logic [1:0] reg_dst,
 		output logic [2:0] iorD,
 		//output logic [31:0] sign_ex_output,
@@ -60,10 +61,10 @@ logic [31:0] mux_pc_out;
 
 /*		MEMORY 		*/
 logic [1:0] seletorMemWriteData;
-logic [31:0] memDataIn;
-logic [31:0] Mem_Data;
-logic [31:0] Address;
-//logic mem_write;
+//logic [31:0] WriteDataMem;
+//logic [31:0] Mem_Data;
+//logic [31:0] Address;
+//logic wr;
 //logic iorD;
 
 /*		MRD 		*/
@@ -83,14 +84,14 @@ logic [15:0] addr_imm;
 logic [31:0] sign_ex_output;
 
 /*		UC BOUND	*/
-//logic [5:0] state_output;
+//logic [5:0] Estado;
 logic brk;
 
 /*		REGISTERS BANK		*/
 //logic [1:0] mem_to_reg;
-//logic [31:0] write_data_br;
-//logic [4:0] write_reg_br;
-//logic reg_write;
+//logic [31:0] WriteDataReg;
+//logic [4:0] WriteRegister;
+//logic RegWrite;
 //logic reg_dst;
 logic [31:0] lui_number;
 logic [31:0] read_data1;
@@ -154,7 +155,7 @@ UC uni_c (
 	.MDRLoad 	(mdr_load	),
 	.MenorFlag (menorf_alu),
 	.MemtoReg   (mem_to_reg   ),
-	.MemWrite   (mem_write   ),
+	.MemWrite   (wr   ),
 	.OFlag		(of_alu 	),
 	.Op         (op         ),
 	.Funct		(addr_imm[5-:6]),
@@ -164,11 +165,11 @@ UC uni_c (
 	.EPCWrite    (epc_write    ),
 	.EPCSelect	(epc_select	 ),
 	.RegDst     (reg_dst     ),
-	.RegWrite   (reg_write   ),
+	.RegWrite   (RegWrite   ),
 	.Reset      (reset      ),
-	.State_out	(state_output),
+	.State_out	(Estado),
 	.SeletorMemWriteData (seletorMemWriteData),
-	.ZeroFlag	(zf_alu		),
+	.ZeroFlag	(zf_alu		)
 );
 
 
@@ -210,14 +211,14 @@ Mux32_3 mem_in (
 		.B(32'hFF & read_data2), 						// to Store byte[rt]     [ f = 1111... só pra lembrar]
 		.C(32'hFFFF & read_data2),					// to Store Halfword
 		.Seletor(seletorMemWriteData),
-		.Saida(memDataIn)
+		.Saida(WriteDataMem)
 );
 
 Memoria memory(
 	.Address(Address),
 	.Clock(clk),
-	.Wr(mem_write),
-	.Datain(memDataIn), /*veio do reg B*/ //Write data
+	.Wr(wr),
+	.Datain(WriteDataMem), /*veio do reg B*/ //Write data
 	.Dataout(Mem_Data)
 );
 
@@ -254,7 +255,7 @@ Mux5_3 mux_br_wr_reg (
 	.B(addr_imm[15-:5]),  // pega apenas os primeiros 5 bits de addr_imm, que ? uma saida do IR. Livro pag 322.
 	.C(6'h1F), 					 // 31 endereço do registrador $RA
 	.Seletor(reg_dst),
-	.Saida(write_reg_br)
+	.Saida(WriteRegister)
 );
 
 Mux32_7 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
@@ -266,17 +267,17 @@ Mux32_7 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da
 	.F(mult_product[63:32]),
 	.G(mult_product[31:0]),
 	.Seletor(mem_to_reg),
-	.Saida(write_data_br)
+	.Saida(WriteDataReg)
 );
 
 Banco_reg banco_reg (
 	.Clk(clk),
 	.Reset(reset),
-	.RegWrite(reg_write),
+	.RegWrite(RegWrite),
 	.ReadReg1(rs),
 	.ReadReg2(rt),
-	.WriteReg(write_reg_br),
-	.WriteData(write_data_br),
+	.WriteReg(WriteRegister),
+	.WriteData(WriteDataReg),
 	.ReadData1(read_data1),
 	.ReadData2(read_data2)
 );
@@ -287,7 +288,7 @@ RegDesloc regdesloc (
 	.Entrada(regdesloc_in),
 	.Shift(regdesloc_op),
 	.N(shift_amount),
-	.Saida(regdesloc_out),
+	.Saida(regdesloc_out)
 );
 
 Extensor_sinal sign_ex(
@@ -376,7 +377,7 @@ Registrador ALUOut (
 
 Multiply multiply(
 	.Clk(clk),
-	.State(state_output),
+	.State(Estado),
 	.A(uncomplement_B),
 	.B(uncomplement_A),
 	.EndMulFlag(end_mul_flag),

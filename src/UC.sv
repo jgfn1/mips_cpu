@@ -31,6 +31,7 @@ module UC (
 		output logic [1:0] SeletorMemWriteData,
 		output logic [2:0] ADeslocOP
 );
+	logic OvF;
 
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, LOAD, LOAD1,
 	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1, MULT, MULT2, MFHI, MFLO, OVERFLOW, OVERFLOW1, OVERFLOW2, OPXCEPTION, OPXCEPTION1, OPXCEPTION2, RTE} state;
@@ -40,18 +41,23 @@ module UC (
 
 	always_ff@(posedge Clk or posedge Reset) begin
 		State_out <= state;
+		OvF = OFlag;
 		if (Reset) state <= FETCH;
 		else if (Break) state <= BREAK;
-		else if (OFlag)
-		begin
-			if(Funct ==	6'h21) 			state <= FETCH; //ADDU
-			else if(Funct == 6'h23) 	state <= FETCH; //SUBU
-			else if(Op == 6'h9)			state <= FETCH; //ADDIU
-			else						state <= OVERFLOW;
-		end
 		else
 			case (state)
-				FETCH: state <= F1;
+				FETCH: 
+				begin
+					if (OFlag)
+					begin
+						OvF = 0;
+						if(Funct ==	6'h21) 			state <= FETCH; //ADDU
+						else if(Funct == 6'h23) 	state <= FETCH; //SUBU
+						else if(Op == 6'h9)			state <= FETCH; //ADDIU
+						else						state <= OVERFLOW;
+					end
+					else state <= F1;
+				end
 				F1: state <= F2;
 				F2: state <= F3;
 				F3: state <= DECODE;

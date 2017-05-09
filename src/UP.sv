@@ -38,7 +38,7 @@
 		output logic [31:0] read_data1,
 		output logic [31:0] read_data2,
 		output logic [31:0] lui_number,
-		output logic [31:0] pc_input,
+		//output logic [31:0] pc_input,
 		output logic [31:0] a_output,
 		output logic [4:0] write_reg_br,
 		output logic reg_write,
@@ -55,7 +55,7 @@
 //logic [1:0] pc_source;
 logic reset_pc;
 logic epc_write;
-logic [2:0] EPCSelect;
+logic [1:0] EPCSelect;
 logic [31:0] mux_pc_out;
 
 /*		MEMORY 		*/

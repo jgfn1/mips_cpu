@@ -23,7 +23,7 @@
 		output logic of_alu,
 		output logic zf_alu,
 		output logic pc_write,
-		output logic [2:0] mem_to_reg,
+		output logic [3:0] mem_to_reg,
 		output logic [31:0] write_data_br,
 		output logic IRWrite,
 		output logic mem_write,
@@ -257,7 +257,7 @@ Mux5_3 mux_br_wr_reg (
 	.Saida(write_reg_br)
 );
 
-Mux32_7 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
+Mux32_08 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
 	.A(AluOut),
 	.B(MDR),
 	.C(lui_number),		//ISSO E PARA O LUI, NAO MEXER
@@ -265,6 +265,7 @@ Mux32_7 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da
 	.E(32'b1),
 	.F(mult_product[63:32]),
 	.G(mult_product[31:0]),
+	.H(regdesloc_out),
 	.Seletor(mem_to_reg),
 	.Saida(write_data_br)
 );

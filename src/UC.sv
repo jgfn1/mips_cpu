@@ -161,7 +161,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			  = 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;	//sum
@@ -183,7 +183,7 @@ module UC (
 				PCWrite 		= 1'b1;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b1;
 				PCSource		= 2'b01;	//PC recebe aluout
 				ALUOp 			= 3'b000;
@@ -206,7 +206,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b01;
 				ALUOp 			= 3'b000;
@@ -253,7 +253,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b10;
+				MemtoReg 		= 3'b010;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -343,7 +343,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b001;		//Get address from ALUOut
 				MemWrite 		= 1'b0;		//Read from memory
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -368,7 +368,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -392,7 +392,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -416,7 +416,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b01;	//writes the output of MDR
+				MemtoReg 		= 3'b001;	//writes the output of MDR
 				IRWrite 		= 1'b1;		//writes in the specified regsiter
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -463,7 +463,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b001;		//Get address from ALUOut
 				MemWrite 		= 1'b1;		//Write to memory
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -555,7 +555,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -811,7 +811,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b001;			//Pegando o endereço que foi calculado em SB.. e está em ALUOUT
 				MemWrite 		= 1'b1;		//Setando a memória para escrita
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -857,7 +857,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b001;			//Pegando o endereço que foi calculado em SB.. e está em ALUOUT
 				MemWrite 		= 1'b1;		//Setando a memória para escrita
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -924,7 +924,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b011;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -947,7 +947,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -970,7 +970,7 @@ module UC (
 				PCWrite 		= 1'b1;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -993,7 +993,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b010;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1016,7 +1016,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1039,7 +1039,7 @@ module UC (
 				PCWrite 		= 1'b1;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1062,7 +1062,7 @@ module UC (
 				PCWrite 		= 1'b1;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1084,7 +1084,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 2'b00;
+				MemtoReg 		= 3'b000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;

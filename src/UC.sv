@@ -33,7 +33,7 @@ module UC (
 );
 
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, LOAD, LOAD1,
-	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1, MULT, MULT2, MFHI, MFLO} state;
+	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1, MULT, MULT2, MFHI, MFLO, OVERFLOW} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
 	initial state = FETCH;
@@ -42,10 +42,7 @@ module UC (
 		State_out <= state;
 		if (Reset) state <= FETCH;
 		else if (Break) state <= BREAK;
-		else if (OFlag)
-		begin
-
-		end
+		else if (OFlag) state <= OVERFLOW;
 		else
 			case (state)
 				FETCH: state <= F1;
@@ -141,6 +138,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -163,6 +161,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 			end
@@ -184,6 +183,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -206,6 +206,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -228,6 +229,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -251,6 +253,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -273,6 +276,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -295,6 +299,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 			end
@@ -316,6 +321,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= load_size;	//size of the load(WORD, HALF or BYTE. Depends on the opcode)
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 			end
@@ -337,6 +343,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -361,6 +368,7 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -384,6 +392,7 @@ module UC (
 				MDRLoad			= 1'b1;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				//Overflow		= OFlag;
 
@@ -407,8 +416,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 
 			end
 			SW: begin			//make the sum for the address, addr_imm plus the value of A (rs)
@@ -429,8 +439,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 
 			end
 
@@ -452,8 +463,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 
 			end
 			BEQ: begin			//jump or not
@@ -474,8 +486,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 
 			end
 			BNE: begin			//jump or not
@@ -496,8 +509,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 
 			end
 			J: begin
@@ -518,8 +532,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 
 			end
 			BREAK: begin
@@ -540,8 +555,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 
 			end
 			ADDI1: begin			//make the sum, save into ALUOut
@@ -562,8 +578,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 
 			end
 			ADDI2: begin			//ALUOut updated, write to register.
@@ -584,8 +601,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			SXORI1: begin			//make the XOR, save into ALUOut
 				PCWrite 		= 1'b0;
@@ -605,8 +623,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 
 			end
 			SXORI2: begin			//ALUOut updated, write to register.
@@ -627,8 +646,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			// Mesmo JR sendo RTYPE (pois escreve em registrador..) no meu caso o RD é sempre 31 e eu não tenho como setar isso usando RTYPE e RTYPE_CONT
 			JR: begin
@@ -649,7 +669,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			JAL: begin
 				PCWrite 		= 1'b1; 		//Write in pc
@@ -669,8 +691,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			SLT: begin								//Passando A e B para ALU, caso tenha flag de A < B, então vai escrever em rd 1 ou 0
 				PCWrite 		= 1'b0;
@@ -690,7 +713,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			SLTI: begin								//Passando A e B para ALU, caso tenha flag de A < B, então vai escrever em rd 1 ou 0
 				PCWrite 		= 1'b0;
@@ -710,7 +735,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			SLT_CONT: begin
 				PCWrite 		= 1'b0;
@@ -730,7 +757,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			// Eu acho que tem erro, porque acho que o MenorFlag já não está mais setado quando passa para SLT_CONT.
 			// Mas pela lógica do ZeroFlag funciona...
 			end
@@ -760,8 +789,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			SB1: begin
 				PCWrite 		= 1'b0;
@@ -781,8 +811,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b01; // Indicando que é apenas 1 byte que deve ser escrito.
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			SH: begin
 				/*  Se a SB estiver correta então... */
@@ -804,7 +835,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			SH1: begin
 				PCWrite 		= 1'b0;
@@ -824,8 +857,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b10; // Indicando que meia palavra deve ser escrita.
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			MFHI: begin // rd <= hi;
 				PCWrite 		= 1'b0;
@@ -845,7 +879,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			MFLO: begin // rd <= lo
 				PCWrite 		= 1'b0;
@@ -865,7 +901,32 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
+			end
+			OVERFLOW:
+			begin
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 2'b00;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 			default: begin					//isso vai virar o caso do opcode indexistente
 				PCWrite 		= 1'b0;
@@ -885,8 +946,9 @@ module UC (
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
-				//Overflow		= OFlag;
+				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
 			end
 		endcase
 endmodule

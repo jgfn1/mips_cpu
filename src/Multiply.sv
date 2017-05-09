@@ -38,7 +38,7 @@ module Multiply(
 
 				Produto = Produto >> 1;
 
-				if(counter == 32) begin
+				if(counter == 31) begin
 					Produto[63] = signal;
 				 	EndMulFlag = 1;
 				end

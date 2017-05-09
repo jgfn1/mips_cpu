@@ -33,7 +33,7 @@ module UC (
 );
 
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, LOAD, LOAD1,
-	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1, MULT, MULT2, MFHI, MFLO, OVERFLOW} state;
+	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1, MULT, MULT2, MFHI, MFLO, OVERFLOW, OVERFLOW1, OVERFLOW2, OPXCEPTION, OPXCEPTION1, OPXCEPTION2, RTE} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
 	initial state = FETCH;
@@ -42,7 +42,13 @@ module UC (
 		State_out <= state;
 		if (Reset) state <= FETCH;
 		else if (Break) state <= BREAK;
-		else if (OFlag) state <= OVERFLOW;
+		else if (OFlag)
+		begin
+			if(Funct ==	6'h21) 			state <= FETCH; //ADDU
+			else if(Funct == 6'h23) 	state <= FETCH; //SUBU
+			else if(Op == 6'h9)			state <= FETCH; //ADDIU
+			else						state <= OVERFLOW;
+		end
 		else
 			case (state)
 				FETCH: state <= F1;
@@ -85,7 +91,8 @@ module UC (
 						6'h02:	state <= J;
 						6'h08:	state <= ADDI1;
 						6'h09:	state <= ADDI1; //ADDI and ADDIU are the same instruction, but treated differently in case of Overflow
-						//default: state <= OPEXCEPT;
+						6'h10:	state <= RTE;
+						default: state <= OPXCEPTION;
 					endcase
 				end
 				RTYPE: 					state <= RTYPE_CONT;
@@ -115,6 +122,13 @@ module UC (
 				MULT2: 					state <= EndMulFlag ?  FETCH : MULT2;
 				MFHI:					state <= FETCH;
 				MFLO:					state <= FETCH;
+				RTE: 					state <= FETCH;
+				OVERFLOW:				state <= OVERFLOW1;
+				OVERFLOW1:				state <= OVERFLOW2;
+				OVERFLOW2:				state <= FETCH;
+				OPXCEPTION:				state <= OPXCEPTION1;
+				OPXCEPTION1:				state <= OPXCEPTION2;
+				OPXCEPTION2:				state <= FETCH;
 				default: 				state <= FETCH;
 			endcase
 	end
@@ -908,6 +922,29 @@ module UC (
 			OVERFLOW:
 			begin
 				PCWrite 		= 1'b0;
+				IorD 			= 3'b011;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 2'b00;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b1;
+				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
+			end
+			OVERFLOW1:
+			begin
+				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
 				MemtoReg 		= 2'b00;
@@ -926,6 +963,121 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
+			end
+			OVERFLOW2:
+			begin
+				PCWrite 		= 1'b1;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 2'b00;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b01;
+				//Overflow		= OFlag;
+			end
+			OPXCEPTION:
+			begin
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b010;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 2'b00;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b1;
+				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
+			end
+			OPXCEPTION1:
+			begin
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 2'b00;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				//Overflow		= OFlag;
+			end
+			OPXCEPTION2:
+			begin
+				PCWrite 		= 1'b1;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 2'b00;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b01;
+				//Overflow		= OFlag;
+			end
+			RTE:
+			begin
+				PCWrite 		= 1'b1;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 2'b00;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b10;
 				//Overflow		= OFlag;
 			end
 			default: begin					//isso vai virar o caso do opcode indexistente

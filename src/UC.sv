@@ -33,7 +33,7 @@ module UC (
 );
 
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, LOAD, LOAD1,
-	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1, MULT, MULT2} state;
+	LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SB, SB1, SH, SH1, MULT, MULT2, MFHI, MFLO} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
 	initial state = FETCH;
@@ -58,10 +58,12 @@ module UC (
 						 			/* --------- RTYPE */
 									//state <= RTYPE;
 									case (Funct)
-											6'h8: begin 	state <= JR; end
-											6'h2A: begin 	state <= SLT; end
-											6'h18: begin 	state <= MULT; end
-											default: begin state <= RTYPE; end
+											6'h8: 		state <= JR;
+											6'h10: 		state <= MFHI;
+											6'h12: 		state <= MFLO;
+											6'h2A:		state <= SLT;
+											6'h18:		state <= MULT;
+											default:	state <= RTYPE;
 									endcase
 						end
 						6'h03:  state <= JAL;
@@ -112,8 +114,10 @@ module UC (
 				SLT: 					state <= SLT_CONT;
 				SLTI:					state <= SLT_CONT;
 				SLT_CONT: 				state <= FETCH;
-				MULT: 						state <= MULT2;
-				MULT2: 						state <= EndMulFlag ?  FETCH : MULT2;
+				MULT: 					state <= MULT2;
+				MULT2: 					state <= EndMulFlag ?  FETCH : MULT2;
+				MFHI:					state <= FETCH;
+				MFLO:					state <= FETCH;
 				default: 				state <= FETCH;
 			endcase
 	end
@@ -790,6 +794,44 @@ module UC (
 				SeletorMemWriteData = 2'b10; // Indicando que meia palavra deve ser escrita.
 				MDRInSize		= 2'b00;
 				//Overflow		= OFlag;
+			end
+			MFHI: begin // rd <= hi;
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 3'b101; 				// HI on the Mux write_data_register_bank
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA 		= 1'b0;
+				ALUSrcB 		= 2'b00;
+				RegWrite		= 1'b1;					// Escrever no banco de registradores
+				RegDst			= 2'b01;				// Escrever em RD
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+			end
+			MFLO: begin // rd <= lo
+				PCWrite 		= 1'b0;
+				IorD 			= 1'b0;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 3'b110; 				// lo on the Mux write_data_register_bank
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA 		= 1'b0;
+				ALUSrcB 		= 2'b00;
+				RegWrite		= 1'b1;					// Escrever no banco de registradores
+				RegDst			= 2'b01;				// Escrever em RD
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad		= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
 			end
 			default: begin					//isso vai virar o caso do opcode indexistente
 				PCWrite 		= 1'b0;

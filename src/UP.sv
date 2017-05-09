@@ -45,7 +45,8 @@
 		output logic [1:0] reg_dst,
 		output logic [2:0] iorD,
 		//output logic [31:0] sign_ex_output,
-		output logic [63:0] mult_product
+		output logic end_mul_flag,
+		output reg [63:0] mult_product
 );
 
 /*		PC AND PC BOUND 	*/
@@ -135,8 +136,9 @@ assign instruction = {op, rs, rt, addr_imm};
 
 /** Multiply **/
 //logic [63:0] mult_product; // Overflow[64];   HI [63-32];   LO[31:00];
-logic end_mul_flag;
-
+//logic end_mul_flag;
+logic [31:0] a_uncomplemented;
+logic [31:0] b_uncomplemented;
 UC uni_c (
 	.Clk        (clk        ),
 	.ADeslocOP 	(multiplicando_op),
@@ -380,10 +382,10 @@ Registrador ALUOut (
 Multiply multiply(
 	.Clk(clk),
 	.State(state_output),
-	.A(uncomplement_B),
-	.B(uncomplement_A),
-	.EndMulFlag(end_mul_flag),
-	.Produto(mult_product)
+	.A(a_uncomplemented),
+	.B(b_uncomplemented),
+	.Produto(mult_product),
+	.EndMulFlag(end_mul_flag)
 );
 
 endmodule

@@ -97,8 +97,8 @@ logic [31:0] read_data1;
 logic [31:0] read_data2;
 logic [2:0] multiplicando_op;
 
-/*		SHIFTER				*/
-logic [31:0] regdesloc_in;
+/*		SHIFT REGISTER		*/
+//logic [31:0] regdesloc_in;
 logic [2:0]	 regdesloc_op;
 logic [31:0] shift_amount;
 logic [31:0] regdesloc_out;
@@ -169,6 +169,8 @@ UC uni_c (
 	.State_out	(state_output),
 	.SeletorMemWriteData (seletorMemWriteData),
 	.ZeroFlag	(zf_alu		),
+	.RegDesloc_op(regdesloc_op		),
+	.Shift_Amount(shift_amount		),
 );
 
 
@@ -285,7 +287,7 @@ Banco_reg banco_reg (
 RegDesloc regdesloc (
 	.Clk(clk),
 	.Reset(reset),
-	.Entrada(regdesloc_in),
+	.Entrada(read_data2),
 	.Shift(regdesloc_op),
 	.N(shift_amount),
 	.Saida(regdesloc_out),

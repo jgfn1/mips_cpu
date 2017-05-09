@@ -97,6 +97,12 @@ logic [31:0] read_data1;
 logic [31:0] read_data2;
 logic [2:0] multiplicando_op;
 
+/*		SHIFTER				*/
+logic [31:0] regdesloc_in;
+logic [2:0]	 regdesloc_op;
+logic [31:0] shift_amount;
+logic [31:0] regdesloc_out;
+
 /*		A and B 	*/
 //logic [31:0] a_output;
 //logic [31:0] b_output;

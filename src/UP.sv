@@ -25,17 +25,26 @@
 		output logic wr,
 		output logic IRWrite,
 		output logic RegWrite,
+
+		//Desloc...
+		output logic [2:0]	 regdesloc_op,
+		output logic [4:0] shift_amount,
+		output logic [4:0] num_desloc,
+		output logic desloc_selector,
+		output logic [31:0] regdesloc_out,
 		//Multiply
-		output logic end_mul_flag,
-		output reg [63:0] mult_product
+		//output logic end_mul_flag,
+		//output reg [63:0] mult_product
 		
 		//output logic mdr_load,
 		//output logic [1:0] mdr_in_size,
 		//output logic [31:0] mdr_input,
-		//output logic [5:0] op,
-		//output logic [4:0] rs,
-		//output logic [4:0] rt,
-		//output logic [15:0] addr_imm,
+		output logic [5:0] op,
+		output logic [4:0] rs,
+		output logic [4:0] rt,
+		output logic [15:0] addr_imm,
+		output logic [31:0] read_data1,
+		output logic [31:0] read_data2
 		//output logic [1:0] alu_src_b,
 		//output logic alu_src_a,
 		//output logic [31:0] read_data1,
@@ -61,7 +70,6 @@
  logic [1:0] pc_source;
  logic [2:0] alu_control_output;
  logic [31:0] pc_input;
- 
  logic [1:0] reg_dst;
  logic [2:0] iorD;
 
@@ -93,10 +101,10 @@ logic [31:0] mdr_input;
 logic [1:0] mdr_in_size;
 
 /*		IR 			*/
-logic [5:0] op;
-logic [4:0] rs;
-logic [4:0] rt;
-logic [15:0] addr_imm;
+// logic [5:0] op;
+// logic [4:0] rs;
+// logic [4:0] rt;
+// logic [15:0] addr_imm;
 //logic [31:0] instruction;
 //logic IRWrite;
 /*		SIGN EXTENDER		*/
@@ -113,15 +121,17 @@ logic brk;
 //logic RegWrite;
 //logic reg_dst;
 logic [31:0] lui_number;
-logic [31:0] read_data1;
-logic [31:0] read_data2;
+//logic [31:0] read_data1;
+//logic [31:0] read_data2;
 logic [2:0] multiplicando_op;
 
 /*		SHIFT REGISTER		*/
 //logic [31:0] regdesloc_in;
-logic [2:0]	 regdesloc_op;
-logic [31:0] shift_amount;
-logic [31:0] regdesloc_out;
+// logic [2:0]	 regdesloc_op;
+// logic [4:0] shift_amount;
+// logic [4:0] num_desloc;
+// logic desloc_selector;
+// logic [31:0] regdesloc_out;
 
 /*		A and B 	*/
 //logic [31:0] a_output;
@@ -151,11 +161,12 @@ logic igualf_alu;
 /*		ASSIGNs		*/
 assign lui_number = { addr_imm, {16{1'b0}} };
 assign instruction = {op, rs, rt, addr_imm};
+assign shift_amount = addr_imm[10-:5];
 
 
 /** Multiply **/
-//logic [63:0] mult_product; // Overflow[64];   HI [63-32];   LO[31:00];
-//logic end_mul_flag;
+logic [63:0] mult_product; // Overflow[64];   HI [63-32];   LO[31:00];
+logic end_mul_flag;
 logic [31:0] a_uncomplemented;
 logic [31:0] b_uncomplemented;
 UC uni_c (
@@ -179,7 +190,6 @@ UC uni_c (
 	.OFlag		(of_alu 	),
 	.Op         (op         ),
 	.Funct		(addr_imm[5-:6]),
-	.Overflow	(overflow 	), 				//sinal que decide se o overflow deve ser tratado
 	.PCSource   (pc_source   ),
 	.PCWrite    (pc_write    ),
 	.EPCWrite    (epc_write    ),
@@ -189,7 +199,10 @@ UC uni_c (
 	.Reset      (reset      ),
 	.State_out	(Estado),
 	.SeletorMemWriteData (seletorMemWriteData),
-	.ZeroFlag	(zf_alu		)
+	.ZeroFlag	(zf_alu		),
+	.RegDeslocOp(regdesloc_op),
+	.Instruction(instruction),
+	.DeslocSelector (desloc_selector)
 );
 
 
@@ -278,7 +291,7 @@ Mux5_3 mux_br_wr_reg (
 	.Saida(WriteRegister)
 );
 
-Mux32_08 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
+Mux32_09 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?da ? entrada do banco de registradores na porta Write data
 	.A(AluOut),
 	.B(MDR),
 	.C(lui_number),		//ISSO E PARA O LUI, NAO MEXER
@@ -287,6 +300,7 @@ Mux32_08 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?d
 	.F(mult_product[63:32]),
 	.G(mult_product[31:0]),
 	.H(PC),
+	.I(regdesloc_out),
 	.Seletor(mem_to_reg),
 	.Saida(WriteDataReg)
 );
@@ -303,12 +317,19 @@ Banco_reg banco_reg (
 	.ReadData2(read_data2)
 );
 
+Mux5_2 mux_reg_desloc (		//selecionar de onde vem o N do regdesloc
+	.A(shift_amount),			//value of shamt
+	.B(read_data1),  			//value of rs
+	.Seletor(desloc_selector),		
+	.Saida(num_desloc)					
+);
+
 RegDesloc regdesloc (
 	.Clk(clk),
 	.Reset(reset),
 	.Entrada(read_data2),
 	.Shift(regdesloc_op),
-	.N(shift_amount),
+	.N(num_desloc),
 	.Saida(regdesloc_out)
 );
 

@@ -8,9 +8,10 @@ module UC (
 		input logic ZeroFlag,
 		input logic MenorFlag,
 		input logic EndMulFlag,
+		input logic [31:0] Instruction,
 		output logic [1:0] ALUSrcB,
 		output logic [1:0] MDRInSize,
-		output logic [2:0] MemtoReg, //it's 2 bits because the mux was extended for LUI
+		output logic [3:0] MemtoReg, //4/i0t's 2 bits because the mux was extended for LUI
 		output logic [1:0] PCSource,
 		output logic [2:0] ALUOp,
 		output logic [5:0] State_out,
@@ -22,20 +23,24 @@ module UC (
 		output logic IRWrite,
 		output logic MDRLoad,
 		output logic MemWrite,
-		output logic Overflow, 		// em instruções que não causam overflow só é forçar 0 no estado ao invés de usar OFlag
 		output logic PCWrite,
 		output logic EPCWrite,
 		output logic [1:0] EPCSelect,
 		output logic [1:0] RegDst,
 		output logic RegWrite,
 		output logic [1:0] SeletorMemWriteData,
-		output logic [2:0] ADeslocOP
+		output logic [2:0] ADeslocOP,
+		output logic [2:0] RegDeslocOp,
+		output logic DeslocSelector
 );
 	logic OvF;
 
-	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, 
-					LOAD, LOAD1, LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, ADDI2, 
-					SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SLTI_CONT, SB, SB1, SH, SH1, MULT, MULT2, MFHI, MFLO, OVERFLOW, OVERFLOW1, OVERFLOW2, OPXCEPTION, OPXCEPTION1, OPXCEPTION2, RTE} state;
+	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, //10
+					LOAD, LOAD1, LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, //10
+					ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SLTI_CONT, SB, //10
+					SB1, SH, SH1, MULT, MULT2, MFHI, MFLO, OVERFLOW, OVERFLOW1, OVERFLOW2, //10
+					OPXCEPTION, OPXCEPTION1, OPXCEPTION2, RTE, SLL, SLLV, SRA, SRAV, SRL, SHIFTWRITE //10
+					} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
 	initial state = FETCH;
@@ -63,17 +68,23 @@ module UC (
 				F2: state <= F3;
 				F3: state <= DECODE;
 				DECODE: begin
+					if (Instruction == 0) state <= FETCH; //NOP
+					else
 					case (Op)
 						6'h00:	begin
 						 			/* --------- RTYPE */
 									//state <= RTYPE;
 									case (Funct)
-											6'h8: 		state <= JR;
+											6'h08: 		state <= JR;
 											6'h10: 		state <= MFHI;
 											6'h12: 		state <= MFLO;
 											6'h2A:		state <= SLT;
 											6'h18:		state <= MULT;
-											6'h00:		state <= FETCH;
+											6'h00:		state <= SLL;
+											6'h04:		state <= SLLV;
+											6'h03:		state <= SRA;
+											6'h07:		state <= SRAV;
+											6'h02:		state <= SRL;
 											default:	state <= RTYPE;
 									endcase
 						end
@@ -144,6 +155,12 @@ module UC (
 				OPXCEPTION:				state <= OPXCEPTION1;
 				OPXCEPTION1:			state <= OPXCEPTION2;
 				OPXCEPTION2:			state <= FETCH;
+				SLL: 					state <= SHIFTWRITE;
+				SLLV: 					state <= SHIFTWRITE;
+				SRA: 					state <= SHIFTWRITE;
+				SRAV: 					state <= SHIFTWRITE;
+				SRL: 					state <= SHIFTWRITE;
+				SHIFTWRITE:				state <= FETCH;
 				default: 				state <= FETCH;
 			endcase
 	end
@@ -153,7 +170,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD			= 3'b000;		//address used by the memory comes from the PC
 				MemWrite 		= 1'b0;		//make memory read
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b00;
@@ -169,14 +186,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			F1: begin
 				PCWrite 		= 1'b0;
 				IorD 			  = 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;	//sum
@@ -192,13 +211,15 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			F2: begin
 				PCWrite 		= 1'b1;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b1;
 				PCSource		= 2'b01;	//PC recebe aluout
 				ALUOp 			= 3'b000;
@@ -214,14 +235,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			F3: begin			//memória terminou seu delay
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b01;
 				ALUOp 			= 3'b000;
@@ -237,30 +260,34 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
-			DECODE: begin		//Output do IR disponível
+			DECODE: begin		//IR output available 
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b10;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;		//PC
+				ALUSrcA 		= 1'b0;		// PC
 				ALUSrcB 		= 2'b11;	// (sign_ex_output << 2)
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
-				AWrite			= 1'b1;		// escrever rs em A
-				BWrite			= 1'b1;		// escrever rt em B
+				AWrite			= 1'b1;		// write rs in A
+				BWrite			= 1'b1;		// write rt in B
 				ALUOutLoad  	= 1'b1;		// Aluout = PC + (sign_ex_output << 2)
 				MDRLoad			= 1'b0;
 				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b001;	// Writes read_data2 in RegDesloc
+				DeslocSelector  = 1'b0;
+				//newPin
 
 				//Aluout recebe esse valor pra agilizar um possível branch. pag 326
 			end
@@ -268,7 +295,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b010; // Modificado por victor, estava 2 aqui.. passando MDR...
+				MemtoReg 		= 4'b0010; // Modificado por victor, estava 2 aqui.. passando MDR...
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -284,14 +311,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			RTYPE: begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b10;	//operation defined by the funct field
@@ -307,14 +336,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			RTYPE_CONT: begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000; 	//write data comes from ALUOut
+				MemtoReg		= 4'b0000; 	//write data comes from ALUOut
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -330,13 +361,15 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			LOAD: begin			//make the sum for the address of the addr_imm and the value of A (rs)
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b00;	//sum
@@ -352,13 +385,15 @@ module UC (
 				MDRInSize		= load_size;	//size of the load(WORD, HALF or BYTE. Depends on the opcode)
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			LOAD1: begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b001;		//Get address from ALUOut
 				MemWrite 		= 1'b0;		//Read from memory
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -374,7 +409,9 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 
@@ -383,7 +420,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -399,7 +436,9 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			LOAD3:
@@ -407,7 +446,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -423,7 +462,9 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			LOAD4:
@@ -431,7 +472,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b001;	//writes the output of MDR
+				MemtoReg 		= 4'b0001;	//writes the output of MDR
 				IRWrite 		= 1'b1;		//writes in the specified regsiter
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -447,14 +488,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			SW: begin			//make the sum for the address, addr_imm plus the value of A (rs)
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b00;	//sum
@@ -470,7 +513,9 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 
@@ -478,7 +523,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b001;		//Get address from ALUOut
 				MemWrite 		= 1'b1;		//Write to memory
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -494,14 +539,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			BEQ: begin			//jump or not
 				PCWrite 		= ZeroFlag; 	//if its one then both numbers are equal, write to PC. Else, numbers are different don't write.
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b01;		//get address from aluout, calculated in DECODE
 				ALUOp			= 3'b01;		//Subtract
@@ -517,14 +564,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			BNE: begin			//jump or not
 				PCWrite 		= ~ZeroFlag; 	//if its one then both numbers are equal, don't write. Else, numbers are different, write to PC.
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b01;		//get address from aluout, calculated in DECODE
 				ALUOp			= 3'b01;		//Subtract
@@ -540,14 +589,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			J: begin
 				PCWrite 		= 1'b1; 		//write to PC
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b10;		// get {PC[31:28], IR[25:0], 2b'00} into the PC.
 				ALUOp 			= 3'b000;
@@ -563,14 +614,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			BREAK: begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -586,14 +639,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			ADDI1: begin			//make the sum, save into ALUOut
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b000;	//sum
@@ -609,14 +664,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			ADDI2: begin			//ALUOut updated, write to register.
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000; 	//write data comes from ALUOut
+				MemtoReg		= 4'b0000; 	//write data comes from ALUOut
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -632,13 +689,15 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			SXORI1: begin			//make the XOR, save into ALUOut
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b011;	//xor
@@ -654,14 +713,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 
 			end
 			SXORI2: begin			//ALUOut updated, write to register.
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000; 	//write data comes from ALUOut
+				MemtoReg		= 4'b0000; 	//write data comes from ALUOut
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -677,14 +738,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			// Mesmo JR sendo RTYPE (pois escreve em registrador..) no meu caso o RD é sempre 31 e eu não tenho como setar isso usando RTYPE e RTYPE_CONT
 			JR: begin
 				PCWrite 		= 1'b1; 		//write to PC
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;	// Out of ALU is the content on register A.
 				ALUOp 			= 3'b000;
@@ -700,13 +763,15 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			JAL: begin
 				PCWrite 		= 1'b1; 		//Write in pc
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b111;
+				MemtoReg		= 4'b0111;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b10;		// get {PC[31:28], IR[25:0], 2b'00} into the PC.
 				ALUOp 			= 3'b000;
@@ -722,13 +787,15 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			SLT: begin								//Passando A e B para ALU, caso tenha flag de A < B, então vai escrever em rd 1 ou 0
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -744,7 +811,9 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			SLT_CONT: begin
 				PCWrite 		= 1'b0;
@@ -766,7 +835,9 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			// Eu acho que tem erro, porque acho que o MenorFlag já não está mais setado quando passa para SLT_CONT.
 			// Mas pela lógica do ZeroFlag funciona...
 			end
@@ -774,7 +845,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -790,7 +861,9 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			SLTI_CONT: begin
 				PCWrite 		= 1'b0;
@@ -812,7 +885,9 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			// Eu acho que tem erro, porque acho que o MenorFlag já não está mais setado quando passa para SLT_CONT.
 			// Mas pela lógica do ZeroFlag funciona...
 			end			
@@ -828,7 +903,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b00;
@@ -844,13 +919,15 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			SB1: begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b001;			//Pegando o endereço que foi calculado em SB.. e está em ALUOUT
 				MemWrite 		= 1'b1;		//Setando a memória para escrita
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -866,7 +943,9 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			SH: begin
 				/*  Se a SB estiver correta então... */
@@ -874,7 +953,7 @@ module UC (
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b000;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b00;
@@ -890,13 +969,15 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			SH1: begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b001;			//Pegando o endereço que foi calculado em SB.. e está em ALUOUT
 				MemWrite 		= 1'b1;		//Setando a memória para escrita
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -912,13 +993,15 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			MFHI: begin // rd <= hi;
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b101; 				// HI on the Mux write_data_register_bank
+				MemtoReg		= 4'b0101; 				// HI on the Mux write_data_register_bank
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -934,13 +1017,15 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			MFLO: begin // rd <= lo
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
 				MemWrite 		= 1'b0;
-				MemtoReg		= 3'b110; 				// lo on the Mux write_data_register_bank
+				MemtoReg		= 4'b0110; 				// lo on the Mux write_data_register_bank
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -956,14 +1041,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			OVERFLOW:
 			begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b011;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -979,14 +1066,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b1;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			OVERFLOW1:
 			begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1002,14 +1091,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			OVERFLOW2:
 			begin
 				PCWrite 		= 1'b1;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1025,14 +1116,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b01;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			OPXCEPTION:
 			begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b010;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1048,14 +1141,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b1;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			OPXCEPTION1:
 			begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1071,14 +1166,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			OPXCEPTION2:
 			begin
 				PCWrite 		= 1'b1;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1094,14 +1191,16 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b01;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 			RTE:
 			begin
 				PCWrite 		= 1'b1;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1117,13 +1216,15 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b11;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
-			default: begin					//isso vai virar o caso do opcode indexistente
+			SLL: begin			//shift left logic, shifts (rt) (shamt) times
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
-				MemtoReg 		= 3'b000;
+				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource		= 2'b00;
 				ALUOp 			= 3'b000;
@@ -1139,7 +1240,155 @@ module UC (
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
-				//Overflow		= OFlag;
+				RegDeslocOp		= 3'b010;		//shift left op
+				DeslocSelector  = 1'b0;			//selects shamt
+				//newPin
+			end
+			SLLV: begin			//shift left logic, shifts (rt) (rs) times
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b010;		//shift left op
+				DeslocSelector  = 1'b1;			//selects rs
+				//newPin
+			end
+			SRA: begin			//shift left logic, shifts (rt) 
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b100;		//shift right op
+				DeslocSelector  = 1'b0;			//selects shamt
+				//newPin
+			end
+				//newPin
+			SRAV: begin			//shift left logic, shifts (rt) 
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b100;		//shift right op
+				DeslocSelector  = 1'b1;			//selects rs
+				//newPin
+			end
+			SRL: begin			//shift left logic, shifts (rt) 
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b011;		//shift right op
+				DeslocSelector  = 1'b0;			//selects shamt
+				//newPin
+			end
+			SHIFTWRITE: begin			//writes result in rd
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 4'b1000;		//gets RegDesloc_out, option I
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b01;		//writes in register
+				RegDst			= 2'b01;		//selects RD to write
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end
+
+			default: begin					//isso vai virar o caso do opcode indexistente
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg 		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource		= 2'b00;
+				ALUOp 			= 3'b000;
+				ALUSrcA			= 1'b0;
+				ALUSrcB			= 2'b00;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
 			end
 		endcase
 endmodule

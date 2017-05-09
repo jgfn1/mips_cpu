@@ -5,6 +5,20 @@
 *************************************** */
 
 //
+// 	---- MUX 5 bits - com 2 entradas
+//
+module  Mux5_2 (
+	 	input  logic  [4:0] A,
+	 	input  logic  [4:0] B,
+	 	input  logic  Seletor,
+	 	output logic  [4:0] Saida
+	 );
+
+	 assign Saida = (Seletor) ? B : A;
+
+endmodule
+
+//
 // 	---- MUX 5 bits - com 3 entradas
 //
 module  Mux5_3 (
@@ -171,7 +185,7 @@ endmodule
 //
 // 	---- MUX 32 bits - Com 8 entradas
 //
-module Mux32_08(
+module Mux32_09(
 			input logic [31:0] A,
 			input logic [31:0] B,
 			input logic [31:0] C,
@@ -180,7 +194,8 @@ module Mux32_08(
 			input logic [31:0] F,
 			input logic [31:0] G,
 			input logic [31:0] H,
-			input logic [3:0] Seletor,
+			input logic [31:0] I,
+			input logic [4:0] Seletor,
 			output logic [31:0] Saida
 		);
 
@@ -194,6 +209,7 @@ module Mux32_08(
 					5: Saida = F;
 					6: Saida = G;
 					7: Saida = H;
+					8: Saida = I;
 					default: Saida = A;
 				endcase
 endmodule

@@ -275,6 +275,15 @@ Banco_reg banco_reg (
 	.ReadData2(read_data2)
 );
 
+RegDesloc regdesloc (
+	.Clk(clk),
+	.Reset(reset),
+	.Entrada(regdesloc_in),
+	.Shift(regdesloc_op),
+	.N(shift_amount),
+	.Saida(regdesloc_out),
+);
+
 Extensor_sinal sign_ex(
 	.Entrada(addr_imm),
 	.Saida(sign_ex_output)

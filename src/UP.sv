@@ -44,7 +44,11 @@
 		output logic [4:0] rt,
 		output logic [15:0] addr_imm,
 		output logic [31:0] read_data1,
-		output logic [31:0] read_data2
+		output logic [31:0] read_data2,
+		output logic of_alu,
+		output logic epc_write,
+		output logic [1:0] epc_select,
+		output logic [31:0] instruction
 		//output logic [1:0] alu_src_b,
 		//output logic alu_src_a,
 		//output logic [31:0] read_data1,
@@ -60,8 +64,8 @@
 
 /***** now.... ***/
 
- logic [31:0] instruction;
- logic of_alu;
+// logic [31:0] instruction;
+// logic of_alu;
  logic zf_alu;
  logic pc_write;
  logic a_load;
@@ -82,8 +86,8 @@
 //logic pc_write;
 //logic [1:0] pc_source;
 logic reset_pc;
-logic epc_write;
-logic [1:0] EPCSelect;
+//logic epc_write;
+//logic [1:0] epc_select;
 logic [31:0] mux_pc_out;
 
 /*		MEMORY 		*/

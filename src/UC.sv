@@ -39,7 +39,7 @@ module UC (
 					ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SLTI_CONT, SB, //10
 					SB1, SB2, SB3, SB4, SB5, SH, SH1, MULT, MULT2, MFHI, //10
 					MFLO, OVERFLOW, OVERFLOW1, OVERFLOW2, OPXCEPTION, OPXCEPTION1, OPXCEPTION2, RTE, SLL, SLLV, //10
-					 SRA, SRAV, SRL, SHIFTWRITE, SH2, SH3, SH4, SH5 // 4
+					 SRA, SRAV, SRL, SHIFTWRITE, SH2, SH3, SH4, SH5, ANDI1, ANDI2// 10
 					} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
@@ -147,6 +147,8 @@ module UC (
 				ADDI2:					state <= FETCH;
 				SXORI1:					state <= SXORI2;
 				SXORI2: 				state <= FETCH;
+				ANDI1:					state <= ANDI2;
+				ANDI2:					state <= FETCH;
 				JAL: 					state <= FETCH;
 				JR: 					state <= FETCH;
 				SLT: 					state <= SLT_CONT;
@@ -665,55 +667,56 @@ module UC (
 				//newPin
 
 			end
-			ADDI1: begin			//make the sum, save into ALUOut
-				PCWrite 		= 1'b0;
-				IorD 			= 3'b000;
-				MemWrite 		= 1'b0;
-				MemtoReg		= 4'b0000;
-				IRWrite 		= 1'b0;
-				PCSource 		= 2'b00;
-				ALUOp			= 3'b000;	//sum
-				ALUSrcA 		= 2'b01;		//get the value of reg A
-				ALUSrcB 		= 3'b010;	//get the value of addr_imm extended to 32 bits
-				RegWrite		= 1'b0;
-				RegDst			= 2'b00;
-				AWrite			= 1'b0;
-				BWrite			= 1'b0;
-				ALUOutLoad  	= 1'b1;		//write to ALUOut
-				MDRLoad			= 1'b0;
-				SeletorMemWriteData = 2'b00;
-				MDRInSize		= 2'b00;
-				EPCWrite		= 1'b0;
-				EPCSelect		= 2'b00;
-				RegDeslocOp		= 3'b000;
+			ANDI1: begin            //make the add, save into ALUOut
+                PCWrite         = 1'b0;
+                IorD             = 3'b000;
+                MemWrite         = 1'b0;
+                MemtoReg        = 3'b000;
+                IRWrite         = 1'b0;
+                PCSource         = 2'b00;
+                ALUOp            = 3'b100;    //and
+                ALUSrcA         = 1'b1;        //get the value of reg A
+                ALUSrcB         = 2'b10;    //get the value of addr_imm extended to 32 bits
+                RegWrite        = 1'b0;
+                RegDst            = 2'b00;
+                AWrite            = 1'b0;
+                BWrite            = 1'b0;
+                ALUOutLoad      = 1'b1;        //write to ALUOut
+                MDRLoad            = 1'b0;
+                SeletorMemWriteData = 2'b00;
+                MDRInSize        = 2'b00;
+                EPCWrite        = 1'b0;
+                EPCSelect        = 2'b00;
+                RegDeslocOp		= 3'b000;
 				DeslocSelector  = 1'b0;
-				//newPin
+                //Overflow        = OFlag;
 
-			end
-			ADDI2: begin			//ALUOut updated, write to register.
-				PCWrite 		= 1'b0;
-				IorD 			= 3'b000;
-				MemWrite 		= 1'b0;
-				MemtoReg		= 4'b0000; 	//write data comes from ALUOut
-				IRWrite 		= 1'b0;
-				PCSource 		= 2'b00;
-				ALUOp 			= 3'b000;
-				ALUSrcA 		= 2'b00;
-				ALUSrcB 		= 3'b000;
-				RegWrite		= 1'b1;		//Write in register
-				RegDst			= 2'b00;		//select rt to be written into.
-				AWrite			= 1'b0;
-				BWrite			= 1'b0;
-				ALUOutLoad  	= 1'b0;
-				MDRLoad			= 1'b0;
-				SeletorMemWriteData = 2'b00;
-				MDRInSize		= 2'b00;
-				EPCWrite		= 1'b0;
-				EPCSelect		= 2'b00;
-				RegDeslocOp		= 3'b000;
+            end
+			ANDI2: begin                    //ALUOut updated, write to register.
+                PCWrite         = 1'b0;
+                IorD             = 3'b000;
+                MemWrite         = 1'b0;
+                MemtoReg        = 3'b000;     //write data comes from ALUOut
+                IRWrite         = 1'b0;
+                PCSource         = 2'b00;
+                ALUOp             = 3'b000;
+                ALUSrcA         = 1'b0;
+                ALUSrcB         = 2'b00;
+                RegWrite        = 1'b1;        //Write in register
+                RegDst            = 2'b00;    //select rt to be written into.
+                AWrite            = 1'b0;
+                BWrite            = 1'b0;
+                ALUOutLoad      = 1'b0;
+                MDRLoad            = 1'b0;
+                SeletorMemWriteData = 2'b00;
+                MDRInSize        = 2'b00;
+                EPCWrite        = 1'b0;
+                EPCSelect        = 2'b00;
+                RegDeslocOp		= 3'b000;
 				DeslocSelector  = 1'b0;
-				//newPin
-			end
+                //Overflow        = OFlag;
+            
+            end		
 			SXORI1: begin			//make the XOR, save into ALUOut
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
@@ -761,7 +764,7 @@ module UC (
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
 				DeslocSelector  = 1'b0;
-				//newPin
+				
 			end
 			// Mesmo JR sendo RTYPE (pois escreve em registrador..) no meu caso o RD é sempre 31 e eu não tenho como setar isso usando RTYPE e RTYPE_CONT
 			JR: begin
@@ -786,7 +789,7 @@ module UC (
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
 				DeslocSelector  = 1'b0;
-				//newPin
+				
 			end
 			JAL: begin
 				PCWrite 		= 1'b1; 		//Write in pc

@@ -14,8 +14,8 @@
 		output logic [3:0] mem_to_reg,
 
 		// Alu...
-		output logic [31:0] a_output,
-		output logic [31:0] b_output,
+		//output logic [31:0] a_output,
+		//output logic [31:0] b_output,
 		output logic [31:0] alu_a_input,
 		output logic [31:0] alu_b_input,
 		output logic [31:0] Alu,

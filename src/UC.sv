@@ -9,14 +9,14 @@ module UC (
 		input logic MenorFlag,
 		input logic EndMulFlag,
 		input logic [31:0] Instruction,
-		output logic [1:0] ALUSrcB,
+		output logic [2:0] ALUSrcB,
 		output logic [1:0] MDRInSize,
 		output logic [3:0] MemtoReg, //4/i0t's 2 bits because the mux was extended for LUI
 		output logic [1:0] PCSource,
 		output logic [2:0] ALUOp,
 		output logic [5:0] State_out,
 		output logic ALUOutLoad,
-		output logic ALUSrcA,
+		output logic [1:0] ALUSrcA,
 		output logic AWrite,
 		output logic BWrite,
 		output logic [2:0] IorD,
@@ -38,8 +38,9 @@ module UC (
 	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, //10
 					LOAD, LOAD1, LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, //10
 					ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SLTI_CONT, SB, //10
-					SB1, SH, SH1, MULT, MULT2, MFHI, MFLO, OVERFLOW, OVERFLOW1, OVERFLOW2, //10
-					OPXCEPTION, OPXCEPTION1, OPXCEPTION2, RTE, SLL, SLLV, SRA, SRAV, SRL, SHIFTWRITE //10
+					SB1, SB2, SB3, SB4, SB5, SH, SH1, MULT, MULT2, MFHI, //10
+					MFLO, OVERFLOW, OVERFLOW1, OVERFLOW2, OPXCEPTION, OPXCEPTION1, OPXCEPTION2, RTE, SLL, SLLV, //10
+					 SRA, SRAV, SRL, SHIFTWRITE, SH2, SH3, SH4, SH5 // 4
 					} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
@@ -52,7 +53,7 @@ module UC (
 		else if (Break) state <= BREAK;
 		else
 			case (state)
-				FETCH: 
+				FETCH:
 				begin
 					if (OFlag)
 					begin
@@ -146,9 +147,17 @@ module UC (
 				MFLO:					state <= FETCH;
 				RTE: 					state <= FETCH;
 				SB:						state <= SB1;
-				SB1:					state <= FETCH;
+				SB1:						state <= SB2;
+				SB2:						state <= SB3;
+				SB3:						state <= SB4;
+				SB4:						state <= SB5;
+				SB5:					state <= FETCH;
 				SH:						state <= SH1;
-				SH1:					state <= FETCH;
+				SH1:						state <= SH2;
+				SH2:						state <= SH3;
+				SH3:						state <= SH4;
+				SH4:						state <= SH5;
+				SH5:					state <= FETCH;
 				OVERFLOW:				state <= OVERFLOW1;
 				OVERFLOW1:				state <= OVERFLOW2;
 				OVERFLOW2:				state <= FETCH;
@@ -174,8 +183,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b00;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b01;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b001;
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -265,7 +274,7 @@ module UC (
 				//newPin
 
 			end
-			DECODE: begin		//IR output available 
+			DECODE: begin		//IR output available
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
@@ -273,8 +282,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b10;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;		// PC
-				ALUSrcB 		= 2'b11;	// (sign_ex_output << 2)
+				ALUSrcA 		= 2'b00;		// PC
+				ALUSrcB 		= 3'b011;	// (sign_ex_output << 2)
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b1;		// write rs in A
@@ -324,8 +333,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b10;	//operation defined by the funct field
-				ALUSrcA 		= 1'b1;		//get the value of reg A
-				ALUSrcB 		= 2'b00;	//get the value of reg B
+				ALUSrcA 		= 2'b01;		//get the value of reg A
+				ALUSrcB 		= 3'b000;	//get the value of reg B
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -349,8 +358,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite		= 1'b1;		//Write in register
 				RegDst			= 2'b01;		//select rd to be written into.
 				AWrite			= 1'b0;
@@ -373,8 +382,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b00;	//sum
-				ALUSrcA 		= 1'b1;		//get the value of reg A
-				ALUSrcB 		= 2'b10;	//get the value of addr_imm extended to 32 bits
+				ALUSrcA 		= 2'b01;		//get the value of reg A
+				ALUSrcB 		= 3'b010;	//get the value of addr_imm extended to 32 bits
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -397,8 +406,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite 		= 1'b0;
 				RegDst 			= 1'b0;
 				AWrite 			= 1'b0;
@@ -424,8 +433,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite 		= 1'b0;
 				RegDst 			= 1'b0;
 				AWrite 			= 1'b0;
@@ -450,8 +459,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite 		= 1'b0;
 				RegDst 			= 1'b0;
 				AWrite 			= 1'b0;
@@ -476,8 +485,8 @@ module UC (
 				IRWrite 		= 1'b1;		//writes in the specified regsiter
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite 		= 1'b1;
 				RegDst 			= 1'b0;		//register specified is rt (IR[20:16])
 				AWrite 			= 1'b0;
@@ -501,8 +510,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b00;	//sum
-				ALUSrcA 		= 1'b1;		//get the value of reg A
-				ALUSrcB 		= 2'b10;	//get the value of addr_imm extended to 32 bits
+				ALUSrcA 		= 2'b01;		//get the value of reg A
+				ALUSrcB 		= 3'b010;	//get the value of addr_imm extended to 32 bits
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -527,8 +536,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite 		= 1'b0;
 				RegDst 			= 1'b0;
 				AWrite 			= 1'b0;
@@ -552,8 +561,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b01;		//get address from aluout, calculated in DECODE
 				ALUOp			= 3'b01;		//Subtract
-				ALUSrcA 		= 1'b1;			//Value of A, reg rs, calculated on DECODE
-				ALUSrcB 		= 2'b00;		//Value of B, reg rt, calculated on DECODE
+				ALUSrcA 		= 2'b01;			//Value of A, reg rs, calculated on DECODE
+				ALUSrcB 		= 3'b000;		//Value of B, reg rt, calculated on DECODE
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -577,8 +586,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b01;		//get address from aluout, calculated in DECODE
 				ALUOp			= 3'b01;		//Subtract
-				ALUSrcA 		= 1'b1;			//Value of A, reg rs, calculated on DECODE
-				ALUSrcB 		= 2'b00;		//Value of B, reg rt, calculated on DECODE
+				ALUSrcA 		= 2'b01;			//Value of A, reg rs, calculated on DECODE
+				ALUSrcB 		= 3'b000;		//Value of B, reg rt, calculated on DECODE
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -602,8 +611,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b10;		// get {PC[31:28], IR[25:0], 2b'00} into the PC.
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -652,8 +661,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b000;	//sum
-				ALUSrcA 		= 1'b1;		//get the value of reg A
-				ALUSrcB 		= 2'b10;	//get the value of addr_imm extended to 32 bits
+				ALUSrcA 		= 2'b01;		//get the value of reg A
+				ALUSrcB 		= 3'b010;	//get the value of addr_imm extended to 32 bits
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -677,8 +686,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite		= 1'b1;		//Write in register
 				RegDst			= 2'b00;		//select rt to be written into.
 				AWrite			= 1'b0;
@@ -701,8 +710,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b011;	//xor
-				ALUSrcA 		= 1'b1;		//get the value of reg A
-				ALUSrcB 		= 2'b10;	//get the value of addr_imm extended to 32 bits
+				ALUSrcA 		= 2'b01;		//get the value of reg A
+				ALUSrcB 		= 3'b010;	//get the value of addr_imm extended to 32 bits
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -726,8 +735,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite		= 1'b1;		//Write in register
 				RegDst			= 2'b00;		//select rt to be written into.
 				AWrite			= 1'b0;
@@ -751,8 +760,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;	// Out of ALU is the content on register A.
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b1;		// (rs) register A to ALU
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b01;		// (rs) register A to ALU
+				ALUSrcB 		= 3'b000;
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -775,8 +784,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b10;		// get {PC[31:28], IR[25:0], 2b'00} into the PC.
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite		= 1'b1;			// Escrita em registrador.
 				RegDst			= 2'b10;		// opção 3 do mux_br_wr_data setando 31 como endereço do registrador.
 				AWrite			= 1'b0;
@@ -799,8 +808,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b1;				// Passando A (rs)
-				ALUSrcB 		= 2'b00;			// Passando B (rt)
+				ALUSrcA 		= 2'b01;				// Passando A (rs)
+				ALUSrcB 		= 3'b000;			// Passando B (rt)
 				RegWrite		= 1'b0;				// Ler do banco de registradores
 				RegDst			= 2'b01;			// Setando (rd)
 				AWrite			= 1'b0;
@@ -823,8 +832,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite		= 1'b1;					// Escrever no banco de registradores
 				RegDst			= 2'b01;				// Escrever em RD
 				AWrite			= 1'b0;
@@ -849,8 +858,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b1;				// Passando A (rs)
-				ALUSrcB 		= 2'b10;			// Passando B (immr[15-0])
+				ALUSrcA 		= 2'b01;				// Passando A (rs)
+				ALUSrcB 		= 3'b010;			// Passando B (immr[15-0])
 				RegWrite		= 1'b0;				// Ler do banco de registradores
 				RegDst			= 2'b00;			// Setando (rd)
 				AWrite			= 1'b0;
@@ -873,8 +882,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite		= 1'b1;					// Escrever no banco de registradores
 				RegDst			= 2'b01;				// Escrever em RD
 				AWrite			= 1'b0;
@@ -890,13 +899,13 @@ module UC (
 				//newPin
 			// Eu acho que tem erro, porque acho que o MenorFlag já não está mais setado quando passa para SLT_CONT.
 			// Mas pela lógica do ZeroFlag funciona...
-			end			
+			end
 			SB: begin
 
 				/*  Primeiro RS, ir� passar pela ALU e irei escrever em ALUOut,
-				para setar IorD para 1, e dessa forma no pr�ximo (pq ALUOut � registrador.) ciclo eu vou escrever no Address[rs]
+				para setar IorD para 1, e dessa forma no pr�ximo (pq ALUOut � registrador.) ciclo eu vou ler no Address[rs]
 
-				Ent�o no ciclo dois � que seto IorD para 1, e usarei ALUout (rs) como endere�o..
+				Ent�o no ciclo três � que seto IorD para 1, e usarei ALUout (rs) como endere�o..
 				Meu BYTE que � o RT.. est� carregado no registrador B... (0xff & $RT) (metodo para obter a parte que quero */
 
 				//Realizando o calculo de endereço.
@@ -907,8 +916,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b00;
-				ALUSrcA 		= 1'b1;			// O valor do registrador A (rs)
-				ALUSrcB 		= 2'b10;		// get the value of addr_imm extended to 32 bits
+				ALUSrcA 		= 2'b01;			// O valor do registrador A (rs)
+				ALUSrcB 		= 3'b010;		  // get the value of addr_imm extended to 32 bits
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -924,22 +933,23 @@ module UC (
 				//newPin
 			end
 			SB1: begin
+				//Lendo o valor em Address[RS]
 				PCWrite 		= 1'b0;
-				IorD 			= 3'b001;			//Pegando o endereço que foi calculado em SB.. e está em ALUOUT
-				MemWrite 		= 1'b1;		//Setando a memória para escrita
-				MemtoReg 		= 4'b0000;
+				IorD 			= 3'b001;			// O Valor da ULA sera o valor a ler da memoria
+				MemWrite 		= 1'b0;
+				MemtoReg		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
-				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
-				RegWrite 		= 1'b0;
-				RegDst 			= 1'b0;
-				AWrite 			= 1'b0;
-				BWrite 			= 1'b0;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
 				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
-				SeletorMemWriteData = 2'b01; // Indicando que é apenas 1 byte que deve ser escrito.
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
@@ -947,8 +957,112 @@ module UC (
 				DeslocSelector  = 1'b0;
 				//newPin
 			end
-			SH: begin
-				/*  Se a SB estiver correta então... */
+			SB2: begin
+				//Delay da memoria
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b001;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end
+			SB3: begin //Delay da memoria
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b001;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end
+			SB4: begin//Terminou delay da memoria
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b001;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b1;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end
+			SB5: begin
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b001;			//Pegando o endereço que foi calculado em SB.. e esta em ALUOUT (registrador)
+				MemWrite 		= 1'b1;			//Setando a memória para escrita
+				MemtoReg 		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp 			= 3'b000;			// Soma na ALU
+				ALUSrcA 		= 2'b10;			// Pegando o valor em MDR (valor lido de Address[rs]) com o ultimo byte zerado. [os ultimos 8bits zerados]
+				ALUSrcB 		= 3'b100;			// Pegando o valor em RT onde zerei tudo exceto o ultimo byte. [os primeiros 24bits sao zeros.]
+				RegWrite 		= 1'b0;
+				RegDst 			= 1'b0;
+				AWrite 			= 1'b0;
+				BWrite 			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b01; // Indicando que a saida da ALU (antes de ir pro reg, deve ser o valor escrito na memoria).
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end
+			/*
+			SB1 antigo: begin
+
+				/*  Primeiro RS, ir� passar pela ALU e irei escrever em ALUOut,
+				para setar IorD para 1, e dessa forma no pr�ximo (pq ALUOut � registrador.) ciclo eu vou escrever no Address[rs]
+
+				Ent�o no ciclo dois � que seto IorD para 1, e usarei ALUout (rs) como endere�o..
+				Meu BYTE que � o RT.. est� carregado no registrador B... (0xff & $RT) (metodo para obter a parte que quero * /
+
 				//Realizando o calculo de endereço.
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
@@ -957,8 +1071,32 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp			= 3'b00;
-				ALUSrcA 		= 1'b1;			// O valor do registrador A (rs)
-				ALUSrcB 		= 2'b10;		// get the value of addr_imm extended to 32 bits
+				ALUSrcA 		= 2'b01;			// O valor do registrador A (rs)
+				ALUSrcB 		= 3'b010;		// get the value of addr_imm extended to 32 bits
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b1;		//write to ALUOut
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end*/
+			/*** sh antigo SH: begin
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 2'b01;			// O valor do registrador A (rs)
+				ALUSrcB 		= 3'b010;			// get the value of addr_imm extended to 32 bits
 				RegWrite		= 1'b0;
 				RegDst			= 2'b00;
 				AWrite			= 1'b0;
@@ -976,20 +1114,44 @@ module UC (
 			SH1: begin
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b001;			//Pegando o endereço que foi calculado em SB.. e está em ALUOUT
-				MemWrite 		= 1'b1;		//Setando a memória para escrita
+				MemWrite 		= 1'b1;			//Setando a memória para escrita
 				MemtoReg 		= 4'b0000;
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
-				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUOp 			= 3'b001;			// Soma na ALU
+				ALUSrcA 		= 2'b11;			// Pegando o valor em RS com a segunda metade da word zerada. [os ultimos 16bits]
+				ALUSrcB 		= 3'b101;			// Pegando o valor em RT onde zerei a primeira metade da word. [os primeiros 16bits]
 				RegWrite 		= 1'b0;
 				RegDst 			= 1'b0;
 				AWrite 			= 1'b0;
 				BWrite 			= 1'b0;
 				ALUOutLoad  	= 1'b0;
 				MDRLoad			= 1'b0;
-				SeletorMemWriteData = 2'b10; // Indicando que meia palavra deve ser escrita.
+				SeletorMemWriteData = 2'b01; // Indicando que a saida da ALU (antes de ir pro reg, deve ser o valor escrito na memoria).
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end*/
+			SH: begin
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b000;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 2'b01;			// O valor do registrador A (rs)
+				ALUSrcB 		= 3'b010;		  // get the value of addr_imm extended to 32 bits
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b1;		//write to ALUOut
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
 				MDRInSize		= 2'b00;
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
@@ -997,6 +1159,130 @@ module UC (
 				DeslocSelector  = 1'b0;
 				//newPin
 			end
+			SH1: begin
+				//Lendo o valor em Address[RS]
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b001;			// O Valor da ULA sera o valor a ler da memoria
+				MemWrite 		= 1'b0;
+				MemtoReg		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end
+			SH2: begin
+				//Delay da memoria
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b001;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end
+			SH3: begin //Delay da memoria
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b001;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end
+			SH4: begin//Terminou delay da memoria
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b001;
+				MemWrite 		= 1'b0;
+				MemtoReg		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp			= 3'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
+				RegWrite		= 1'b0;
+				RegDst			= 2'b00;
+				AWrite			= 1'b0;
+				BWrite			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b1;
+				SeletorMemWriteData = 2'b00;
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end
+			SH5: begin
+				PCWrite 		= 1'b0;
+				IorD 			= 3'b001;			//Pegando o endereço que foi calculado em SB.. e esta em ALUOUT (registrador)
+				MemWrite 		= 1'b1;			//Setando a memória para escrita
+				MemtoReg 		= 4'b0000;
+				IRWrite 		= 1'b0;
+				PCSource 		= 2'b00;
+				ALUOp 			= 3'b000;			// Soma na ALU
+				ALUSrcA 		= 2'b11;			// Pegando o valor em MDR (valor lido de Address[rs]) com a ultima parte da wrod zerado. [os ultimos 16bits zerados]
+				ALUSrcB 		= 3'b101;			// Pegando o valor em RT onde zerei tudo exceto a ultima metade da word. [os primeiros 16bits sao zeros.]
+				RegWrite 		= 1'b0;
+				RegDst 			= 1'b0;
+				AWrite 			= 1'b0;
+				BWrite 			= 1'b0;
+				ALUOutLoad  	= 1'b0;
+				MDRLoad			= 1'b0;
+				SeletorMemWriteData = 2'b01; // Indicando que a saida da ALU (antes de ir pro reg, deve ser o valor escrito na memoria).
+				MDRInSize		= 2'b00;
+				EPCWrite		= 1'b0;
+				EPCSelect		= 2'b00;
+				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				//newPin
+			end
+
+
 			MFHI: begin // rd <= hi;
 				PCWrite 		= 1'b0;
 				IorD 			= 1'b0;
@@ -1005,8 +1291,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite		= 1'b1;					// Escrever no banco de registradores
 				RegDst			= 2'b01;				// Escrever em RD
 				AWrite			= 1'b0;
@@ -1029,8 +1315,8 @@ module UC (
 				IRWrite 		= 1'b0;
 				PCSource 		= 2'b00;
 				ALUOp 			= 3'b000;
-				ALUSrcA 		= 1'b0;
-				ALUSrcB 		= 2'b00;
+				ALUSrcA 		= 2'b00;
+				ALUSrcB 		= 3'b000;
 				RegWrite		= 1'b1;					// Escrever no banco de registradores
 				RegDst			= 2'b01;				// Escrever em RD
 				AWrite			= 1'b0;
@@ -1268,7 +1554,7 @@ module UC (
 				DeslocSelector  = 1'b1;			//selects rs
 				//newPin
 			end
-			SRA: begin			//shift left logic, shifts (rt) 
+			SRA: begin			//shift left logic, shifts (rt)
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
@@ -1293,7 +1579,7 @@ module UC (
 				//newPin
 			end
 				//newPin
-			SRAV: begin			//shift left logic, shifts (rt) 
+			SRAV: begin			//shift left logic, shifts (rt)
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
@@ -1317,7 +1603,7 @@ module UC (
 				DeslocSelector  = 1'b1;			//selects rs
 				//newPin
 			end
-			SRL: begin			//shift left logic, shifts (rt) 
+			SRL: begin			//shift left logic, shifts (rt)
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;

@@ -2,7 +2,7 @@
 		input logic clk,
 		input logic reset,
 		output logic [5:0] Estado,
-		
+
 		output logic [31:0] PC,
 		output logic [31:0] EPC,
 		output logic [31:0] Mem_Data,
@@ -11,8 +11,8 @@
 		output logic [4:0] WriteRegister,
 		output logic [31:0] WriteDataReg,
 		output logic [31:0] MDR,
-		output logic [3:0] mem_to_reg,		
-		
+		output logic [3:0] mem_to_reg,
+
 		// Alu...
 		output logic [31:0] a_output,
 		output logic [31:0] b_output,
@@ -35,7 +35,7 @@
 		//Multiply
 		//output logic end_mul_flag,
 		//output reg [63:0] mult_product
-		
+
 		//output logic mdr_load,
 		//output logic [1:0] mdr_in_size,
 		//output logic [31:0] mdr_input,
@@ -45,15 +45,15 @@
 		output logic [15:0] addr_imm,
 		output logic [31:0] read_data1,
 		output logic [31:0] read_data2
-		//output logic [1:0] alu_src_b,
+		//output logic [2:0] alu_src_b,
 		//output logic alu_src_a,
 		//output logic [31:0] read_data1,
 		//output logic [31:0] read_data2,
 		//output logic [31:0] lui_number,
 		//output logic [31:0] sign_ex_output,
-			
-		
-		
+
+
+
 );
 
 
@@ -144,8 +144,8 @@ logic [2:0] multiplicando_op;
 //logic [31:0] alu_b_input;
 //logic [31:0] alu_a_input;
 //logic [2:0] alu_op;
-logic [1:0] alu_src_b;
-logic alu_src_a;
+logic [2:0] alu_src_b;
+logic [1:0] alu_src_a;
 //logic [2:0] alu_control_output;
 //logic of_alu;
 logic negf_alu;
@@ -224,7 +224,7 @@ Registrador epc(
 
 Mux32_3 new_mux_pc(
 		.A(pc_input),
-		.B( {{26{1'b0}}, Mem_Data[31-:8]} ), //8 MSB read from memory concatenated with 26 0's
+		.B( { {26{1'b0}}, Mem_Data[31-:8]} ), //8 MSB read from memory concatenated with 26 0's
 		.C(EPC),
 		.Seletor(epc_select),
 		.Saida(mux_pc_out)
@@ -241,8 +241,7 @@ Mux32_4 mux_memory ( //mux3221_mem = mux de 32 bits de 2 pra 1 o qual a sa?da ? 
 
 Mux32_3 mem_in (
 		.A(read_data2),
-		.B(32'hFF & read_data2), 						// to Store byte[rt]     [ f = 1111... só pra lembrar]
-		.C(32'hFFFF & read_data2),					// to Store Halfword
+		.B(Alu),						// Warning! Isn't a register, because in SB I'll use RegisterALUOut with address and ALu with value...
 		.Seletor(seletorMemWriteData),
 		.Saida(WriteDataMem)
 );
@@ -320,8 +319,8 @@ Banco_reg banco_reg (
 Mux5_2 mux_reg_desloc (		//selecionar de onde vem o N do regdesloc
 	.A(shift_amount),			//value of shamt
 	.B(read_data1),  			//value of rs
-	.Seletor(desloc_selector),		
-	.Saida(num_desloc)					
+	.Seletor(desloc_selector),
+	.Saida(num_desloc)
 );
 
 RegDesloc regdesloc (
@@ -363,18 +362,26 @@ Uncomplement uncomplement_B (
 	.Output(b_uncomplemented)
 );
 
-Mux32_2 mux_alu_a (
+Mux32_4 mux_alu_a (
 	.A(PC),
 	.B(a_output),
+	//.C({a_output[31-:24],  {8{1'b0}} }),
+	//.D({a_output[31-:16],  {16{1'b0}} }),
+	.C(MDR & 6'hFFFFFF00), // O Valor lido de Address[rs]
+	.D(MDR & 6'hFFFF0000), // O Valor lido de Address[rs]
 	.Seletor(alu_src_a),
 	.Saida(alu_a_input)
 );
 
-Mux32_4 mux_alu_b(
+Mux32_6 mux_alu_b(
 	.A(b_output),
 	.B(32'd4),
 	.C(sign_ex_output),
-	.D((sign_ex_output << 2)), //shitf_left2 esta implicito
+	.D((sign_ex_output << 2)), 		//shitf_left2 esta implicito
+	//.E({{24{1'b0}}, read_data2[7-:8]}), 			// to Store byte[rt]  [00000000 00000000 00000000] + read_data2[xxxxxxxx]
+	//.F({{16{1'b0}}, read_data2[15-:16]}),			// to Store Halfword  [00000000 00000000] + read_data2[xxxxxxxx xxxxxxxx]
+	.E(6'hFF & b_output),
+	.F(6'hFFFF & b_output),
  	.Seletor(alu_src_b),
  	.Saida(alu_b_input)
  );

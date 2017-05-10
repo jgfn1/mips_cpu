@@ -22,7 +22,7 @@ module Multiply(
 
   always_ff@(posedge Clk) begin
 	    case(State)
-			32: begin // MULT
+			36: begin // MULT
 				EndMulFlag = 0;
 				counter = 0;
 
@@ -30,7 +30,7 @@ module Multiply(
 				multiplicando[31:0] = B[31:0];
 				signal = A[31] ^ B[31];
 			end
-			33: begin // MULT2
+			37: begin // MULT2
 				counter = counter + 7'b1;
 
 				if(Produto[0] == 1)

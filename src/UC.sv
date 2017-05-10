@@ -208,6 +208,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -232,6 +233,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			F2: begin
@@ -255,6 +257,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -279,6 +282,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -303,6 +307,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b001;	// Writes read_data2 in RegDesloc
+				DeslocSelector  = 1'b0;
 				//newPin
 
 				//Aluout recebe esse valor pra agilizar um possível branch. pag 326
@@ -328,6 +333,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -352,6 +358,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -376,6 +383,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			LOAD: begin			//make the sum for the address of the addr_imm and the value of A (rs)
@@ -399,6 +407,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			LOAD1: begin
@@ -422,6 +431,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -448,6 +458,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -473,6 +484,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -498,6 +510,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -522,6 +535,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -547,6 +561,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -571,6 +586,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -595,6 +611,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -619,6 +636,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -643,6 +661,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -667,6 +686,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -691,6 +711,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SXORI1: begin			//make the XOR, save into ALUOut
@@ -714,6 +735,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 
 			end
@@ -738,6 +760,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			// Mesmo JR sendo RTYPE (pois escreve em registrador..) no meu caso o RD é sempre 31 e eu não tenho como setar isso usando RTYPE e RTYPE_CONT
@@ -762,6 +785,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			JAL: begin
@@ -785,6 +809,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SLT: begin								//Passando A e B para ALU, caso tenha flag de A < B, então vai escrever em rd 1 ou 0
@@ -808,6 +833,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SLT_CONT: begin
@@ -831,6 +857,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			// Eu acho que tem erro, porque acho que o MenorFlag já não está mais setado quando passa para SLT_CONT.
 			// Mas pela lógica do ZeroFlag funciona...
@@ -856,6 +883,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SLTI_CONT: begin
@@ -879,6 +907,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			// Eu acho que tem erro, porque acho que o MenorFlag já não está mais setado quando passa para SLT_CONT.
 			// Mas pela lógica do ZeroFlag funciona...
@@ -912,6 +941,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SB1: begin
@@ -1033,6 +1063,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			/*
@@ -1089,6 +1120,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SH1: begin
@@ -1258,6 +1290,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 
@@ -1283,6 +1316,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			MFLO: begin // rd <= lo
@@ -1306,6 +1340,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			OVERFLOW:
@@ -1330,6 +1365,7 @@ module UC (
 				EPCWrite		= 1'b1;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			OVERFLOW1:
@@ -1354,6 +1390,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			OVERFLOW2:
@@ -1378,6 +1415,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b01;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			OPXCEPTION:
@@ -1402,6 +1440,7 @@ module UC (
 				EPCWrite		= 1'b1;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			OPXCEPTION1:
@@ -1426,6 +1465,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			OPXCEPTION2:
@@ -1450,6 +1490,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b01;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			RTE:
@@ -1474,6 +1515,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b11;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SLL: begin			//shift left logic, shifts (rt) (shamt) times
@@ -1497,6 +1539,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b010;		//shift left op
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SLLV: begin			//shift left logic, shifts (rt) (rs) times
@@ -1520,6 +1563,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b010;		//shift left op
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SRA: begin			//shift left logic, shifts (rt)
@@ -1543,14 +1587,10 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b100;		//shift right op
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
-<<<<<<< HEAD
-			SRAV: begin			//shift left logic, shifts (rt) 
-=======
-				//newPin
 			SRAV: begin			//shift left logic, shifts (rt)
->>>>>>> b9e0c3bc9a7a14cf9a87ca5483592c49a59712f0
 				PCWrite 		= 1'b0;
 				IorD 			= 3'b000;
 				MemWrite 		= 1'b0;
@@ -1571,6 +1611,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b100;		//shift right op
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SRL: begin			//shift left logic, shifts (rt)
@@ -1594,6 +1635,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b011;		//shift right op
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 			SHIFTWRITE: begin			//writes result in rd
@@ -1617,6 +1659,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 
@@ -1641,6 +1684,7 @@ module UC (
 				EPCWrite		= 1'b0;
 				EPCSelect		= 2'b00;
 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
 				//newPin
 			end
 		endcase

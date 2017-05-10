@@ -44,17 +44,12 @@
 		output logic [4:0] rt,
 		output logic [15:0] addr_imm,
 		output logic [31:0] read_data1,
-<<<<<<< HEAD
 		output logic [31:0] read_data2,
 		output logic of_alu,
 		output logic epc_write,
 		output logic [1:0] epc_select,
 		output logic [31:0] instruction
 		//output logic [1:0] alu_src_b,
-=======
-		output logic [31:0] read_data2
-		//output logic [2:0] alu_src_b,
->>>>>>> b9e0c3bc9a7a14cf9a87ca5483592c49a59712f0
 		//output logic alu_src_a,
 		//output logic [31:0] read_data1,
 		//output logic [31:0] read_data2,

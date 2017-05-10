@@ -31,10 +31,10 @@
 		output logic [4:0] shift_amount,
 		output logic [4:0] num_desloc,
 		output logic desloc_selector,
-		output logic [31:0] regdesloc_out,
+		output logic [31:0] Desloc_Reg,
 		//Multiply
 		//output logic end_mul_flag,
-		//output reg [63:0] mult_product
+		//output reg [63:0] mul_Module
 
 		//output logic mdr_load,
 		//output logic [1:0] mdr_in_size,
@@ -136,7 +136,7 @@ logic [2:0] multiplicando_op;
 // logic [4:0] shift_amount;
 // logic [4:0] num_desloc;
 // logic desloc_selector;
-// logic [31:0] regdesloc_out;
+// logic [31:0] Desloc_Reg;
 
 /*		A and B 	*/
 //logic [31:0] a_output;
@@ -170,7 +170,7 @@ assign shift_amount = addr_imm[10-:5];
 
 
 /** Multiply **/
-logic [63:0] mult_product; // Overflow[64];   HI [63-32];   LO[31:00];
+logic [63:0] mul_Module; // Overflow[64];   HI [63-32];   LO[31:00];
 logic end_mul_flag;
 logic [31:0] a_uncomplemented;
 logic [31:0] b_uncomplemented;
@@ -301,10 +301,10 @@ Mux32_09 mux_br_wr_data ( //mux3221_br = mux de 32 bits de 2 pra 1 o qual a sa?d
 	.C(lui_number),		//ISSO E PARA O LUI, NAO MEXER
 	.D(32'b0),
 	.E(32'b1),
-	.F(mult_product[63:32]),
-	.G(mult_product[31:0]),
+	.F(mul_Module[63:32]),
+	.G(mul_Module[31:0]),
 	.H(PC),
-	.I(regdesloc_out),
+	.I(Desloc_Reg),
 	.Seletor(mem_to_reg),
 	.Saida(WriteDataReg)
 );
@@ -334,7 +334,7 @@ RegDesloc regdesloc (
 	.Entrada(read_data2),
 	.Shift(regdesloc_op),
 	.N(num_desloc),
-	.Saida(regdesloc_out)
+	.Saida(Desloc_Reg)
 );
 
 Extensor_sinal sign_ex(
@@ -434,7 +434,7 @@ Multiply multiply(
 	.State(Estado),
 	.A(a_uncomplemented),
 	.B(b_uncomplemented),
-	.Produto(mult_product),
+	.Produto(mul_Module),
 	.EndMulFlag(end_mul_flag)
 );
 

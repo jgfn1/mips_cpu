@@ -20,7 +20,8 @@ module ALUControl(
 						default: 	Saida = 3'b000;// Loads A, by default
 					endcase				
 			end
-			3'b011: 	Saida = 3'b110;//Xor activated through ALUOp, used in the sxori instruction
+			3'b011: 	Saida = 3'b110;//XOR activated through ALUOp, used in the sxori instruction
+			3'b100: 	Saida = 3'b011;//AND activated through ALUOp, used in the andi instruction
 			default:	Saida = 3'b000; // Loads A, by default
 		endcase
 endmodule

@@ -76,7 +76,8 @@
  logic [31:0] pc_input;
  logic [1:0] reg_dst;
  logic [2:0] iorD;
-
+ logic [31:0] a_output;
+ logic [31:0] b_output;
 
 
 

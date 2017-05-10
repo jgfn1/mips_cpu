@@ -107,6 +107,7 @@ module UC (
 						6'h04:	state <= BEQ;
 						6'h05:	state <= BNE;
 						6'h0A: 	state <= SLTI;
+						6'hC:	state <= ANDI1;
 						6'h23:	begin
 								state <= LOAD;
 								load_size <= WORD;

@@ -668,6 +668,54 @@ module UC (
 				//newPin
 
 			end
+			ADDI1: begin			//make the sum, save into ALUOut
+ 				PCWrite 		= 1'b0;
+ 				IorD 			= 3'b000;
+ 				MemWrite 		= 1'b0;
+ 				MemtoReg		= 4'b0000;
+ 				IRWrite 		= 1'b0;
+ 				PCSource 		= 2'b00;
+ 				ALUOp			= 3'b000;	//sum
+ 				ALUSrcA 		= 2'b01;		//get the value of reg A
+ 				ALUSrcB 		= 3'b010;	//get the value of addr_imm extended to 32 bits
+ 				RegWrite		= 1'b0;
+ 				RegDst			= 2'b00;
+ 				AWrite			= 1'b0;
+ 				BWrite			= 1'b0;
+ 				ALUOutLoad  	= 1'b1;		//write to ALUOut
+ 				MDRLoad			= 1'b0;
+ 				SeletorMemWriteData = 2'b00;
+ 				MDRInSize		= 2'b00;
+ 				EPCWrite		= 1'b0;
+ 				EPCSelect		= 2'b00;
+ 				RegDeslocOp		= 3'b000;
+				DeslocSelector  = 1'b0;
+				
+ 			end
+ 			ADDI2: begin			//ALUOut updated, write to register.
+ 				PCWrite 		= 1'b0;
+ 				IorD 			= 3'b000;
+ 				MemWrite 		= 1'b0;
+ 				MemtoReg		= 4'b0000; 	//write data comes from ALUOut
+ 				IRWrite 		= 1'b0;
+ 				PCSource 		= 2'b00;
+ 				ALUOp 			= 3'b000;
+ 				ALUSrcA 		= 2'b00;
+ 				ALUSrcB 		= 3'b000;
+ 				RegWrite		= 1'b1;		//Write in register
+ 				RegDst			= 2'b00;		//select rt to be written into.
+ 				AWrite			= 1'b0;
+ 				BWrite			= 1'b0;
+ 				ALUOutLoad  	= 1'b0;
+ 				MDRLoad			= 1'b0;
+ 				SeletorMemWriteData = 2'b00;
+ 				MDRInSize		= 2'b00;
+ 				EPCWrite		= 1'b0;
+ 				EPCSelect		= 2'b00;
+ 				RegDeslocOp		= 3'b000;
+ 				DeslocSelector  = 1'b0;
+           
+            end
 			ANDI1: begin            //make the add, save into ALUOut
                 PCWrite         = 1'b0;
                 IorD             = 3'b000;

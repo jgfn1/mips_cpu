@@ -34,12 +34,12 @@ module UC (
 		output logic DeslocSelector
 );
 
-	enum logic [5:0] {FETCH, F1, F2, F3, DECODE, LUI, RTYPE, RTYPE_CONT, BEQ, BNE, //10
-					LOAD, LOAD1, LOAD2, LOAD3, LOAD4, SW, SW1, J, BREAK, ADDI1, //10
-					ADDI2, SXORI1, SXORI2, JAL, JR, SLT, SLT_CONT, SLTI, SLTI_CONT, SB, //10
-					SB1, SB2, SB3, SB4, SB5, SH, SH1, MULT, MULT2, MFHI, //10
-					MFLO, OVERFLOW, OVERFLOW1, OVERFLOW2, OPXCEPTION, OPXCEPTION1, OPXCEPTION2, RTE, SLL, SLLV, //10
-					 SRA, SRAV, SRL, SHIFTWRITE, SH2, SH3, SH4, SH5, ANDI1, ANDI2// 10
+	enum logic [5:0] {FETCH/*0*/, F1/*1*/, F2 /*2*/, F3 /*3*/, DECODE/*4*/, LUI/*5*/, RTYPE/*6*/, RTYPE_CONT/*7*/, BEQ/*8*/, BNE /*9*/, //10
+					LOAD/*10*/, LOAD1/*11*/, LOAD2/*12*/, LOAD3/*13*/, LOAD4/*14*/, SW/*15*/, SW1/*16*/, J/*17*/, BREAK/*18*/, ADDI1/*19*/, //10
+					ADDI2/*20*/, SXORI1/*21*/, SXORI2/*22*/, JAL/*23*/, JR/*24*/, SLT/*25*/, SLT_CONT/*26*/, SLTI/*27*/, SLTI_CONT/*28*/, SB/*29*/, //10
+					SB1/*30*/, SB2/*31*/, SB3/*32*/, SB4/*33*/, SB5/*34*/, SH/*35*/, SH1/*36*/, MULT/*37*/, MULT2/*38*/, MFHI/*39*/, //10
+					MFLO/*40*/, OVERFLOW/*41*/, OVERFLOW1/*42*/, OVERFLOW2/*43*/, OPXCEPTION/*44*/, OPXCEPTION1/*45*/, OPXCEPTION2/*46*/, RTE/*47*/, SLL/*48*/, SLLV/*49*/, //10
+					SRA/*50*/, SRAV/*51*/, SRL/*52*/, SHIFTWRITE/*53*/, SH2/*54*/, SH3/*55*/, SH4/*56*/, SH5/*57*/, ANDI1/*58*/, ANDI2/*59*/// 10
 					} state;
 	enum logic [1:0] {WORD, HALF, BYTE} load_size;
 
